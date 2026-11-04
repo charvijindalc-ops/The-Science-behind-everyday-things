@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Science Quiz</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef5ff, #dceaff);
+            color: #263b50;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        body > center:first-of-type {
+            background: linear-gradient(135deg, #123b5d, #176b87);
+            padding: 35px 15px 25px;
+            color: white;
+        }
+
+        body > center:first-of-type h1 {
+            color: white;
+            margin: 0 0 10px;
+        }
+
+        body > center:first-of-type font {
+            color: #d9efff !important;
+        }
+
+        /* Navigation Bar */
+        body > center:nth-of-type(2) {
+            background: white;
+            padding: 15px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #176b87;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #2196b0;
+            text-decoration: underline;
+        }
+
+        body > center:nth-of-type(2) a {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        body > center:nth-of-type(2) a:hover {
+            background: #176b87;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Horizontal Lines */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #80c9e8, #176b87, #80c9e8);
+            margin: 25px 0;
+        }
+
+        /* Quiz Instructions */
+        body > center:nth-of-type(3) {
+            background: white;
+            margin: 25px 30px 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(18, 59, 93, 0.08);
+            border-left: 5px solid #2196b0;
+        }
+
+        /* Quiz Questions */
+        body > font {
+            display: block;
+            background: white;
+            margin: 15px 30px;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #2196b0;
+            box-shadow: 0 5px 15px rgba(18, 59, 93, 0.09);
+        }
+
+        body > font b {
+            color: #123b5d;
+            font-size: 18px;
+        }
+
+        input[type="radio"] {
+            accent-color: #176b87;
+            margin: 8px 8px 8px 5px;
+            cursor: pointer;
+            transform: scale(1.15);
+        }
+
+        input[type="radio"]:hover {
+            accent-color: #2196b0;
+        }
+
+        /* Buttons */
+        button {
+            background: linear-gradient(135deg, #176b87, #2196b0);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px 8px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(18, 59, 93, 0.15);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #123b5d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(18, 59, 93, 0.2);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* Result */
+        #result {
+            color: #123b5d;
+            background: #e5f3ff;
+            padding: 15px;
+            margin: 15px auto;
+            width: fit-content;
+            max-width: 90%;
+            border-radius: 10px;
+            border: 2px solid #80c9e8;
+        }
+
+        /* Footer */
+        body > center:last-of-type {
+            background: #123b5d;
+            color: #d9efff;
+            padding: 18px 10px;
+            margin-top: 30px;
+        }
+
+        body > center:last-of-type font {
+            color: #d9efff !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body > center:nth-of-type(2) {
+                position: relative;
+                line-height: 2.5;
+            }
+
+            body > center:nth-of-type(3) {
+                margin: 20px 15px 10px;
+            }
+
+            body > font {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            body > font b {
+                font-size: 16px;
+            }
+
+            button {
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 26px;
+            }
+
+            body > center:nth-of-type(2) a {
+                padding: 4px 6px;
+                font-size: 13px;
+            }
+
+            body > font {
+                padding: 15px;
+                font-size: 15px !important;
+            }
+
+            body > font b {
+                font-size: 15px;
+            }
+
+            button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body bgcolor="#F4F9FF">
+
+    <center>
+        <font face="Arial" color="#123B63" size="6">
+            <h1>🧠 Science Quiz</h1>
+        </font>
+
+        <font face="Arial" color="#416788" size="4">
+            Test your knowledge of everyday science!
+        </font>
+    </center>
+
+    <hr color="#75AADB" size="3">
+
+    <!-- Navigation -->
+    <center>
+        <font face="Arial" size="3">
+            <a href="index.html">Home</a> |
+            <a href="gps.html">GPS</a> |
+            <a href="wifi.html">Wi-Fi</a> |
+            <a href="fridge.html">Refrigerator</a> |
+            <a href="microwave.html">Microwave</a> |
+            <a href="washing-machine.html">Washing Machine</a> |
+            <a href="quiz.html">Science Quiz</a>
+        </font>
+    </center>
+
+    <hr color="#75AADB">
+
+    <center>
+        <font face="Arial" size="4">
+            Answer all the questions and click Submit Quiz.
+        </font>
+    </center>
+
+    <br>
+
+    <!-- Question 1 -->
+    <font face="Arial" size="4">
+        <b>1. What does GPS help us determine?</b>
+        <br><br>
+
+        <input type="radio" name="q1" value="a"> The location of a place<br>
+        <input type="radio" name="q1" value="b"> The temperature of food<br>
+        <input type="radio" name="q1" value="c"> The speed of sound<br>
+        <input type="radio" name="q1" value="d"> The weight of an object<br>
+
+        <br>
+
+        <!-- Question 2 -->
+        <b>2. Which device produces microwaves in a microwave oven?</b>
+        <br><br>
+
+        <input type="radio" name="q2" value="a"> Motor<br>
+        <input type="radio" name="q2" value="b"> Magnetron<br>
+        <input type="radio" name="q2" value="c"> Water pump<br>
+        <input type="radio" name="q2" value="d"> Thermometer<br>
+
+        <br>
+
+        <!-- Question 3 -->
+        <b>3. What does a refrigerator do?</b>
+        <br><br>
+
+        <input type="radio" name="q3" value="a"> Creates cold from nothing<br>
+        <input type="radio" name="q3" value="b"> Adds heat to food<br>
+        <input type="radio" name="q3" value="c"> Removes heat from its interior<br>
+        <input type="radio" name="q3" value="d"> Converts food into electricity<br>
+
+        <br>
+
+        <!-- Question 4 -->
+        <b>4. What is the main purpose of detergent in a washing machine?</b>
+        <br><br>
+
+        <input type="radio" name="q4" value="a"> To make clothes heavier<br>
+        <input type="radio" name="q4" value="b"> To help remove dirt and grease<br>
+        <input type="radio" name="q4" value="c"> To produce electricity<br>
+        <input type="radio" name="q4" value="d"> To stop the drum from rotating<br>
+
+        <br>
+
+        <!-- Question 5 -->
+        <b>5. Wi-Fi uses which type of waves to transmit data wirelessly?</b>
+        <br><br>
+
+        <input type="radio" name="q5" value="a"> Sound waves<br>
+        <input type="radio" name="q5" value="b"> Water waves<br>
+        <input type="radio" name="q5" value="c"> Radio waves<br>
+        <input type="radio" name="q5" value="d"> Seismic waves<br>
+    </font>
+
+    <br><br>
+
+    <center>
+        <button onclick="checkQuiz()">Submit Quiz</button>
+        <button onclick="resetQuiz()">Try Again</button>
+
+        <h2 id="result"></h2>
+    </center>
+
+    <!-- JavaScript -->
+    <script>
+
+        function checkQuiz() {
+
+            var score = 0;
+
+            var answers = {
+                q1: "a",
+                q2: "b",
+                q3: "c",
+                q4: "b",
+                q5: "c"
+            };
+
+            for (var question in answers) {
+
+                var selected = document.querySelector(
+                    'input[name="' + question + '"]:checked'
+                );
+
+                if (selected && selected.value === answers[question]) {
+                    score++;
+                }
+            }
+
+            document.getElementById("result").innerHTML =
+                "You scored " + score + " out of 5!";
+
+            if (score === 5) {
+                document.getElementById("result").innerHTML +=
+                    "<br>Excellent! You are a Science Expert! 🌟";
+            }
+            else if (score >= 3) {
+                document.getElementById("result").innerHTML +=
+                    "<br>Good job! Keep learning! 👍";
+            }
+            else {
+                document.getElementById("result").innerHTML +=
+                    "<br>Keep practicing and try again! 📚";
+            }
+        }
+
+        function resetQuiz() {
+
+            var options = document.querySelectorAll(
+                'input[type="radio"]'
+            );
+
+            options.forEach(function(option) {
+                option.checked = false;
+            });
+
+            document.getElementById("result").innerHTML = "";
+        }
+
+    </script>
+
+    <hr color="#75AADB">
+
+    <center>
+        <font face="Arial" color="#416788" size="2">
+            The Science Behind Everyday Things | Educational Project
+        </font>
+    </center>
+
+</body>
+</html>

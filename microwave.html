@@ -1,7 +1,275 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>The Science Behind Microwave Ovens</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 15px;
+            background: linear-gradient(135deg, #eef5ff, #dceaff);
+            font-family: Arial, sans-serif;
+            color: #263b50;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        body > center:first-of-type {
+            background: linear-gradient(135deg, #123b5d, #176b87);
+            color: white;
+            margin: 0 -15px;
+            padding: 35px 15px 30px;
+        }
+
+        body > center:first-of-type h1 {
+            color: white;
+            margin: 10px 0;
+        }
+
+        body > center:first-of-type font {
+            color: white !important;
+        }
+
+        /* Navigation */
+        body > center:nth-of-type(2) {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            margin: 0 -15px;
+            padding: 16px 10px;
+            box-shadow: 0 3px 12px rgba(18, 59, 93, 0.12);
+        }
+
+        a {
+            color: #176b87;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 7px 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: white;
+            background: #176b87;
+        }
+
+        /* Horizontal lines */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2196b0, transparent);
+            margin: 25px auto;
+        }
+
+        /* Main headings */
+        h2 {
+            color: #123b5d;
+            font-size: 27px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #176b87;
+            font-size: 21px;
+            margin-top: 22px;
+        }
+
+        /* Content spacing */
+        body > font,
+        body > ol,
+        body > ul,
+        body > h2,
+        body > h3,
+        body > table {
+            margin-left: 3%;
+            margin-right: 3%;
+        }
+
+        body > font[size="4"] {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        ol, ul {
+            background: white;
+            padding: 22px 25px 22px 50px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(18, 59, 93, 0.09);
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        li {
+            padding: 7px 5px;
+        }
+
+        li::marker {
+            color: #176b87;
+            font-weight: bold;
+        }
+
+        /* Images */
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 14px;
+            border: 5px solid white;
+            box-shadow: 0 6px 18px rgba(18, 59, 93, 0.18);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 9px 22px rgba(18, 59, 93, 0.22);
+        }
+
+        /* Paragraphs */
+        p {
+            color: #456;
+        }
+
+        /* Tables */
+        table[border="1"] {
+            width: 94%;
+            max-width: 1100px;
+            margin: 20px auto;
+            background: white;
+            border: none;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(18, 59, 93, 0.10);
+        }
+
+        table[border="1"] th {
+            background: #123b5d;
+            color: white;
+            padding: 16px;
+            border: 1px solid #d5e5f2;
+        }
+
+        table[border="1"] th font {
+            color: white !important;
+        }
+
+        table[border="1"] td {
+            padding: 15px;
+            border: 1px solid #d5e5f2;
+        }
+
+        table[border="1"] tr:nth-child(even) {
+            background: #edf6fc;
+        }
+
+        table[border="1"] tr:hover {
+            background: #dceefa;
+            transition: 0.2s;
+        }
+
+        /* Conclusion section */
+        body > center:nth-last-of-type(2) {
+            background: white;
+            border-radius: 14px;
+            padding: 25px 20px;
+            margin: 25px auto;
+            max-width: 1000px;
+            box-shadow: 0 5px 18px rgba(18, 59, 93, 0.10);
+        }
+
+        /* Footer */
+        body > center:last-of-type {
+            background: #123b5d;
+            color: #dceaff;
+            margin: 0 -15px;
+            padding: 22px 15px;
+        }
+
+        body > center:last-of-type font {
+            color: #dceaff !important;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 8px;
+            }
+
+            body > center:first-of-type,
+            body > center:nth-of-type(2),
+            body > center:last-of-type {
+                margin-left: -8px;
+                margin-right: -8px;
+            }
+
+            h2 {
+                font-size: 23px;
+            }
+
+            h3 {
+                font-size: 19px;
+            }
+
+            table[border="1"] {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            table[border="1"] td,
+            table[border="1"] th {
+                padding: 10px;
+            }
+
+            a {
+                display: inline-block;
+                padding: 5px;
+                font-size: 13px;
+            }
+
+            ol, ul {
+                padding-left: 38px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body > center:first-of-type h1 {
+                font-size: 27px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            body > font[size="4"] {
+                font-size: 14px;
+            }
+
+            table[border="1"] {
+                font-size: 12px;
+            }
+
+            table[border="1"] td,
+            table[border="1"] th {
+                padding: 7px;
+            }
+
+            ol, ul {
+                padding: 15px 15px 15px 35px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body bgcolor="#F4F9FF">
@@ -26,7 +294,8 @@
             <a href="wifi.html">Wi-Fi</a> |
             <a href="fridge.html">Refrigerator</a> |
             <a href="microwave.html">Microwave</a> |
-            <a href="washing-machine.html">Washing Machine</a>
+            <a href="washing-machine.html">Washing Machine</a> |
+            <a href="quiz.html">Science Quiz</a>
         </font>
     </center>
 

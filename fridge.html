@@ -1,8 +1,212 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Refrigerator - The Science Behind Everyday Things</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 15px;
+            background: linear-gradient(135deg, #eef5ff, #dceaff);
+            font-family: Arial, sans-serif;
+            color: #263b50;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        body > center:first-of-type {
+            background: linear-gradient(135deg, #123b5d, #176b87);
+            color: white;
+            margin: 0 -15px;
+            padding: 35px 15px 25px;
+        }
+
+        body > center:first-of-type font {
+            color: white !important;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2196b0, transparent);
+            margin: 25px auto;
+        }
+
+        /* Navigation */
+        body > center:nth-of-type(2) {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            margin: 0 -15px;
+            padding: 15px 10px;
+            box-shadow: 0 3px 12px rgba(18, 59, 93, 0.12);
+        }
+
+        a {
+            color: #176b87;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 7px 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: white;
+            background: #176b87;
+        }
+
+        /* Section headings */
+        body center > font[size="6"] {
+            display: inline-block;
+            color: #123b5d !important;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Content tables */
+        body center > table:not([border="1"]) {
+            width: 80%;
+            max-width: 1000px;
+            margin: 15px auto;
+            background: white;
+            border-radius: 14px;
+            border-collapse: separate;
+            border-spacing: 0;
+            box-shadow: 0 5px 18px rgba(18, 59, 93, 0.10);
+            overflow: hidden;
+        }
+
+        body center > table:not([border="1"]) td {
+            padding: 20px;
+            border-left: 5px solid #2196b0;
+            border-radius: 12px;
+        }
+
+        /* Images */
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 14px;
+            border: 5px solid white;
+            box-shadow: 0 6px 18px rgba(18, 59, 93, 0.18);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 9px 22px rgba(18, 59, 93, 0.22);
+        }
+
+        /* Tables with borders */
+        table[border="1"] {
+            width: 90%;
+            max-width: 1000px;
+            margin: 15px auto;
+            background: white;
+            border: none;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(18, 59, 93, 0.10);
+        }
+
+        table[border="1"] th {
+            background: #123b5d;
+            color: white;
+            padding: 16px;
+            border: 1px solid #d5e5f2;
+        }
+
+        table[border="1"] td {
+            padding: 15px;
+            border: 1px solid #d5e5f2;
+        }
+
+        table[border="1"] tr:nth-child(even) {
+            background: #edf6fc;
+        }
+
+        table[border="1"] tr:hover {
+            background: #dceefa;
+            transition: 0.2s;
+        }
+
+        /* General text */
+        font[face="Arial"] {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Footer */
+        body > center:last-of-type {
+            background: #123b5d;
+            color: #dceaff;
+            margin: 0 -15px;
+            padding: 25px 15px;
+        }
+
+        body > center:last-of-type font {
+            color: #dceaff !important;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 8px;
+            }
+
+            body > center:first-of-type,
+            body > center:nth-of-type(2),
+            body > center:last-of-type {
+                margin-left: -8px;
+                margin-right: -8px;
+            }
+
+            body center > table:not([border="1"]),
+            table[border="1"] {
+                width: 95%;
+                font-size: 14px;
+            }
+
+            body center > font[size="6"] {
+                font-size: 24px;
+            }
+
+            img {
+                max-width: 95%;
+            }
+
+            a {
+                display: inline-block;
+                padding: 5px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body center > font[size="6"] {
+                font-size: 21px;
+            }
+
+            body center > table:not([border="1"]) td,
+            table[border="1"] td,
+            table[border="1"] th {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            body > center:first-of-type font[size="7"] {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 
 <body bgcolor="#F4F9FF">
@@ -47,6 +251,9 @@
             &nbsp;&nbsp; | &nbsp;&nbsp;
 
             <a href="washing-machine.html">Washing Machine</a>
+             &nbsp;&nbsp; | &nbsp;&nbsp;
+
+            <a href="quiz.html">Science Quiz</a>
 
         </font>
     </center>

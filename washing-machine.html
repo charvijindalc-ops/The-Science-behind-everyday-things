@@ -1,7 +1,273 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>The Science Behind Washing Machines</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef5ff, #dceaff);
+            color: #263b50;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        body > center:first-of-type {
+            background: linear-gradient(135deg, #123b5d, #176b87);
+            padding: 35px 15px 25px;
+            color: white;
+        }
+
+        body > center:first-of-type h1 {
+            color: white;
+            margin: 0 0 10px;
+        }
+
+        body > center:first-of-type font {
+            color: #d9efff !important;
+        }
+
+        /* Navigation */
+        body > center:nth-of-type(2) {
+            background: white;
+            padding: 15px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #176b87;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #2196b0;
+            text-decoration: underline;
+        }
+
+        body > center:nth-of-type(2) a {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        body > center:nth-of-type(2) a:hover {
+            background: #176b87;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Horizontal Lines */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #80c9e8, #176b87, #80c9e8);
+            margin: 25px 0;
+        }
+
+        /* Section Headings */
+        h2 {
+            color: #123b5d;
+            margin: 25px 20px 15px;
+        }
+
+        /* General Text */
+        body > font,
+        body > ol,
+        body > ul,
+        body > table {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        body > font {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        ol, ul {
+            background: white;
+            padding: 20px 25px 20px 45px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2196b0;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(18, 59, 93, 0.08);
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Images */
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 12px;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(18, 59, 93, 0.18);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(18, 59, 93, 0.25);
+        }
+
+        /* Introduction and Conclusion Text */
+        p {
+            margin: 15px 20px;
+        }
+
+        /* Tables */
+        table[border="1"] {
+            width: calc(100% - 60px);
+            margin: 20px 30px;
+            border-collapse: collapse;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(18, 59, 93, 0.1);
+        }
+
+        th {
+            background: #176b87;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #dce8f3;
+        }
+
+        tr:nth-child(even) {
+            background: #f0f7ff;
+        }
+
+        tr:hover {
+            background: #e1f1fc;
+        }
+
+        /* Conclusion Section */
+        body > center:nth-last-of-type(2) {
+            background: white;
+            margin: 25px 30px;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(18, 59, 93, 0.1);
+            border-top: 4px solid #2196b0;
+        }
+
+        body > center:nth-last-of-type(2) h2 {
+            margin-top: 5px;
+        }
+
+        body > center:nth-last-of-type(2) a {
+            display: inline-block;
+            background: #176b87;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 7px;
+        }
+
+        body > center:nth-last-of-type(2) a:hover {
+            background: #123b5d;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        body > center:last-of-type {
+            background: #123b5d;
+            color: #d9efff;
+            padding: 18px 10px;
+            margin-top: 30px;
+        }
+
+        body > center:last-of-type font {
+            color: #d9efff !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body > center:first-of-type {
+                padding: 25px 10px;
+            }
+
+            body > center:nth-of-type(2) {
+                position: relative;
+                line-height: 2.5;
+            }
+
+            body > font,
+            body > ol,
+            body > ul {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            table[border="1"] {
+                width: calc(100% - 30px);
+                margin: 15px;
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 9px;
+            }
+
+            h2 {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            body > center:nth-last-of-type(2) {
+                margin: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 26px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
+
+            body > center:nth-of-type(2) a {
+                padding: 4px 6px;
+                font-size: 13px;
+            }
+
+            table[border="1"] {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 7px;
+            }
+
+            img {
+                max-width: 85%;
+            }
+        }
+    </style>
 </head>
 
 <body bgcolor="#F4F9FF">
@@ -26,7 +292,8 @@
             <a href="wifi.html">Wi-Fi</a> |
             <a href="fridge.html">Refrigerator</a> |
             <a href="microwave.html">Microwave</a> |
-            <a href="washing-machine.html">Washing Machine</a>
+            <a href="washing-machine.html">Washing Machine</a> |
+            <a href="quiz.html">Science Quiz</a>
         </font>
     </center>
 
