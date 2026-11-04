@@ -1,559 +1,824 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>The Science Behind Washing Machines</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washing Machine - The Science Behind Everyday Things</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #eef5ff, #dceaff);
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f3f8ff;
             color: #263b50;
             line-height: 1.7;
         }
 
-        /* Header */
-        body > center:first-of-type {
-            background: linear-gradient(135deg, #123b5d, #176b87);
-            padding: 35px 15px 25px;
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #123b5d, #087e9e);
             color: white;
+            text-align: center;
+            padding: 65px 20px 75px;
         }
 
-        body > center:first-of-type h1 {
-            color: white;
-            margin: 0 0 10px;
+        header .icon {
+            font-size: 55px;
+            margin-bottom: 10px;
         }
 
-        body > center:first-of-type font {
-            color: #d9efff !important;
+        header h1 {
+            font-size: 43px;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
-        /* Navigation */
-        body > center:nth-of-type(2) {
+        header p {
+            font-size: 17px;
+            color: #d8efff;
+            margin-top: 12px;
+        }
+
+        .hero-line {
+            width: 100px;
+            height: 4px;
+            background: #55d6e8;
+            border-radius: 10px;
+            margin: 25px auto 0;
+        }
+
+        /* NAVIGATION */
+        nav {
             background: white;
-            padding: 15px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px 12px;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.10);
         }
 
-        a {
-            color: #176b87;
+        nav a {
             text-decoration: none;
-            font-weight: bold;
+            color: #176b87;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 9px 14px;
+            border-radius: 8px;
             transition: 0.3s;
         }
 
-        a:hover {
-            color: #2196b0;
-            text-decoration: underline;
-        }
-
-        body > center:nth-of-type(2) a {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 6px;
-        }
-
-        body > center:nth-of-type(2) a:hover {
+        nav a:hover,
+        nav a.active {
             background: #176b87;
             color: white;
-            text-decoration: none;
         }
 
-        /* Horizontal Lines */
-        hr {
-            border: none;
-            height: 2px;
-            background: linear-gradient(to right, #80c9e8, #176b87, #80c9e8);
-            margin: 25px 0;
+        /* SECTIONS */
+        section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 65px 25px;
         }
 
-        /* Section Headings */
-        h2 {
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
             color: #123b5d;
-            margin: 25px 20px 15px;
+            font-size: 30px;
+            font-weight: 700;
         }
 
-        /* General Text */
-        body > font,
-        body > ol,
-        body > ul,
-        body > table {
-            margin-left: 30px;
-            margin-right: 30px;
+        .section-heading p {
+            color: #668096;
+            font-size: 14px;
+            margin-top: 8px;
         }
 
-        body > font {
-            display: block;
-            margin-top: 15px;
+        .section-line {
+            width: 65px;
+            height: 4px;
+            background: #21a5c2;
+            border-radius: 10px;
+            margin: 13px auto 0;
+        }
+
+        /* CARDS */
+        .card {
+            background: white;
+            border-radius: 17px;
+            padding: 28px;
+            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(18, 59, 93, 0.14);
+        }
+
+        .card h3 {
+            color: #176b87;
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #526b80;
+        }
+
+        .highlight {
+            color: #087e9e;
+            font-weight: 700;
+        }
+
+        /* INTRODUCTION */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .intro-image img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.15);
+        }
+
+        .intro-text p {
             margin-bottom: 15px;
+            font-size: 15px;
+            color: #526b80;
         }
 
-        ol, ul {
-            background: white;
-            padding: 20px 25px 20px 45px;
-            margin-top: 15px;
-            margin-bottom: 25px;
-            border-left: 5px solid #2196b0;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(18, 59, 93, 0.08);
+        /* WASHING STEPS */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
         }
 
-        li {
+        .step-card {
+            text-align: center;
+            border-top: 4px solid #21a5c2;
+        }
+
+        .step-icon {
+            font-size: 42px;
             margin-bottom: 10px;
-            padding-left: 5px;
         }
 
-        li:last-child {
-            margin-bottom: 0;
+        .step-number {
+            display: inline-block;
+            background: #e4f6fc;
+            color: #087e9e;
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
-        /* Images */
-        img {
+        .diagram {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .diagram img {
             max-width: 90%;
-            height: auto;
-            border-radius: 12px;
-            border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(18, 59, 93, 0.18);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(18, 59, 93, 0.25);
-        }
-
-        /* Introduction and Conclusion Text */
-        p {
-            margin: 15px 20px;
-        }
-
-        /* Tables */
-        table[border="1"] {
-            width: calc(100% - 60px);
-            margin: 20px 30px;
-            border-collapse: collapse;
+            max-height: 350px;
+            object-fit: contain;
             background: white;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(18, 59, 93, 0.1);
+            padding: 15px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.12);
+        }
+
+        /* TABLES */
+        .table-wrapper {
+            overflow-x: auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
         th {
-            background: #176b87;
+            background: #123b5d;
             color: white;
-            padding: 14px;
+            padding: 17px;
             text-align: left;
+            font-size: 15px;
         }
 
         td {
-            padding: 13px;
-            border-bottom: 1px solid #dce8f3;
+            padding: 16px;
+            border-bottom: 1px solid #e3edf5;
+            font-size: 14px;
+            color: #526b80;
+        }
+
+        td:first-child {
+            color: #176b87;
+            font-weight: 600;
         }
 
         tr:nth-child(even) {
-            background: #f0f7ff;
+            background: #edf7fc;
         }
 
-        tr:hover {
-            background: #e1f1fc;
+        tr:last-child td {
+            border-bottom: none;
         }
 
-        /* Conclusion Section */
-        body > center:nth-last-of-type(2) {
+        /* MAIN PARTS */
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .part-card {
+            text-align: center;
+        }
+
+        .part-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .parts-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .parts-image img {
+            max-width: 90%;
+            max-height: 350px;
+            object-fit: contain;
             background: white;
-            margin: 25px 30px;
-            padding: 25px 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(18, 59, 93, 0.1);
-            border-top: 4px solid #2196b0;
+            padding: 12px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.12);
         }
 
-        body > center:nth-last-of-type(2) h2 {
-            margin-top: 5px;
+        /* TYPES */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
         }
 
-        body > center:nth-last-of-type(2) a {
+        .type-card {
+            text-align: center;
+            border-bottom: 4px solid #21a5c2;
+        }
+
+        .type-icon {
+            font-size: 43px;
+            margin-bottom: 12px;
+        }
+
+        /* FACTS */
+        .facts-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .fact-item {
+            background: white;
+            padding: 20px;
+            border-radius: 13px;
+            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.07);
+            color: #526b80;
+            font-size: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .fact-item span {
+            font-size: 25px;
+        }
+
+        /* CONCLUSION */
+        .conclusion-box {
+            background: linear-gradient(135deg, #ffffff, #e2f5fc);
+            border-left: 6px solid #21a5c2;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 7px 22px rgba(18, 59, 93, 0.09);
+            text-align: center;
+        }
+
+        .conclusion-box p {
+            color: #526b80;
+            font-size: 15px;
+        }
+
+        .back-button {
             display: inline-block;
+            margin-top: 22px;
             background: #176b87;
             color: white;
-            padding: 10px 20px;
-            border-radius: 7px;
-        }
-
-        body > center:nth-last-of-type(2) a:hover {
-            background: #123b5d;
             text-decoration: none;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
         }
 
-        /* Footer */
-        body > center:last-of-type {
+        .back-button:hover {
             background: #123b5d;
-            color: #d9efff;
-            padding: 18px 10px;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #123b5d;
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
             margin-top: 30px;
         }
 
-        body > center:last-of-type font {
-            color: #d9efff !important;
+        footer h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
         }
 
-        /* Responsive Design */
+        footer p {
+            color: #c8e5f5;
+            font-size: 13px;
+        }
+
+        .footer-line {
+            width: 60px;
+            height: 3px;
+            background: #55d6e8;
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+
+        /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
-            body > center:first-of-type {
-                padding: 25px 10px;
+            header h1 {
+                font-size: 34px;
             }
 
-            body > center:nth-of-type(2) {
-                position: relative;
-                line-height: 2.5;
+            .intro-grid {
+                grid-template-columns: 1fr;
             }
 
-            body > font,
-            body > ol,
-            body > ul {
-                margin-left: 15px;
-                margin-right: 15px;
+            .steps-grid,
+            .parts-grid,
+            .types-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            table[border="1"] {
-                width: calc(100% - 30px);
-                margin: 15px;
-                font-size: 14px;
+            section {
+                padding: 45px 18px;
             }
 
-            th, td {
-                padding: 9px;
-            }
-
-            h2 {
-                margin-left: 15px;
-                margin-right: 15px;
-            }
-
-            body > center:nth-last-of-type(2) {
-                margin: 15px;
+            .section-heading h2 {
+                font-size: 25px;
             }
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 26px;
+            header {
+                padding: 45px 15px 55px;
             }
 
-            h2 {
-                font-size: 21px;
+            header h1 {
+                font-size: 27px;
             }
 
-            body > center:nth-of-type(2) a {
-                padding: 4px 6px;
-                font-size: 13px;
+            header p {
+                font-size: 14px;
             }
 
-            table[border="1"] {
+            nav {
+                gap: 4px;
+                padding: 10px 5px;
+            }
+
+            nav a {
                 font-size: 12px;
+                padding: 7px 9px;
+            }
+
+            .steps-grid,
+            .parts-grid,
+            .types-grid,
+            .facts-list {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .conclusion-box {
+                padding: 25px 18px;
             }
 
             th, td {
-                padding: 7px;
-            }
-
-            img {
-                max-width: 85%;
+                padding: 11px;
+                font-size: 12px;
             }
         }
     </style>
 </head>
 
-<body bgcolor="#F4F9FF">
+<body>
 
-    <center>
-        <font face="Arial" color="#123B63" size="6">
-            <h1>🧺 The Science Behind Washing Machines</h1>
-        </font>
+    <!-- HEADER -->
+    <header>
+        <div class="icon">🧺</div>
+        <h1>THE SCIENCE BEHIND WASHING MACHINES</h1>
+        <p>Discover the science that makes washing clothes easier!</p>
+        <div class="hero-line"></div>
+    </header>
 
-        <font face="Arial" color="#416788" size="4">
-            Discover the science that makes washing clothes easier!
-        </font>
-    </center>
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="gps.html">GPS</a>
+        <a href="wifi.html">Wi-Fi</a>
+        <a href="fridge.html">Refrigerator</a>
+        <a href="microwave.html">Microwave</a>
+        <a href="washing-machine.html" class="active">Washing Machine</a>
+        <a href="quiz.html">Science Quiz</a>
+        <a href="amazing-facts.html">Amazing Facts</a>
+    </nav>
 
-    <hr color="#75AADB" size="3">
-
-    <!-- Navigation Bar -->
-    <center>
-        <font face="Arial" size="3">
-            <a href="index.html">Home</a> |
-            <a href="gps.html">GPS</a> |
-            <a href="wifi.html">Wi-Fi</a> |
-            <a href="fridge.html">Refrigerator</a> |
-            <a href="microwave.html">Microwave</a> |
-            <a href="washing-machine.html">Washing Machine</a> |
-            <a href="quiz.html">Science Quiz</a>
-        </font>
-    </center>
-
-    <hr color="#75AADB" size="2">
-
-    <!-- Introduction -->
-    <center>
-        <font face="Arial" color="#123B63" size="5">
+    <!-- 1. INTRODUCTION -->
+    <section>
+        <div class="section-heading">
             <h2>1. What Is a Washing Machine?</h2>
-        </font>
+            <p>An everyday appliance powered by science and technology</p>
+            <div class="section-line"></div>
+        </div>
 
-        <font face="Arial" size="4">
-            A washing machine is an electrical appliance that cleans
-            clothes automatically using water, detergent and the movement
-            of a drum or agitator.
-        </font>
+        <div class="intro-grid">
 
-        <br><br>
+            <div class="intro-image">
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing-machine.jpg"
+                    alt="A washing machine"
+                >
+            </div>
 
-        <img
-            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing-machine.jpg"
-            alt="A washing machine"
-            width="280"
-            height="300"
-        >
+            <div class="card intro-text">
+                <h3>Making Laundry Easier</h3>
 
-        <p>
-            <font face="Arial" size="3" color="#416788">
-                A washing machine saves time and effort by doing much of
-                the work that was once done by hand.
-            </font>
-        </p>
-    </center>
+                <p>
+                    A <span class="highlight">washing machine</span> is an
+                    electrical appliance that cleans clothes automatically
+                    using water, detergent and the movement of a drum or agitator.
+                </p>
 
-    <hr color="#B7D7F0">
+                <p>
+                    It saves time and effort by doing much of the work
+                    that was once done by hand.
+                </p>
 
-    <!-- How It Works -->
-    <font face="Arial" color="#123B63" size="5">
-        <h2>2. How Does a Washing Machine Work?</h2>
-    </font>
+                <p>
+                    It combines electricity, mechanical movement and
+                    chemical action to remove dirt from clothes.
+                </p>
+            </div>
 
-    <font face="Arial" size="4">
-        A washing machine works through the combined action of
-        electricity, water, detergent and mechanical movement.
-        Its main steps are:
-    </font>
+        </div>
+    </section>
 
-    <ol>
-        <li>
-            <b>Filling:</b> Water enters the machine and mixes with detergent.
-        </li>
+    <!-- 2. HOW IT WORKS -->
+    <section>
+        <div class="section-heading">
+            <h2>2. How Does a Washing Machine Work?</h2>
+            <p>Five main stages help clean your clothes</p>
+            <div class="section-line"></div>
+        </div>
 
-        <li>
-            <b>Washing:</b> The drum moves the clothes back and forth.
-            Detergent helps loosen dirt and stains.
-        </li>
+        <div class="steps-grid">
 
-        <li>
-            <b>Draining:</b> Dirty water is pumped out of the machine.
-        </li>
+            <div class="card step-card">
+                <div class="step-icon">💧</div>
+                <span class="step-number">STEP 01</span>
+                <h3>Filling</h3>
+                <p>
+                    Water enters the machine and mixes with detergent
+                    to prepare for washing.
+                </p>
+            </div>
 
-        <li>
-            <b>Rinsing:</b> Fresh water removes the remaining detergent
-            from the clothes.
-        </li>
+            <div class="card step-card">
+                <div class="step-icon">🫧</div>
+                <span class="step-number">STEP 02</span>
+                <h3>Washing</h3>
+                <p>
+                    The drum moves the clothes back and forth.
+                    Detergent helps loosen dirt and stains.
+                </p>
+            </div>
 
-        <li>
-            <b>Spinning:</b> The drum rotates rapidly to remove much of
-            the water from the clothes.
-        </li>
-    </ol>
+            <div class="card step-card">
+                <div class="step-icon">🚰</div>
+                <span class="step-number">STEP 03</span>
+                <h3>Draining</h3>
+                <p>
+                    The dirty water is pumped out of the machine
+                    through a drainage system.
+                </p>
+            </div>
 
-    <center>
-        <img
-            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing-machine.svg"
-            alt="Washing machine illustration"
-            width="250"
-            height="280"
-        >
-    </center>
+            <div class="card step-card">
+                <div class="step-icon">🚿</div>
+                <span class="step-number">STEP 04</span>
+                <h3>Rinsing</h3>
+                <p>
+                    Fresh water removes the remaining detergent
+                    and loosened dirt from the clothes.
+                </p>
+            </div>
 
-    <hr color="#B7D7F0">
+            <div class="card step-card">
+                <div class="step-icon">🌀</div>
+                <span class="step-number">STEP 05</span>
+                <h3>Spinning</h3>
+                <p>
+                    The drum rotates rapidly to remove much of
+                    the water from the clothes.
+                </p>
+            </div>
 
-    <!-- Science Behind It -->
-    <font face="Arial" color="#123B63" size="5">
-        <h2>3. The Science Behind Washing Machines</h2>
-    </font>
+        </div>
 
-    <font face="Arial" size="4">
-        A washing machine uses several scientific principles:
-    </font>
+        <div class="diagram">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing-machine.svg"
+                alt="Washing machine illustration"
+            >
+        </div>
+    </section>
 
-    <table border="1" cellpadding="10" cellspacing="0" width="100%">
-        <tr bgcolor="#D9ECFF">
-            <th>Scientific Principle</th>
-            <th>How It Helps</th>
-        </tr>
+    <!-- 3. SCIENCE BEHIND IT -->
+    <section>
+        <div class="section-heading">
+            <h2>3. The Science Behind Washing Machines</h2>
+            <p>Different scientific principles work together to clean clothes</p>
+            <div class="section-line"></div>
+        </div>
 
-        <tr>
-            <td><b>Mechanical Energy</b></td>
-            <td>
-                The motor rotates the drum, moving the clothes and
-                helping loosen dirt.
-            </td>
-        </tr>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Scientific Principle</th>
+                    <th>How It Helps</th>
+                </tr>
 
-        <tr>
-            <td><b>Chemical Action</b></td>
-            <td>
-                Detergent helps lift dirt and grease away from the fabric.
-            </td>
-        </tr>
+                <tr>
+                    <td>Mechanical Energy</td>
+                    <td>
+                        The motor rotates the drum, moving the clothes
+                        and helping loosen dirt.
+                    </td>
+                </tr>
 
-        <tr>
-            <td><b>Water Movement</b></td>
-            <td>
-                Water carries away loosened dirt and detergent during
-                washing and rinsing.
-            </td>
-        </tr>
+                <tr>
+                    <td>Chemical Action</td>
+                    <td>
+                        Detergent helps lift dirt and grease away
+                        from the fabric.
+                    </td>
+                </tr>
 
-        <tr>
-            <td><b>Centrifugal Effect</b></td>
-            <td>
-                During the spin cycle, rapid rotation helps water move
-                out through the holes in the drum.
-            </td>
-        </tr>
+                <tr>
+                    <td>Water Movement</td>
+                    <td>
+                        Water carries away loosened dirt and detergent
+                        during washing and rinsing.
+                    </td>
+                </tr>
 
-        <tr>
-            <td><b>Electrical Energy</b></td>
-            <td>
-                Electricity powers the motor, controls and water pump.
-            </td>
-        </tr>
-    </table>
+                <tr>
+                    <td>Centrifugal Effect</td>
+                    <td>
+                        During the spin cycle, rapid rotation helps
+                        water move out through the holes in the drum.
+                    </td>
+                </tr>
 
-    <hr color="#B7D7F0">
+                <tr>
+                    <td>Electrical Energy</td>
+                    <td>
+                        Electricity powers the motor, controls
+                        and water pump.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
 
-    <!-- Main Parts -->
-    <font face="Arial" color="#123B63" size="5">
-        <h2>4. Main Parts of a Washing Machine</h2>
-    </font>
+    <!-- 4. MAIN PARTS -->
+    <section>
+        <div class="section-heading">
+            <h2>4. Main Parts of a Washing Machine</h2>
+            <p>Important components that make the machine work</p>
+            <div class="section-line"></div>
+        </div>
 
-    <center>
-        <img
-            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing%20machine-%20without%20front.jpg"
-            alt="Inside parts of a washing machine"
-            width="320"
-        >
-    </center>
+        <div class="parts-image">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing%20machine-%20without%20front.jpg"
+                alt="Inside parts of a washing machine"
+            >
+        </div>
 
-    <ul>
-        <li><b>Drum:</b> Holds the clothes during washing.</li>
-        <li><b>Motor:</b> Provides the power needed to rotate the drum.</li>
-        <li><b>Water Pump:</b> Removes used water from the machine.</li>
-        <li><b>Inlet Valve:</b> Controls the entry of water.</li>
-        <li><b>Detergent Tray:</b> Holds detergent before it enters the wash.</li>
-        <li><b>Control Panel:</b> Allows the user to select a washing programme.</li>
-    </ul>
+        <div class="parts-grid">
 
-    <hr color="#B7D7F0">
+            <div class="card part-card">
+                <div class="part-icon">🥁</div>
+                <h3>Drum</h3>
+                <p>Holds the clothes during washing and spinning.</p>
+            </div>
 
-    <!-- Types -->
-    <font face="Arial" color="#123B63" size="5">
-        <h2>5. Types of Washing Machines</h2>
-    </font>
+            <div class="card part-card">
+                <div class="part-icon">⚙️</div>
+                <h3>Motor</h3>
+                <p>Provides the power needed to rotate the drum.</p>
+            </div>
 
-    <table border="1" cellpadding="10" cellspacing="0" width="100%">
-        <tr bgcolor="#D9ECFF">
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
+            <div class="card part-card">
+                <div class="part-icon">🚰</div>
+                <h3>Water Pump</h3>
+                <p>Removes used water from the machine.</p>
+            </div>
 
-        <tr>
-            <td><b>Top-Loading</b></td>
-            <td>
-                Clothes are loaded through a door at the top.
-                Some models use an agitator or impeller.
-            </td>
-        </tr>
+            <div class="card part-card">
+                <div class="part-icon">💧</div>
+                <h3>Inlet Valve</h3>
+                <p>Controls the entry of water into the machine.</p>
+            </div>
 
-        <tr>
-            <td><b>Front-Loading</b></td>
-            <td>
-                Clothes are loaded through a front door.
-                The drum tumbles the clothes during washing.
-            </td>
-        </tr>
+            <div class="card part-card">
+                <div class="part-icon">🧴</div>
+                <h3>Detergent Tray</h3>
+                <p>Holds detergent before it enters the wash.</p>
+            </div>
 
-        <tr>
-            <td><b>Semi-Automatic</b></td>
-            <td>
-                Usually has separate washing and spinning tubs,
-                and some steps require manual operation.
-            </td>
-        </tr>
-    </table>
+            <div class="card part-card">
+                <div class="part-icon">🎛️</div>
+                <h3>Control Panel</h3>
+                <p>Allows the user to select a washing programme.</p>
+            </div>
 
-    <hr color="#B7D7F0">
+        </div>
+    </section>
 
-    <!-- Interesting Facts -->
-    <font face="Arial" color="#123B63" size="5">
-        <h2>6. Did You Know?</h2>
-    </font>
+    <!-- 5. TYPES -->
+    <section>
+        <div class="section-heading">
+            <h2>5. Types of Washing Machines</h2>
+            <p>Different designs are used for washing clothes</p>
+            <div class="section-line"></div>
+        </div>
 
-    <ul>
-        <li>
-            The wash cycle and spin cycle use different drum speeds.
-        </li>
+        <div class="types-grid">
 
-        <li>
-            The spin cycle removes much of the water, but it does not
-            completely dry the clothes.
-        </li>
+            <div class="card type-card">
+                <div class="type-icon">⬆️</div>
+                <h3>Top-Loading</h3>
+                <p>
+                    Clothes are loaded through a door at the top.
+                    Some models use an agitator or impeller.
+                </p>
+            </div>
 
-        <li>
-            Using the correct amount of detergent helps clean clothes
-            without leaving unnecessary residue.
-        </li>
+            <div class="card type-card">
+                <div class="type-icon">⭕</div>
+                <h3>Front-Loading</h3>
+                <p>
+                    Clothes are loaded through a front door.
+                    The drum tumbles the clothes during washing.
+                </p>
+            </div>
 
-        <li>
-            Choosing an appropriate wash programme can help save
-            water and energy.
-        </li>
-    </ul>
+            <div class="card type-card">
+                <div class="type-icon">🔄</div>
+                <h3>Semi-Automatic</h3>
+                <p>
+                    Usually has separate washing and spinning tubs,
+                    and some steps require manual operation.
+                </p>
+            </div>
 
-    <hr color="#75AADB" size="2">
+        </div>
+    </section>
 
-    <!-- Conclusion -->
-    <center>
-        <font face="Arial" color="#123B63" size="5">
+    <!-- 6. DID YOU KNOW -->
+    <section>
+        <div class="section-heading">
+            <h2>6. Did You Know?</h2>
+            <p>Some interesting facts about washing machines</p>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="facts-list">
+
+            <div class="fact-item">
+                <span>💡</span>
+                <p>
+                    The wash cycle and spin cycle use different
+                    drum speeds.
+                </p>
+            </div>
+
+            <div class="fact-item">
+                <span>🌀</span>
+                <p>
+                    The spin cycle removes much of the water,
+                    but it does not completely dry the clothes.
+                </p>
+            </div>
+
+            <div class="fact-item">
+                <span>🫧</span>
+                <p>
+                    Using the correct amount of detergent helps
+                    clean clothes without leaving unnecessary residue.
+                </p>
+            </div>
+
+            <div class="fact-item">
+                <span>🌱</span>
+                <p>
+                    Choosing an appropriate wash programme can help
+                    save water and energy.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONCLUSION -->
+    <section>
+        <div class="section-heading">
             <h2>Conclusion</h2>
-        </font>
+            <div class="section-line"></div>
+        </div>
 
-        <font face="Arial" size="4">
-            A washing machine is a great example of science in everyday
-            life. It combines electrical energy, mechanical movement,
-            water and detergent to make cleaning clothes easier.
-        </font>
+        <div class="conclusion-box">
+            <p>
+                A washing machine is a great example of science in
+                everyday life. It combines electrical energy,
+                mechanical movement, water and detergent to make
+                cleaning clothes easier.
+                <br><br>
+                <strong class="highlight">
+                    Science makes everyday tasks simpler! 💧
+                </strong>
+            </p>
 
-        <br><br>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+    </section>
 
-        <font face="Arial" color="#416788" size="3">
-            <b>Science makes everyday tasks simpler! 💧</b>
-        </font>
-
-        <br><br>
-
-        <a href="index.html">⬅ Back to Home</a>
-    </center>
-
-    <hr color="#75AADB" size="2">
-
-    <center>
-        <font face="Arial" size="2" color="#416788">
-            The Science Behind Everyday Things |
-            Educational Project
-        </font>
-    </center>
+    <!-- FOOTER -->
+    <footer>
+        <h3>The Science Behind Everyday Things</h3>
+        <p>Discover • Understand • Explore</p>
+        <div class="footer-line"></div>
+        <p>© 2026 | All Rights Reserved</p>
+    </footer>
 
 </body>
 </html>
