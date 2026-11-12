@@ -1,982 +1,1363 @@
+HTML
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Science Quiz | The Science Behind Everyday Things</title>
-
-    <style>
-        /* GENERAL STYLING */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f1f5f9;
-            color: #1e293b;
-            min-height: 100vh;
-        }
-
-        /* NAVIGATION BAR */
-
-        nav {
-            background: #0f172a;
-            color: white;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .logo {
-            font-size: 21px;
-            font-weight: bold;
-            color: #38bdf8;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #38bdf8;
-        }
-
-        /* HERO SECTION */
-
-        .hero {
-            background: linear-gradient(135deg, #0f172a, #164e63);
-            color: white;
-            text-align: center;
-            padding: 55px 20px;
-        }
-
-        .hero h1 {
-            font-size: 38px;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #cbd5e1;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .hero .tag {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: #7dd3fc;
-            padding: 7px 16px;
-            border-radius: 20px;
-            margin-bottom: 18px;
-            font-size: 13px;
-        }
-
-        /* MAIN CONTAINER */
-
-        .container {
-            width: 90%;
-            max-width: 850px;
-            margin: 40px auto;
-        }
-
-        /* DIFFICULTY SELECTION */
-
-        .difficulty {
-            background: white;
-            padding: 25px;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .difficulty h2 {
-            margin-bottom: 18px;
-            font-size: 21px;
-        }
-
-        .level-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .level-btn {
-            padding: 11px 25px;
-            border: 2px solid #0284c7;
-            background: white;
-            color: #0369a1;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .level-btn:hover,
-        .level-btn.active {
-            background: #0284c7;
-            color: white;
-        }
-
-        /* QUIZ CARD */
-
-        .quiz-card {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-        }
-
-        .quiz-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .score {
-            color: #0369a1;
-            font-weight: bold;
-        }
-
-        /* PROGRESS BAR */
-
-        .progress-bg {
-            width: 100%;
-            height: 9px;
-            background: #e2e8f0;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #0284c7, #22d3ee);
-            border-radius: 20px;
-            transition: width 0.4s;
-        }
-
-        /* QUESTION */
-
-        .question {
-            font-size: 22px;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            color: #0f172a;
-        }
-
-        /* OPTIONS */
-
-        .options {
-            display: grid;
-            gap: 13px;
-        }
-
-        .option {
-            padding: 15px 18px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            text-align: left;
-            font-size: 15px;
-            color: #334155;
-            transition: 0.2s;
-        }
-
-        .option:hover:not(:disabled) {
-            border-color: #0284c7;
-            background: #f0f9ff;
-        }
-
-        .option.correct {
-            background: #dcfce7;
-            border-color: #16a34a;
-            color: #166534;
-        }
-
-        .option.wrong {
-            background: #fee2e2;
-            border-color: #dc2626;
-            color: #991b1b;
-        }
-
-        .option:disabled {
-            cursor: not-allowed;
-        }
-
-        /* FEEDBACK */
-
-        .feedback {
-            margin-top: 22px;
-            padding: 16px;
-            border-radius: 10px;
-            display: none;
-            line-height: 1.6;
-        }
-
-        .feedback.correct-feedback {
-            display: block;
-            background: #f0fdf4;
-            color: #166534;
-            border-left: 4px solid #16a34a;
-        }
-
-        .feedback.wrong-feedback {
-            display: block;
-            background: #fef2f2;
-            color: #991b1b;
-            border-left: 4px solid #dc2626;
-        }
-
-        /* BUTTONS */
-
-        .next-btn,
-        .restart-btn {
-            display: block;
-            margin: 25px 0 0 auto;
-            padding: 13px 27px;
-            border: none;
-            border-radius: 8px;
-            background: #0284c7;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .next-btn:hover,
-        .restart-btn:hover {
-            background: #0369a1;
-            transform: translateY(-2px);
-        }
-
-        .next-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* RESULTS SCREEN */
-
-        .result {
-            display: none;
-            text-align: center;
-            background: white;
-            padding: 45px 25px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-        }
-
-        .result-icon {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        .result h2 {
-            font-size: 29px;
-            margin-bottom: 12px;
-        }
-
-        .result p {
-            color: #64748b;
-            line-height: 1.7;
-        }
-
-        .final-score {
-            font-size: 48px;
-            font-weight: bold;
-            color: #0284c7;
-            margin: 20px 0;
-        }
-
-        .restart-btn {
-            margin: 25px auto 0;
-        }
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-            background: #0f172a;
-            color: #cbd5e1;
-            padding: 22px;
-            margin-top: 50px;
-            font-size: 14px;
-        }
-
-        /* RESPONSIVE DESIGN */
-
-        @media (max-width: 600px) {
-
-            .hero h1 {
-                font-size: 29px;
-            }
-
-            .container {
-                width: 94%;
-                margin: 25px auto;
-            }
-
-            .quiz-card {
-                padding: 22px 17px;
-            }
-
-            .question {
-                font-size: 19px;
-            }
-
-            .level-btn {
-                padding: 10px 17px;
-            }
-
-            nav {
-                padding: 16px 5%;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Quiz | The Science Behind Everyday Things</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #fffaf5;
+    --surface: #ffffff;
+    --soft: #f3edff;
+    --text: #343047;
+    --muted: #77738b;
+    --primary: #7965bd;
+    --primary-dark: #5c499d;
+    --accent: #f3a9bb;
+    --border: #eee7f5;
+    --shadow: 0 8px 28px rgba(76,58,112,.09);
+    --hero: linear-gradient(135deg,#e8ddff,#fce5ec,#fff0dc);
+}
+
+body.dark-theme {
+    --bg: #191725;
+    --surface: #242133;
+    --soft: #302a43;
+    --text: #f1edf9;
+    --muted: #b7afca;
+    --primary: #b9a6f5;
+    --primary-dark: #d0c2ff;
+    --accent: #edabc4;
+    --border: #3c354f;
+    --shadow: 0 8px 28px rgba(0,0,0,.2);
+    --hero: linear-gradient(135deg,#332c4c,#453044,#393044);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background .3s,color .3s;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: var(--surface);
+    padding: 14px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+.theme-toggle {
+    background: var(--soft);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 9px 14px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+}
+
+/* HERO */
+
+.hero {
+    background: var(--hero);
+    text-align: center;
+    padding: 65px 20px 75px;
+}
+
+.hero .tag {
+    display: inline-block;
+    background: rgba(255,255,255,.55);
+    color: #65518e;
+    padding: 7px 17px;
+    border-radius: 25px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display',serif;
+    font-size: clamp(32px,5vw,48px);
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.hero-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+}
+
+/* COMMON CARD */
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+}
+
+/* DIFFICULTY */
+
+.difficulty {
+    text-align: center;
+}
+
+.difficulty h2 {
+    font-family: 'Playfair Display',serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.difficulty p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.level-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.level-btn {
+    padding: 11px 27px;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.level-btn:hover,
+.level-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* QUIZ CARD */
+
+.quiz-card {
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.quiz-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.score {
+    color: var(--primary);
+}
+
+/* PROGRESS */
+
+.progress-bg {
+    width: 100%;
+    height: 9px;
+    background: var(--soft);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg,#9b83df,#f0a9c1);
+    border-radius: 20px;
+    transition: width .4s;
+}
+
+/* QUESTION */
+
+.question {
+    font-family: 'Playfair Display',serif;
+    font-size: 23px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+/* OPTIONS */
+
+.options {
+    display: grid;
+    gap: 13px;
+}
+
+.option {
+    padding: 15px 18px;
+    border: 2px solid var(--border);
+    border-radius: 13px;
+    background: var(--surface);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    transition: .2s;
+}
+
+.option:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--soft);
+    transform: translateX(3px);
+}
+
+.option.correct {
+    background: #dcfce7;
+    border-color: #16a34a;
+    color: #166534;
+}
+
+.option.wrong {
+    background: #fee2e2;
+    border-color: #dc2626;
+    color: #991b1b;
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+/* FEEDBACK */
+
+.feedback {
+    margin-top: 22px;
+    padding: 17px;
+    border-radius: 13px;
+    display: none;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.feedback.correct-feedback {
+    display: block;
+    background: #f0fdf4;
+    color: #166534;
+    border-left: 4px solid #16a34a;
+}
+
+.feedback.wrong-feedback {
+    display: block;
+    background: #fef2f2;
+    color: #991b1b;
+    border-left: 4px solid #dc2626;
+}
+
+/* BUTTONS */
+
+.next-btn,
+.restart-btn {
+    display: block;
+    margin: 25px 0 0 auto;
+    padding: 13px 27px;
+    border: none;
+    border-radius: 25px;
+    background: var(--primary);
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.next-btn:hover:not(:disabled),
+.restart-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+.next-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* RESULTS */
+
+.result {
+    display: none;
+    text-align: center;
+    background: var(--surface);
+    padding: 45px 25px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.result-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.result h2 {
+    font-family: 'Playfair Display',serif;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.result p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.final-score {
+    font-size: 50px;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 20px 0 5px;
+}
+
+.result-details {
+    background: var(--soft);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.restart-btn {
+    margin: 25px auto 0;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    background: #302945;
+    color: #d2c8e8;
+    padding: 35px 15px;
+    margin-top: 50px;
+    font-size: 13px;
+}
+
+footer h3 {
+    font-family: 'Playfair Display',serif;
+    color: white;
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px) {
+    nav {
+        padding: 13px 5%;
+    }
+
+    .nav-right {
+        gap: 12px;
+    }
+
+    .hero {
+        padding: 48px 18px;
+    }
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .panel,
+    .quiz-card {
+        padding: 23px 17px;
+    }
+
+    .question {
+        font-size: 20px;
+    }
+
+    .level-btn {
+        padding: 10px 19px;
+    }
+
+    .quiz-top {
+        font-size: 12px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+<!-- NAVIGATION -->
 
-    <nav>
-        <div class="logo">SciEveryday.</div>
+<nav>
+    <div class="logo">SciEveryday.</div>
 
+    <div class="nav-right">
         <a href="index.html">← Back to Home</a>
-    </nav>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-icon">🧠</div>
+    <span class="tag">TEST YOUR KNOWLEDGE</span>
+
+    <h1>Science Quiz</h1>
+
+    <p>
+        How well do you understand the science behind
+        everyday things? Put your knowledge to the test!
+    </p>
+</section>
+
+<main class="container">
+
+    <!-- DIFFICULTY SELECTION -->
+
+    <section class="panel difficulty">
+        <h2>Choose Your Difficulty Level</h2>
 
 
-    <!-- HERO SECTION -->
+        <div class="level-buttons">
+            <button class="level-btn active" onclick="startQuiz('easy',this)">
+                Easy
+            </button>
 
-    <section class="hero">
+            <button class="level-btn" onclick="startQuiz('medium',this)">
+                Medium
+            </button>
 
-        <span class="tag">TEST YOUR KNOWLEDGE</span>
+            <button class="level-btn" onclick="startQuiz('hard',this)">
+                Difficult
+            </button>
+        </div>
+    </section>
 
-        <h1>Science Quiz</h1>
+    <!-- QUIZ -->
 
-        <p>
-            How well do you understand the science behind
-            everyday things? Put your knowledge to the test!
-        </p>
+    <section class="quiz-card" id="quizCard">
+
+        <div class="quiz-top">
+            <span id="questionCount">Question 1 of 5</span>
+            <span id="difficultyLabel">Easy Level</span>
+            <span class="score" id="score">Score: 0</span>
+        </div>
+
+        <div class="progress-bg">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <h2 class="question" id="question">Loading question...</h2>
+
+        <div class="options" id="options"></div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+            Next Question →
+        </button>
 
     </section>
 
-
-    <main class="container">
-
-        <!-- DIFFICULTY SELECTION -->
-
-        <section class="difficulty">
-
-            <h2>Choose Your Difficulty Level</h2>
-
-            <div class="level-buttons">
-
-                <button class="level-btn active"
-                    onclick="startQuiz('easy', this)">
-                    Easy
-                </button>
-
-                <button class="level-btn"
-                    onclick="startQuiz('medium', this)">
-                    Medium
-                </button>
-
-                <button class="level-btn"
-                    onclick="startQuiz('hard', this)">
-                    Hard
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- QUIZ SECTION -->
-
-        <section class="quiz-card" id="quizCard">
-
-            <div class="quiz-top">
-
-                <span id="questionCount">Question 1 of 5</span>
-
-                <span class="score" id="score">
-                    Score: 0
-                </span>
-
-            </div>
-
-
-            <!-- PROGRESS BAR -->
-
-            <div class="progress-bg">
-
-                <div class="progress" id="progress"></div>
-
-            </div>
-
-
-            <!-- QUESTION -->
-
-            <h2 class="question" id="question">
-                Loading question...
-            </h2>
-
-
-            <!-- OPTIONS -->
-
-            <div class="options" id="options"></div>
-
-
-            <!-- FEEDBACK -->
-
-            <div class="feedback" id="feedback"></div>
-
-
-            <!-- NEXT BUTTON -->
-
-            <button class="next-btn" id="nextBtn"
-                onclick="nextQuestion()" disabled>
-
-                Next Question →
-
-            </button>
-
-        </section>
-
-
-        <!-- RESULT SECTION -->
-
-        <section class="result" id="result">
-
-            <div class="result-icon" id="resultIcon">🏆</div>
-
-            <h2 id="resultTitle">Quiz Completed!</h2>
-
-            <p id="resultMessage">
-                Here is how you performed.
-            </p>
-
-            <div class="final-score" id="finalScore">
-                0/5
-            </div>
-
-            <p id="percentage"></p>
-
-            <button class="restart-btn" onclick="restartQuiz()">
-                Try Again ↻
-            </button>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            © 2026 The Science Behind Everyday Things.
-        </p>
-
-        <p style="margin-top: 7px;">
-            Stay Curious. Keep Exploring.
-        </p>
-
-    </footer>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script>
-
-        // QUESTION DATABASE
-
-        const questions = {
-
-            easy: [
-
-                {
-                    question: "Why does ice float on water?",
-                    options: [
-                        "Ice is heavier than water",
-                        "Ice is less dense than water",
-                        "Ice contains air bubbles only",
-                        "Water pushes ice upward"
-                    ],
-                    answer: 1,
-                    explanation: "Ice has a lower density than liquid water because of its open crystal structure. Therefore, it floats."
-                },
-
-                {
-                    question: "Which energy source powers a solar panel?",
-                    options: [
-                        "Wind energy",
-                        "Sound energy",
-                        "Sunlight",
-                        "Chemical energy"
-                    ],
-                    answer: 2,
-                    explanation: "Solar panels convert sunlight into electrical energy using the photovoltaic effect."
-                },
-
-                {
-                    question: "Why do we see lightning before hearing thunder?",
-                    options: [
-                        "Light travels faster than sound",
-                        "Sound travels faster than light",
-                        "Lightning occurs before thunder",
-                        "Thunder is produced later"
-                    ],
-                    answer: 0,
-                    explanation: "Light travels much faster than sound, so the flash reaches us before the sound of thunder."
-                },
-
-                {
-                    question: "Which device helps us navigate using satellites?",
-                    options: [
-                        "Microwave",
-                        "GPS",
-                        "Refrigerator",
-                        "Washing machine"
-                    ],
-                    answer: 1,
-                    explanation: "GPS uses signals from satellites to calculate our position on Earth."
-                },
-
-                {
-                    question: "What makes a mirror reflect our image?",
-                    options: [
-                        "Absorption of light",
-                        "Reflection of light",
-                        "Refraction of light",
-                        "Diffraction of light"
-                    ],
-                    answer: 1,
-                    explanation: "A mirror has a smooth reflective surface that reflects light back to form an image."
-                }
-
-            ],
-
-
-            medium: [
-
-                {
-                    question: "How does a refrigerator remove heat from its interior?",
-                    options: [
-                        "By creating cold air directly",
-                        "By using a refrigerant in a cooling cycle",
-                        "By converting heat into light",
-                        "By stopping all molecular motion"
-                    ],
-                    answer: 1,
-                    explanation: "A refrigerator circulates refrigerant through an evaporator and condenser. It absorbs heat inside and releases it outside."
-                },
-
-                {
-                    question: "How does a microwave oven heat food?",
-                    options: [
-                        "Through infrared radiation",
-                        "Through ultraviolet radiation",
-                        "Through microwave radiation",
-                        "Through X-rays"
-                    ],
-                    answer: 2,
-                    explanation: "Microwave radiation interacts with polar molecules, especially water, helping transfer energy into the food."
-                },
-
-                {
-                    question: "How does Wi-Fi transmit information?",
-                    options: [
-                        "Through sound waves",
-                        "Through radio waves",
-                        "Through water waves",
-                        "Through visible light only"
-                    ],
-                    answer: 1,
-                    explanation: "Wi-Fi uses radio waves to transmit data wirelessly between devices and a router."
-                },
-
-                {
-                    question: "Why does a pressure cooker cook food faster?",
-                    options: [
-                        "It lowers the boiling point of water",
-                        "It increases atmospheric pressure inside",
-                        "It prevents heat transfer",
-                        "It removes water from food"
-                    ],
-                    answer: 1,
-                    explanation: "Higher pressure raises the boiling point of water, allowing food to cook at a higher temperature."
-                },
-
-                {
-                    question: "Which principle allows a washing machine to remove water during spinning?",
-                    options: [
-                        "Centrifugal effect",
-                        "Electromagnetic induction",
-                        "Total internal reflection",
-                        "Photoelectric effect"
-                    ],
-                    answer: 0,
-                    explanation: "During spinning, water moves outward through the drum holes due to the rotational motion and its inertia."
-                }
-
-            ],
-
-
-            hard: [
-
-                {
-                    question: "Which phenomenon is mainly responsible for GPS position calculation?",
-                    options: [
-                        "Interference of light",
-                        "Trilateration using satellite signal timing",
-                        "Magnetic induction",
-                        "Diffraction of radio waves"
-                    ],
-                    answer: 1,
-                    explanation: "GPS receivers estimate distances from multiple satellites using signal travel time and determine their position through trilateration."
-                },
-
-                {
-                    question: "What is the approximate frequency of a 2.4 GHz Wi-Fi signal?",
-                    options: [
-                        "2.4 million cycles per second",
-                        "240 million cycles per second",
-                        "2.4 billion cycles per second",
-                        "24 billion cycles per second"
-                    ],
-                    answer: 2,
-                    explanation: "GHz means gigahertz, and one gigahertz equals one billion cycles per second."
-                },
-
-                {
-                    question: "What is the main purpose of the evaporator in a refrigerator?",
-                    options: [
-                        "To release heat into the room",
-                        "To absorb heat from the refrigerator interior",
-                        "To compress the refrigerant",
-                        "To increase the refrigerant's pressure"
-                    ],
-                    answer: 1,
-                    explanation: "The refrigerant absorbs heat from the refrigerator's interior as it evaporates in the evaporator."
-                },
-
-                {
-                    question: "Which property of electromagnetic waves allows microwave ovens to transfer energy to food?",
-                    options: [
-                        "They interact with polar molecules",
-                        "They require a vacuum to travel",
-                        "They have zero frequency",
-                        "They travel slower than sound"
-                    ],
-                    answer: 0,
-                    explanation: "The alternating electric field of microwaves interacts with polar molecules, transferring energy through molecular motion and dielectric losses."
-                },
-
-                {
-                    question: "Why is a GPS receiver's clock synchronised with satellite time?",
-                    options: [
-                        "To increase satellite speed",
-                        "To measure signal travel time accurately",
-                        "To reduce radio wave frequency",
-                        "To prevent atmospheric pressure changes"
-                    ],
-                    answer: 1,
-                    explanation: "Accurate timing is essential because GPS calculates distances from the time taken by satellite signals to reach the receiver."
-                }
-
-            ]
-
-        };
-
-
-        // QUIZ VARIABLES
-
-        let currentQuestions = [];
-        let currentIndex = 0;
-        let score = 0;
-        let selectedLevel = "easy";
-        let answered = false;
-
-
-        // START QUIZ
-
-        function startQuiz(level, button) {
-
-            selectedLevel = level;
-
-            document.querySelectorAll(".level-btn").forEach(btn => {
-                btn.classList.remove("active");
-            });
-
-            if (button) {
-                button.classList.add("active");
-            }
-
-            currentQuestions = [...questions[level]];
-
-            // Randomise questions
-            currentQuestions.sort(() => Math.random() - 0.5);
-
-            currentIndex = 0;
-            score = 0;
-            answered = false;
-
-            document.getElementById("quizCard").style.display = "block";
-            document.getElementById("result").style.display = "none";
-
-            showQuestion();
-
+    <!-- RESULTS -->
+
+    <section class="result" id="result">
+
+        <div class="result-icon" id="resultIcon">🏆</div>
+
+        <h2 id="resultTitle">Quiz Completed!</h2>
+
+        <p id="resultMessage">Here is how you performed.</p>
+
+        <div class="final-score" id="finalScore">0/5</div>
+
+        <p id="percentage"></p>
+
+        <div class="result-details" id="resultDetails"></div>
+
+        <button class="restart-btn" onclick="restartQuiz()">
+            Try Again ↻
+        </button>
+
+    </section>
+
+</main>
+
+<footer>
+    <h3>The Science Behind Everyday Things</h3>
+    <p>Discover • Understand • Explore</p>
+    <p style="margin-top:12px;">© 2026 | All Rights Reserved</p>
+</footer>
+
+<script>
+
+/* =========================================
+   QUESTION DATABASE
+   20 QUESTIONS IN EACH DIFFICULTY LEVEL
+========================================= */
+
+const questions = {
+
+easy: [
+
+{
+question:"Why does ice float on water?",
+options:["Ice is heavier than water","Ice is less dense than water","Ice contains air bubbles only","Water pushes ice upward"],
+answer:1,
+explanation:"Ice has a lower density than liquid water because of its open crystal structure. Therefore, it floats."
+},
+
+{
+question:"Which energy source powers a solar panel?",
+options:["Wind energy","Sound energy","Sunlight","Chemical energy"],
+answer:2,
+explanation:"Solar panels convert sunlight into electrical energy using the photovoltaic effect."
+},
+
+{
+question:"Why do we see lightning before hearing thunder?",
+options:["Light travels faster than sound","Sound travels faster than light","Lightning occurs before thunder","Thunder is produced later"],
+answer:0,
+explanation:"Light travels much faster than sound, so the flash reaches us before the sound of thunder."
+},
+
+{
+question:"Which device helps us navigate using satellites?",
+options:["Microwave","GPS","Refrigerator","Washing machine"],
+answer:1,
+explanation:"GPS uses signals from satellites to calculate our position on Earth."
+},
+
+{
+question:"What makes a mirror reflect our image?",
+options:["Absorption of light","Reflection of light","Refraction of light","Diffraction of light"],
+answer:1,
+explanation:"A mirror has a smooth reflective surface that reflects light back to form an image."
+},
+
+{
+question:"Which gas do plants absorb during photosynthesis?",
+options:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+answer:2,
+explanation:"Plants absorb carbon dioxide from the atmosphere and use it during photosynthesis."
+},
+
+{
+question:"What is the main function of a refrigerator?",
+options:["To produce heat","To remove heat from its interior","To produce electricity","To freeze the surrounding room"],
+answer:1,
+explanation:"A refrigerator removes heat from its inside and releases it into the surrounding room."
+},
+
+{
+question:"Which part of a washing machine holds the clothes?",
+options:["Motor","Water pump","Drum","Control panel"],
+answer:2,
+explanation:"The drum holds the clothes during washing and spinning."
+},
+
+{
+question:"What type of waves does Wi-Fi use?",
+options:["Sound waves","Radio waves","Water waves","Seismic waves"],
+answer:1,
+explanation:"Wi-Fi uses radio waves to transmit information wirelessly."
+},
+
+{
+question:"Which material is generally a good conductor of electricity?",
+options:["Rubber","Plastic","Copper","Wood"],
+answer:2,
+explanation:"Copper is a good electrical conductor and is commonly used in electrical wires."
+},
+
+{
+question:"What is the SI unit of force?",
+options:["Joule","Newton","Watt","Pascal"],
+answer:1,
+explanation:"Force is measured in newtons, named after scientist Isaac Newton."
+},
+
+{
+question:"Which instrument measures temperature?",
+options:["Barometer","Thermometer","Ammeter","Speedometer"],
+answer:1,
+explanation:"A thermometer is used to measure temperature."
+},
+
+{
+question:"What happens to water when it reaches its boiling point?",
+options:["It freezes","It changes into vapour","It becomes solid","It disappears completely"],
+answer:1,
+explanation:"At its boiling point, liquid water changes into water vapour."
+},
+
+{
+question:"Which planet is known as the Red Planet?",
+options:["Venus","Mars","Jupiter","Saturn"],
+answer:1,
+explanation:"Mars appears reddish because of iron oxide, commonly called rust, on its surface."
+},
+
+{
+question:"What is the main source of energy for Earth?",
+options:["The Moon","The Sun","The oceans","The wind"],
+answer:1,
+explanation:"The Sun provides most of the energy that supports life and drives weather on Earth."
+},
+
+{
+question:"Which appliance uses microwave radiation to heat food?",
+options:["Refrigerator","Microwave oven","Washing machine","Electric fan"],
+answer:1,
+explanation:"A microwave oven uses microwave radiation to transfer energy to food."
+},
+
+{
+question:"What does a compass help us find?",
+options:["Temperature","Direction","Weight","Speed"],
+answer:1,
+explanation:"A compass uses a magnetic needle to help identify directions."
+},
+
+{
+question:"Which form of energy is associated with moving objects?",
+options:["Kinetic energy","Chemical energy","Nuclear energy","Potential energy only"],
+answer:0,
+explanation:"Kinetic energy is the energy possessed by an object because of its motion."
+},
+
+{
+question:"What is the freezing point of pure water at normal atmospheric pressure?",
+options:["0°C","10°C","50°C","100°C"],
+answer:0,
+explanation:"Pure water freezes at 0°C under normal atmospheric pressure."
+},
+
+{
+question:"Which part of the eye controls the amount of light entering it?",
+options:["Retina","Iris","Optic nerve","Cornea only"],
+answer:1,
+explanation:"The iris changes the size of the pupil and controls how much light enters the eye."
+}
+
+],
+
+medium: [
+
+{
+question:"How does a refrigerator remove heat from its interior?",
+options:["By creating cold air directly","By using a refrigerant in a cooling cycle","By converting heat into light","By stopping all molecular motion"],
+answer:1,
+explanation:"A refrigerator circulates refrigerant through an evaporator and condenser. It absorbs heat inside and releases it outside."
+},
+
+{
+question:"How does a microwave oven heat food?",
+options:["Through infrared radiation","Through ultraviolet radiation","Through microwave radiation","Through X-rays"],
+answer:2,
+explanation:"Microwave radiation interacts with polar molecules, especially water, helping transfer energy into the food."
+},
+
+{
+question:"How does Wi-Fi transmit information?",
+options:["Through sound waves","Through radio waves","Through water waves","Through visible light only"],
+answer:1,
+explanation:"Wi-Fi uses radio waves to transmit data wirelessly between devices and a router."
+},
+
+{
+question:"Why does a pressure cooker cook food faster?",
+options:["It lowers the boiling point of water","It increases pressure inside","It prevents heat transfer","It removes water from food"],
+answer:1,
+explanation:"Higher pressure raises the boiling point of water, allowing food to cook at a higher temperature."
+},
+
+{
+question:"Which principle allows a washing machine to remove water during spinning?",
+options:["Centrifugal effect","Electromagnetic induction","Total internal reflection","Photoelectric effect"],
+answer:0,
+explanation:"During spinning, water moves outward through the drum holes due to rotational motion and its inertia."
+},
+
+{
+question:"What is the main function of the magnetron in a microwave oven?",
+options:["To cool the food","To generate microwaves","To rotate the turntable","To measure food temperature"],
+answer:1,
+explanation:"The magnetron is the component that generates microwave energy inside the oven."
+},
+
+{
+question:"What happens to the refrigerant inside the evaporator?",
+options:["It absorbs heat and evaporates","It freezes permanently","It releases all its heat","It becomes a solid"],
+answer:0,
+explanation:"The refrigerant absorbs heat from the refrigerator's interior and changes into vapour."
+},
+
+{
+question:"Which component of a washing machine removes used water?",
+options:["Drum","Inlet valve","Water pump","Detergent tray"],
+answer:2,
+explanation:"The water pump pushes used water out of the washing machine through the drainage system."
+},
+
+{
+question:"What is the main purpose of a Wi-Fi router?",
+options:["To generate electricity","To connect devices to a network","To store photographs","To increase screen brightness"],
+answer:1,
+explanation:"A Wi-Fi router connects devices to a local network and often provides access to the internet."
+},
+
+{
+question:"What is the photovoltaic effect?",
+options:["Conversion of light into electrical energy","Conversion of sound into heat","Production of magnetic fields","Conversion of electricity into sound"],
+answer:0,
+explanation:"The photovoltaic effect allows certain materials to produce electrical energy when exposed to light."
+},
+
+{
+question:"Why does a metal spoon feel colder than a wooden spoon at the same room temperature?",
+options:["Metal is always at a lower temperature","Metal conducts heat away from your hand faster","Wood produces heat","Metal contains ice"],
+answer:1,
+explanation:"Metal has higher thermal conductivity, so it transfers heat away from your hand faster."
+},
+
+{
+question:"What is the purpose of the condenser in a refrigerator?",
+options:["To absorb heat from food","To release heat to the surroundings","To store frozen food","To increase the refrigerator's size"],
+answer:1,
+explanation:"The condenser releases heat from the refrigerant into the surrounding air."
+},
+
+{
+question:"Which type of energy is stored in a stretched spring?",
+options:["Kinetic energy","Elastic potential energy","Sound energy","Electrical energy"],
+answer:1,
+explanation:"A stretched or compressed spring stores elastic potential energy."
+},
+
+{
+question:"Why are satellites important for GPS?",
+options:["They provide signals used to calculate location","They directly photograph every person","They produce Earth's magnetic field","They control road traffic lights"],
+answer:0,
+explanation:"GPS satellites transmit timing signals that receivers use to estimate their distances and calculate location."
+},
+
+{
+question:"What is the function of the iris in a camera?",
+options:["To store images","To control the amount of light entering","To produce sound","To measure distance"],
+answer:1,
+explanation:"The camera iris changes the aperture size and controls how much light reaches the sensor."
+},
+
+{
+question:"Why is detergent useful in washing clothes?",
+options:["It increases the weight of clothes","It helps loosen and remove dirt and grease","It stops water from moving","It makes fabric waterproof"],
+answer:1,
+explanation:"Detergents contain substances that help loosen dirt and grease so water can carry them away."
+},
+
+{
+question:"Which device converts electrical energy into mechanical energy in many appliances?",
+options:["Electric motor","Thermometer","Battery charger only","Mirror"],
+answer:0,
+explanation:"An electric motor converts electrical energy into mechanical motion."
+},
+
+{
+question:"What is the role of a solar cell?",
+options:["To convert sunlight into electricity","To convert water into fuel","To produce sound waves","To store wind"],
+answer:0,
+explanation:"Solar cells use semiconductor materials to convert light energy into electrical energy."
+},
+
+{
+question:"Why does sound not travel through a vacuum?",
+options:["It travels too quickly","It needs a material medium","It is a form of light","It has no frequency"],
+answer:1,
+explanation:"Sound is a mechanical wave and needs particles in a medium to transfer vibrations."
+},
+
+{
+question:"Which phenomenon explains why a straw looks bent in a glass of water?",
+options:["Reflection","Refraction","Diffraction","Magnetic induction"],
+answer:1,
+explanation:"Light changes direction when it passes between water and air. This bending is called refraction."
+}
+
+],
+
+hard: [
+
+{
+question:"Which phenomenon is mainly responsible for GPS position calculation?",
+options:["Interference of light","Trilateration using satellite signal timing","Magnetic induction","Diffraction of radio waves"],
+answer:1,
+explanation:"GPS receivers estimate distances from multiple satellites using signal travel time and determine their position through trilateration."
+},
+
+{
+question:"What is the approximate frequency of a 2.4 GHz Wi-Fi signal?",
+options:["2.4 million cycles per second","240 million cycles per second","2.4 billion cycles per second","24 billion cycles per second"],
+answer:2,
+explanation:"GHz means gigahertz, and one gigahertz equals one billion cycles per second."
+},
+
+{
+question:"What is the main purpose of the evaporator in a refrigerator?",
+options:["To release heat into the room","To absorb heat from the refrigerator interior","To compress the refrigerant","To increase the refrigerant's pressure"],
+answer:1,
+explanation:"The refrigerant absorbs heat from the refrigerator's interior as it evaporates in the evaporator."
+},
+
+{
+question:"Which property of electromagnetic waves allows microwave ovens to transfer energy to food?",
+options:["They interact with polar molecules","They require a vacuum to travel","They have zero frequency","They travel slower than sound"],
+answer:0,
+explanation:"The alternating electric field of microwaves interacts with polar molecules, transferring energy through molecular motion and dielectric losses."
+},
+
+{
+question:"Why is a GPS receiver's clock synchronised with satellite time?",
+options:["To increase satellite speed","To measure signal travel time accurately","To reduce radio wave frequency","To prevent atmospheric pressure changes"],
+answer:1,
+explanation:"Accurate timing is essential because GPS calculates distances from the time taken by satellite signals to reach the receiver."
+},
+
+{
+question:"What is the SI unit of electrical resistance?",
+options:["Ampere","Volt","Ohm","Watt"],
+answer:2,
+explanation:"Electrical resistance is measured in ohms, represented by the symbol Ω."
+},
+
+{
+question:"Which law explains the relationship between voltage, current and resistance?",
+options:["Newton's law","Ohm's law","Faraday's law of cooling","Kepler's law"],
+answer:1,
+explanation:"Ohm's law states that voltage equals current multiplied by resistance: V = IR."
+},
+
+{
+question:"What happens to the frequency of a wave when it enters another medium?",
+options:["It always doubles","It always becomes zero","It remains unchanged at the boundary","It always becomes half"],
+answer:2,
+explanation:"The frequency of a wave is determined by its source and remains unchanged when it enters a different medium. Its speed and wavelength may change."
+},
+
+{
+question:"Which process allows a transformer to transfer electrical energy between coils?",
+options:["Electromagnetic induction","Photoelectric effect","Nuclear fission","Total internal reflection"],
+answer:0,
+explanation:"A changing magnetic field produced by one coil induces a voltage in another coil through electromagnetic induction."
+},
+
+{
+question:"Why does a refrigerator need a compressor?",
+options:["To reduce the size of food","To increase refrigerant pressure and circulate it","To produce visible light","To remove oxygen from food"],
+answer:1,
+explanation:"The compressor raises the refrigerant's pressure and helps circulate it through the refrigeration cycle."
+},
+
+{
+question:"What is the approximate speed of electromagnetic waves in a vacuum?",
+options:["300 metres per second","3,000 kilometres per second","300,000 kilometres per second","30 kilometres per second"],
+answer:2,
+explanation:"Electromagnetic waves travel at approximately 300,000 kilometres per second in a vacuum."
+},
+
+{
+question:"Which statement about microwave radiation is correct?",
+options:["It is ionising radiation","It is non-ionising electromagnetic radiation","It is a mechanical wave","It cannot travel through air"],
+answer:1,
+explanation:"Microwaves are non-ionising electromagnetic waves. They can transfer energy without having enough photon energy to ionise atoms."
+},
+
+{
+question:"What does the term bandwidth mean in wireless communication?",
+options:["The physical length of an antenna","The range of frequencies available for communication","The weight of a router","The speed of light in a vacuum"],
+answer:1,
+explanation:"Bandwidth refers to the range of frequencies available for transmitting information."
+},
+
+{
+question:"Which principle explains the operation of an electric generator?",
+options:["Electromagnetic induction","Refraction","Thermal expansion","Chemical neutralisation"],
+answer:0,
+explanation:"An electric generator produces voltage when a conductor experiences a changing magnetic flux."
+},
+
+{
+question:"Why is the spin cycle of a washing machine effective at removing water?",
+options:["Water changes into ice","Rotation causes water to move outward through drum holes","Detergent absorbs all the water","The drum produces water vapour only"],
+answer:1,
+explanation:"During high-speed rotation, water moves outward through the holes in the drum because of its inertia in the rotating system."
+},
+
+{
+question:"What is the relationship between wavelength, frequency and wave speed?",
+options:["Wave speed = frequency × wavelength","Wave speed = frequency ÷ wavelength","Wave speed = wavelength ÷ time only","Wave speed = frequency + wavelength"],
+answer:0,
+explanation:"The wave equation is v = fλ, where v is speed, f is frequency and λ is wavelength."
+},
+
+{
+question:"Which layer of the atmosphere plays an important role in refracting GPS signals?",
+options:["Troposphere and ionosphere","Only the ozone layer","Only the exosphere","The Earth's core"],
+answer:0,
+explanation:"GPS signals are affected by the ionosphere and troposphere as they travel towards a receiver. These effects can introduce positioning errors."
+},
+
+{
+question:"What is the main reason a metal cavity is used inside a microwave oven?",
+options:["To absorb all microwave energy","To reflect microwaves and help contain them","To produce visible light","To increase food weight"],
+answer:1,
+explanation:"The metal cavity reflects microwaves within the oven and helps keep the electromagnetic energy contained."
+},
+
+{
+question:"What happens to the resistance of a typical metallic conductor when its temperature increases?",
+options:["It usually increases","It always becomes zero","It always decreases","It becomes infinite immediately"],
+answer:0,
+explanation:"In most metals, increasing temperature increases atomic vibrations, making it harder for electrons to flow."
+},
+
+{
+question:"Which principle is used by a semiconductor solar cell to generate electrical current?",
+options:["Photovoltaic effect","Centrifugal effect","Doppler effect","Capillary action"],
+answer:0,
+explanation:"The photovoltaic effect in a semiconductor junction converts absorbed light into electrical energy."
+}
+
+]
+
+};
+
+
+/* =========================================
+   QUIZ VARIABLES
+========================================= */
+
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let selectedLevel = "easy";
+let answered = false;
+
+const QUESTIONS_PER_ATTEMPT = 5;
+
+
+/* =========================================
+   RANDOM QUESTION SELECTION
+========================================= */
+
+// Fisher-Yates shuffle: randomly rearranges an array.
+
+function shuffleArray(array) {
+
+    const shuffled = [...array];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+
+    }
+
+    return shuffled;
+}
+
+
+/* =========================================
+   START QUIZ
+========================================= */
+
+function startQuiz(level, button) {
+
+    selectedLevel = level;
+
+    // Update active difficulty button
+    document.querySelectorAll(".level-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    // Select 5 random questions from the chosen difficulty
+    // The same question cannot appear twice in this attempt.
+    currentQuestions = shuffleArray(questions[level])
+        .slice(0, QUESTIONS_PER_ATTEMPT);
+
+    currentIndex = 0;
+    score = 0;
+    answered = false;
+
+    document.getElementById("quizCard").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    document.getElementById("difficultyLabel").innerText =
+        level.charAt(0).toUpperCase() + level.slice(1) + " Level";
+
+    showQuestion();
+
+    // Bring the quiz into view when changing levels
+    document.getElementById("quizCard").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* =========================================
+   DISPLAY QUESTION
+========================================= */
+
+function showQuestion() {
+
+    answered = false;
+
+    const q = currentQuestions[currentIndex];
+
+    document.getElementById("questionCount").innerText =
+        `Question ${currentIndex + 1} of ${QUESTIONS_PER_ATTEMPT}`;
+
+    document.getElementById("score").innerText =
+        `Score: ${score}`;
+
+    document.getElementById("question").innerText = q.question;
+
+    document.getElementById("progress").style.width =
+        `${(currentIndex / QUESTIONS_PER_ATTEMPT) * 100}%`;
+
+    const optionsDiv = document.getElementById("options");
+
+    optionsDiv.innerHTML = "";
+
+    const feedback = document.getElementById("feedback");
+
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
+
+    const nextBtn = document.getElementById("nextBtn");
+
+    nextBtn.disabled = true;
+    nextBtn.innerText = "Next Question →";
+
+    q.options.forEach((option, index) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+
+        btn.innerText =
+            String.fromCharCode(65 + index) + ". " + option;
+
+        btn.onclick = () => selectAnswer(index);
+
+        optionsDiv.appendChild(btn);
+
+    });
+
+}
+
+
+/* =========================================
+   CHECK ANSWER
+========================================= */
+
+function selectAnswer(selected) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q = currentQuestions[currentIndex];
+
+    const optionButtons = document.querySelectorAll(".option");
+
+    const feedback = document.getElementById("feedback");
+
+    optionButtons.forEach((btn, index) => {
+
+        btn.disabled = true;
+
+        if (index === q.answer) {
+            btn.classList.add("correct");
         }
 
+    });
 
-        // DISPLAY QUESTION
+    if (selected === q.answer) {
 
-        function showQuestion() {
+        score++;
 
-            answered = false;
+        optionButtons[selected].innerText =
+            "✓ " + optionButtons[selected].innerText;
 
-            const q = currentQuestions[currentIndex];
+        feedback.className = "feedback correct-feedback";
 
-            document.getElementById("questionCount").innerText =
-                `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+        feedback.innerHTML =
+            "<strong>Correct! Well done! 🎉</strong><br>" +
+            q.explanation;
 
-            document.getElementById("score").innerText =
-                `Score: ${score}`;
+    } else {
 
-            document.getElementById("question").innerText = q.question;
+        optionButtons[selected].classList.add("wrong");
 
-            document.getElementById("progress").style.width =
-                `${(currentIndex / currentQuestions.length) * 100}%`;
+        feedback.className = "feedback wrong-feedback";
 
-            const optionsDiv = document.getElementById("options");
+        feedback.innerHTML =
+            "<strong>Not quite! The correct answer is " +
+            q.options[q.answer] + ".</strong><br>" +
+            q.explanation;
 
-            optionsDiv.innerHTML = "";
+    }
 
-            document.getElementById("feedback").className = "feedback";
-            document.getElementById("feedback").innerHTML = "";
+    document.getElementById("score").innerText =
+        `Score: ${score}`;
 
-            document.getElementById("nextBtn").disabled = true;
+    document.getElementById("progress").style.width =
+        `${((currentIndex + 1) / QUESTIONS_PER_ATTEMPT) * 100}%`;
 
-            q.options.forEach((option, index) => {
+    const nextBtn = document.getElementById("nextBtn");
 
-                const btn = document.createElement("button");
+    nextBtn.disabled = false;
 
-                btn.className = "option";
+    nextBtn.innerText =
+        currentIndex === QUESTIONS_PER_ATTEMPT - 1
+            ? "View Results →"
+            : "Next Question →";
 
-                btn.innerText =
-                    String.fromCharCode(65 + index) + ". " + option;
+}
 
-                btn.onclick = () => selectAnswer(index);
 
-                optionsDiv.appendChild(btn);
+/* =========================================
+   NEXT QUESTION
+========================================= */
 
-            });
+function nextQuestion() {
 
-        }
+    if (!answered) return;
 
+    currentIndex++;
 
-        // CHECK ANSWER
+    if (currentIndex < QUESTIONS_PER_ATTEMPT) {
 
-        function selectAnswer(selected) {
+        showQuestion();
 
-            if (answered) return;
+    } else {
 
-            answered = true;
+        showResult();
 
-            const q = currentQuestions[currentIndex];
+    }
 
-            const optionButtons =
-                document.querySelectorAll(".option");
+}
 
-            const feedback = document.getElementById("feedback");
 
-            optionButtons.forEach((btn, index) => {
+/* =========================================
+   SHOW FINAL RESULT
+========================================= */
 
-                btn.disabled = true;
+function showResult() {
 
-                if (index === q.answer) {
-                    btn.classList.add("correct");
-                }
+    document.getElementById("quizCard").style.display = "none";
 
-            });
+    const result = document.getElementById("result");
 
+    result.style.display = "block";
 
-            if (selected === q.answer) {
+    const total = QUESTIONS_PER_ATTEMPT;
 
-                score++;
+    const percentage = (score / total) * 100;
 
-                optionButtons[selected].innerText =
-                    "✓ " + optionButtons[selected].innerText;
+    document.getElementById("finalScore").innerText =
+        `${score}/${total}`;
 
-                feedback.className = "feedback correct-feedback";
+    document.getElementById("percentage").innerText =
+        `You scored ${percentage}%`;
 
-                feedback.innerHTML =
-                    "<strong>Correct! Well done!</strong><br>" +
-                    q.explanation;
+    let title;
+    let message;
+    let icon;
 
-            }
+    if (percentage === 100) {
 
-            else {
+        title = "Outstanding!";
+        message = "Perfect score! You have an excellent understanding of everyday science.";
+        icon = "🏆";
 
-                optionButtons[selected].classList.add("wrong");
+    } else if (percentage >= 60) {
 
-                feedback.className = "feedback wrong-feedback";
+        title = "Great Job!";
+        message = "Good work! You understand many scientific concepts. Keep exploring!";
+        icon = "🌟";
 
-                feedback.innerHTML =
-                    "<strong>Not quite! The correct answer is " +
-                    q.options[q.answer] + ".</strong><br>" +
-                    q.explanation;
+    } else {
 
-            }
+        title = "Keep Learning!";
+        message = "Every question is an opportunity to learn something new. Try again and improve your score!";
+        icon = "📚";
 
+    }
 
-            document.getElementById("score").innerText =
-                `Score: ${score}`;
+    document.getElementById("resultTitle").innerText = title;
 
-            document.getElementById("progress").style.width =
-                `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
+    document.getElementById("resultMessage").innerText = message;
 
-            const nextBtn = document.getElementById("nextBtn");
+    document.getElementById("resultIcon").innerText = icon;
 
-            nextBtn.disabled = false;
+    document.getElementById("resultDetails").innerHTML =
+        `<strong>Difficulty:</strong> ${selectedLevel.toUpperCase()}<br>
+         <strong>Questions attempted:</strong> ${total}<br>
+         <strong>Correct answers:</strong> ${score}<br>
+         <strong>Incorrect answers:</strong> ${total - score}`;
 
-            nextBtn.innerText =
-                currentIndex === currentQuestions.length - 1
-                    ? "View Results →"
-                    : "Next Question →";
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
-        }
+}
 
 
-        // NEXT QUESTION
+/* =========================================
+   RESTART QUIZ
+========================================= */
 
-        function nextQuestion() {
+function restartQuiz() {
 
-            if (!answered) return;
+    // A fresh random set of 5 questions is selected.
+    startQuiz(selectedLevel, null);
 
-            currentIndex++;
+    document.querySelectorAll(".level-btn").forEach(btn => {
 
-            if (currentIndex < currentQuestions.length) {
+        btn.classList.toggle(
+            "active",
+            btn.innerText.toLowerCase() ===
+            (selectedLevel === "hard" ? "difficult" : selectedLevel)
+        );
 
-                showQuestion();
+    });
 
-            }
+}
 
-            else {
 
-                showResult();
+/* =========================================
+   DARK / LIGHT MODE
+========================================= */
 
-            }
+function toggleTheme() {
 
-        }
+    document.body.classList.toggle("dark-theme");
 
+    const isDark =
+        document.body.classList.contains("dark-theme");
 
-        // SHOW FINAL RESULT
+    document.getElementById("themeToggle").innerText =
+        isDark ? "☀️ Light" : "🌙 Dark";
 
-        function showResult() {
+}
 
-            document.getElementById("quizCard").style.display = "none";
 
-            const result = document.getElementById("result");
+/* =========================================
+   LOAD DEFAULT QUIZ
+========================================= */
 
-            result.style.display = "block";
+startQuiz("easy", document.querySelector(".level-btn"));
 
-            const total = currentQuestions.length;
-
-            const percentage = (score / total) * 100;
-
-            document.getElementById("finalScore").innerText =
-                `${score}/${total}`;
-
-            document.getElementById("percentage").innerText =
-                `You scored ${percentage}%`;
-
-            let title;
-            let message;
-            let icon;
-
-            if (percentage === 100) {
-
-                title = "Outstanding!";
-                message = "Perfect score! You have an excellent understanding of everyday science.";
-                icon = "🏆";
-
-            }
-
-            else if (percentage >= 60) {
-
-                title = "Great Job!";
-                message = "Good work! You understand many scientific concepts. Keep exploring!";
-                icon = "🌟";
-
-            }
-
-            else {
-
-                title = "Keep Learning!";
-                message = "Every question is an opportunity to learn something new. Try again and improve your score!";
-                icon = "📚";
-
-            }
-
-            document.getElementById("resultTitle").innerText = title;
-
-            document.getElementById("resultMessage").innerText = message;
-
-            document.getElementById("resultIcon").innerText = icon;
-
-        }
-
-
-        // RESTART QUIZ
-
-        function restartQuiz() {
-
-            startQuiz(selectedLevel, null);
-
-            document.querySelectorAll(".level-btn").forEach(btn => {
-
-                btn.classList.toggle(
-                    "active",
-                    btn.innerText.toLowerCase() === selectedLevel
-                );
-
-            });
-
-        }
-
-
-        // LOAD DEFAULT QUIZ
-
-        startQuiz("easy", document.querySelector(".level-btn"));
-
-    </script>
+</script>
 
 </body>
 </html>

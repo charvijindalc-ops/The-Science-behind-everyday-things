@@ -1,6 +1,6 @@
 /* =========================================
    THE SCIENCE BEHIND EVERYDAY THINGS
-   AMAZING SCIENCE FACTS - JAVASCRIPT
+   AMAZING FACTS - JAVASCRIPT
 ========================================= */
 
 
@@ -161,90 +161,288 @@ const scienceFacts = [
 ];
 
 
-/* ---------- SELECT HTML ELEMENTS ---------- */
-
-const randomButton = document.getElementById("random-btn");
-
-const randomIcon = document.getElementById("random-icon");
-
-const randomTitle = document.getElementById("random-fact-title");
-
-const randomText = document.getElementById("random-fact-text");
-
-const randomFactBox = document.querySelector(".random-fact-box");
-
-
-/* ---------- RANDOM FACT GENERATOR ---------- */
-
-let previousFactIndex = -1;
-
-
-function showRandomFact() {
-
-    // Check that all required elements exist
-    if (!randomButton || !randomIcon || !randomTitle ||
-        !randomText || !randomFactBox) {
-        return;
-    }
-
-    let randomIndex;
-
-    // Avoid showing the same fact twice in a row
-    do {
-        randomIndex = Math.floor(Math.random() * scienceFacts.length);
-    }
-    while (
-        scienceFacts.length > 1 &&
-        randomIndex === previousFactIndex
-    );
-
-    previousFactIndex = randomIndex;
-
-    // Get the selected fact
-    const selectedFact = scienceFacts[randomIndex];
-
-    // Start fade-out animation
-    randomFactBox.style.opacity = "0";
-    randomFactBox.style.transform = "translateY(8px)";
-
-    // Update the fact after a short delay
-    setTimeout(function () {
-
-        randomIcon.textContent = selectedFact.icon;
-
-        randomTitle.textContent = selectedFact.title;
-
-        randomText.textContent = selectedFact.fact;
-
-        // Bring the fact back with a smooth animation
-        randomFactBox.style.opacity = "1";
-        randomFactBox.style.transform = "translateY(0)";
-
-    }, 180);
-
-}
-
-
-/* ---------- BUTTON EVENT ---------- */
-
-if (randomButton) {
-
-    randomButton.addEventListener("click", showRandomFact);
-
-}
-
-
-/* ---------- INITIAL PAGE SETUP ---------- */
+/* ---------- PAGE INITIALIZATION ---------- */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Ensure the random fact generator starts correctly
-    if (randomButton) {
 
-        randomButton.setAttribute(
-            "aria-label",
-            "Show another random science fact"
+    /* =====================================
+       1. DARK AND LIGHT MODE
+    ===================================== */
+
+    const themeButton = document.getElementById("theme-toggle");
+
+    // Restore saved theme
+    const savedTheme = localStorage.getItem("science-facts-theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+    }
+
+    function updateThemeButton() {
+
+        const isDark = document.body.classList.contains("dark-theme");
+
+        themeButton.textContent = isDark
+            ? "☀️ Light Mode"
+            : "🌙 Dark Mode";
+
+    }
+
+    updateThemeButton();
+
+    themeButton.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-theme");
+
+        const currentTheme = document.body.classList.contains("dark-theme")
+            ? "dark"
+            : "light";
+
+        localStorage.setItem("science-facts-theme", currentTheme);
+
+        updateThemeButton();
+
+    });
+
+
+    /* =====================================
+       2. RANDOM FACT GENERATOR
+    ===================================== */
+
+    const randomButton = document.getElementById("random-btn");
+    const randomIcon = document.getElementById("random-icon");
+    const randomTitle = document.getElementById("random-fact-title");
+    const randomText = document.getElementById("random-fact-text");
+    const randomFactBox = document.querySelector(".random-fact-box");
+
+    let previousFactIndex = -1;
+
+    function showRandomFact() {
+
+        let randomIndex;
+
+        // Prevent the same fact from appearing twice in a row
+        do {
+
+            randomIndex = Math.floor(Math.random() * scienceFacts.length);
+
+        } while (
+            scienceFacts.length > 1 &&
+            randomIndex === previousFactIndex
         );
+
+        previousFactIndex = randomIndex;
+
+        const selectedFact = scienceFacts[randomIndex];
+
+        // Fade out
+        randomFactBox.style.opacity = "0";
+        randomFactBox.style.transform = "translateY(8px)";
+
+        setTimeout(function () {
+
+            randomIcon.textContent = selectedFact.icon;
+            randomTitle.textContent = selectedFact.title;
+            randomText.textContent = selectedFact.fact;
+
+            // Fade in
+            randomFactBox.style.opacity = "1";
+            randomFactBox.style.transform = "translateY(0)";
+
+        }, 180);
+
+    }
+
+    randomButton.addEventListener("click", showRandomFact);
+
+    // Show a random fact when the page opens
+    showRandomFact();
+
+
+    /* =====================================
+       3. SEARCH AND CATEGORY FILTERS
+    ===================================== */
+
+    const searchInput = document.getElementById("facts-search");
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    const factCategories = document.querySelectorAll(".fact-category");
+
+    const factCards = document.querySelectorAll(".fact-card");
+
+    const categoryCards = document.querySelectorAll(".category-card");
+
+    const resultCount = document.getElementById("facts-result-count");
+
+    let activeFilter = "all";
+
+
+    function filterFacts() {
+
+        const searchValue = searchInput.value.toLowerCase().trim();
+
+        let visibleCount = 0;
+
+        // Filter individual fact cards
+        factCategories.forEach(function (section) {
+
+            const sectionMatches =
+                activeFilter === "all" ||
+                section.id === activeFilter;
+
+            let visibleCards = 0;
+
+            const cards = section.querySelectorAll(".fact-card");
+
+            cards.forEach(function (card) {
+
+                const cardText = card.textContent.toLowerCase();
+
+                const matchesSearch = cardText.includes(searchValue);
+
+                const shouldShow = sectionMatches && matchesSearch;
+
+                card.classList.toggle("hidden", !shouldShow);
+
+                if (shouldShow) {
+
+                    visibleCards++;
+                    visibleCount++;
+
+                }
+
+            });
+
+            // Hide a complete section if it has no matching facts
+            section.classList.toggle("hidden", visibleCards === 0);
+
+        });
+
+
+        // Filter category shortcut cards
+        categoryCards.forEach(function (card) {
+
+            const link = card.querySelector("a");
+
+            const targetId = link.getAttribute("href").substring(1);
+
+            const shouldShow =
+                activeFilter === "all" ||
+                targetId === activeFilter;
+
+            card.classList.toggle("hidden", !shouldShow);
+
+        });
+
+
+        // Update result information
+        if (visibleCount === 0) {
+
+            resultCount.textContent =
+                "No matching facts found. Try another search.";
+
+        } else {
+
+            resultCount.textContent =
+                `Showing ${visibleCount} science fact${visibleCount === 1 ? "" : "s"}.`;
+
+        }
+
+    }
+
+
+    // Search as the user types
+    searchInput.addEventListener("input", filterFacts);
+
+
+    // Category filter buttons
+    filterButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            activeFilter = button.dataset.filter;
+
+            filterButtons.forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+            button.classList.add("active");
+
+            filterFacts();
+
+        });
+
+    });
+
+
+    /* =====================================
+       4. BACK TO TOP BUTTON
+    ===================================== */
+
+    const topButton = document.getElementById("back-to-top");
+
+    window.addEventListener("scroll", function () {
+
+        if (window.scrollY > 350) {
+
+            topButton.classList.add("visible");
+
+        } else {
+
+            topButton.classList.remove("visible");
+
+        }
+
+    });
+
+    topButton.addEventListener("click", function () {
+
+        window.scrollTo({
+
+            top: 0,
+            behavior: "smooth"
+
+        });
+
+    });
+
+
+    /* =====================================
+       5. SCROLL REVEAL ANIMATIONS
+    ===================================== */
+
+    if ("IntersectionObserver" in window) {
+
+        const observer = new IntersectionObserver(function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+
+            threshold: 0.12
+
+        });
+
+
+        factCards.forEach(function (card) {
+
+            observer.observe(card);
+
+        });
 
     }
 

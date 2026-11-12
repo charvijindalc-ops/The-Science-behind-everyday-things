@@ -1,25 +1,28 @@
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Amazing Science Facts | The Science Behind Everyday Things</title>
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- External CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="facts.css">
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- NAVIGATION -->
     <nav class="navbar">
-        <div class="logo">🔬 Science Everyday</div>
+
+        <a href="index.html" class="logo">🔬 Science Everyday</a>
 
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -31,12 +34,19 @@
             <li><a href="quiz.html">Quiz</a></li>
             <li><a href="amazing-facts.html" class="active">Amazing Facts</a></li>
         </ul>
+
+        <button id="theme-toggle" class="theme-toggle" type="button">
+            🌙 Dark Mode
+        </button>
+
     </nav>
 
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <header class="hero">
+
         <div class="hero-content">
+
             <span class="hero-tag">EXPLORE • DISCOVER • LEARN</span>
 
             <h1>✨ Amazing Science Facts</h1>
@@ -47,13 +57,17 @@
                 Science is more amazing than you think!
             </p>
 
-            <a href="#facts" class="hero-btn">Explore Amazing Facts ↓</a>
+           
         </div>
+
     </header>
 
 
-    <!-- Introduction -->
+    <!-- INTRODUCTION -->
     <section class="intro-section">
+
+        <span class="section-tag">A WORLD OF DISCOVERY</span>
+
         <h2>Science Is Everywhere!</h2>
 
         <p>
@@ -62,75 +76,176 @@
             Here are some surprising facts that will make you
             look at everyday life differently.
         </p>
+
     </section>
 
 
-    <!-- Amazing Facts Section -->
+    <!-- AMAZING FACTS SECTION -->
     <section class="facts-section" id="facts">
 
         <div class="section-heading">
+
             <span class="section-tag">DID YOU KNOW?</span>
+
             <h2>Explore Amazing Facts</h2>
+
             <p>Choose a category and discover something new!</p>
+
         </div>
 
 
-        <!-- Category Cards -->
+        <!-- RANDOM FACT GENERATOR -->
+        <div class="random-fact-box">
+
+            <div class="random-icon" id="random-icon">🔬</div>
+
+            <div class="random-fact-content">
+
+                <span class="random-fact-label">
+                    YOUR DAILY DOSE OF SCIENCE
+                </span>
+
+                <h3 id="random-fact-title">
+                    Ready for a surprising fact?
+                </h3>
+
+                <p id="random-fact-text">
+                    Click the button to discover something amazing!
+                </p>
+
+            </div>
+
+            <button id="random-btn" type="button">
+                ✨ Discover Another Fact
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH AND FILTER -->
+        <div class="facts-tools">
+
+            <input
+                type="search"
+                id="facts-search"
+                class="facts-search"
+                placeholder="🔍 Search facts... e.g. space, heart, light"
+                aria-label="Search science facts"
+            >
+
+            <div class="filter-buttons">
+
+                <button class="filter-btn active" data-filter="all">
+                    All Facts
+                </button>
+
+                <button class="filter-btn" data-filter="space-facts">
+                    🌌 Space
+                </button>
+
+                <button class="filter-btn" data-filter="body-facts">
+                    🧬 Human Body
+                </button>
+
+                <button class="filter-btn" data-filter="physics-facts">
+                    ⚡ Physics
+                </button>
+
+                <button class="filter-btn" data-filter="nature-facts">
+                    🌿 Nature
+                </button>
+
+            </div>
+
+            <p id="facts-result-count" aria-live="polite">
+                Showing 16 science facts.
+            </p>
+
+        </div>
+
+
+        <!-- CATEGORY CARDS -->
         <div class="category-grid">
 
             <div class="category-card">
+
                 <div class="category-icon">🌌</div>
+
                 <h3>Space Facts</h3>
+
                 <p>
                     Explore planets, stars, galaxies and the mysteries
                     of our universe.
                 </p>
+
                 <a href="#space-facts">Explore Facts →</a>
+
             </div>
 
 
             <div class="category-card">
+
                 <div class="category-icon">🧬</div>
+
                 <h3>Human Body</h3>
+
                 <p>
                     Discover surprising facts about the human body
                     and how it works.
                 </p>
+
                 <a href="#body-facts">Explore Facts →</a>
+
             </div>
 
 
             <div class="category-card">
+
                 <div class="category-icon">⚡</div>
+
                 <h3>Physics Facts</h3>
+
                 <p>
                     Learn about energy, electricity, light, sound
                     and motion.
                 </p>
+
                 <a href="#physics-facts">Explore Facts →</a>
+
             </div>
 
 
             <div class="category-card">
+
                 <div class="category-icon">🌿</div>
+
                 <h3>Nature Facts</h3>
+
                 <p>
                     Discover the fascinating science behind plants,
                     animals and nature.
                 </p>
+
                 <a href="#nature-facts">Explore Facts →</a>
+
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- Space Facts -->
+    <!-- SPACE FACTS -->
     <section class="fact-category" id="space-facts">
 
         <div class="section-heading">
+
             <span class="section-tag">BEYOND EARTH</span>
+
             <h2>🌌 Amazing Space Facts</h2>
+
+            <p>Discover the wonders of our universe.</p>
+
         </div>
 
         <div class="fact-grid">
@@ -145,7 +260,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">02</div>
                 <div class="fact-icon">🪐</div>
@@ -156,7 +270,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">03</div>
                 <div class="fact-icon">🌙</div>
@@ -166,7 +279,6 @@
                     3.8 centimetres every year.
                 </p>
             </div>
-
 
             <div class="fact-card">
                 <div class="fact-number">04</div>
@@ -179,15 +291,21 @@
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- Human Body Facts -->
+    <!-- HUMAN BODY FACTS -->
     <section class="fact-category alternate-section" id="body-facts">
 
         <div class="section-heading">
+
             <span class="section-tag">INSIDE YOU</span>
+
             <h2>🧬 Human Body Facts</h2>
+
+            <p>Discover the amazing science of the human body.</p>
+
         </div>
 
         <div class="fact-grid">
@@ -202,7 +320,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">06</div>
                 <div class="fact-icon">🦴</div>
@@ -213,7 +330,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">07</div>
                 <div class="fact-icon">🧠</div>
@@ -223,7 +339,6 @@
                     86 billion neurons.
                 </p>
             </div>
-
 
             <div class="fact-card">
                 <div class="fact-number">08</div>
@@ -236,15 +351,21 @@
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- Physics Facts -->
+    <!-- PHYSICS FACTS -->
     <section class="fact-category" id="physics-facts">
 
         <div class="section-heading">
+
             <span class="section-tag">THE LAWS OF NATURE</span>
+
             <h2>⚡ Interesting Physics Facts</h2>
+
+            <p>Explore the science behind light, sound and energy.</p>
+
         </div>
 
         <div class="fact-grid">
@@ -259,7 +380,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">10</div>
                 <div class="fact-icon">🧲</div>
@@ -270,7 +390,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">11</div>
                 <div class="fact-icon">🌈</div>
@@ -280,7 +399,6 @@
                     colours using a prism.
                 </p>
             </div>
-
 
             <div class="fact-card">
                 <div class="fact-number">12</div>
@@ -293,15 +411,21 @@
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- Nature Facts -->
+    <!-- NATURE FACTS -->
     <section class="fact-category alternate-section" id="nature-facts">
 
         <div class="section-heading">
+
             <span class="section-tag">WONDERS OF NATURE</span>
+
             <h2>🌿 Fascinating Nature Facts</h2>
+
+            <p>Nature has some of the most surprising science!</p>
+
         </div>
 
         <div class="fact-grid">
@@ -316,7 +440,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">14</div>
                 <div class="fact-icon">🌱</div>
@@ -327,7 +450,6 @@
                 </p>
             </div>
 
-
             <div class="fact-card">
                 <div class="fact-number">15</div>
                 <div class="fact-icon">🐝</div>
@@ -337,7 +459,6 @@
                     waggle dances to communicate food locations.
                 </p>
             </div>
-
 
             <div class="fact-card">
                 <div class="fact-number">16</div>
@@ -350,13 +471,15 @@
             </div>
 
         </div>
+
     </section>
 
 
-   
-
-    <!-- Final Message -->
+    <!-- FINAL MESSAGE -->
     <section class="conclusion">
+
+        <span class="section-tag">STAY CURIOUS</span>
+
         <h2>Keep Exploring Science! 🚀</h2>
 
         <p>
@@ -368,11 +491,13 @@
         <a href="index.html" class="back-home-btn">
             ← Back to Home
         </a>
+
     </section>
 
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
+
         <h3>The Science Behind Everyday Things</h3>
 
         <p>Discover • Understand • Explore</p>
@@ -381,10 +506,21 @@
             © 2026 The Science Behind Everyday Things.
             All Rights Reserved.
         </p>
+
     </footer>
 
 
-    <!-- External JavaScript -->
+    <!-- BACK TO TOP -->
+    <button
+        id="back-to-top"
+        class="back-to-top"
+        type="button"
+        aria-label="Back to top"
+    >
+        ↑
+    </button>
+
+
     <script src="facts.js"></script>
 
 </body>

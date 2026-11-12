@@ -1,825 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microwave Oven - The Science Behind Everyday Things</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f3f8ff;
-            color: #263b50;
-            line-height: 1.7;
-        }
-
-        /* HEADER */
-        header {
-            background: linear-gradient(135deg, #123b5d, #087e9e);
-            color: white;
-            text-align: center;
-            padding: 65px 20px 75px;
-        }
-
-        header .icon {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-
-        header h1 {
-            font-size: 43px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        header p {
-            font-size: 17px;
-            color: #d8efff;
-            margin-top: 12px;
-        }
-
-        .hero-line {
-            width: 100px;
-            height: 4px;
-            background: #55d6e8;
-            border-radius: 10px;
-            margin: 25px auto 0;
-        }
-
-        /* NAVIGATION */
-        nav {
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 16px 12px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.10);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #176b87;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 9px 14px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        nav a:hover,
-        nav a.active {
-            background: #176b87;
-            color: white;
-        }
-
-        /* SECTIONS */
-        section {
-            max-width: 1150px;
-            margin: auto;
-            padding: 65px 25px;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .section-heading h2 {
-            color: #123b5d;
-            font-size: 30px;
-            font-weight: 700;
-        }
-
-        .section-heading p {
-            color: #668096;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-
-        .section-line {
-            width: 65px;
-            height: 4px;
-            background: #21a5c2;
-            border-radius: 10px;
-            margin: 13px auto 0;
-        }
-
-        /* CARDS */
-        .card {
-            background: white;
-            border-radius: 17px;
-            padding: 28px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
-            transition: 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(18, 59, 93, 0.14);
-        }
-
-        .card h3 {
-            color: #176b87;
-            font-size: 19px;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #526b80;
-        }
-
-        .highlight {
-            color: #087e9e;
-            font-weight: 700;
-        }
-
-        /* INTRODUCTION */
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-            align-items: center;
-        }
-
-        .intro-image img {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.15);
-        }
-
-        .intro-text p {
-            margin-bottom: 15px;
-            font-size: 15px;
-            color: #526b80;
-        }
-
-        /* PROCESS STEPS */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .step-card {
-            text-align: center;
-            border-top: 4px solid #21a5c2;
-        }
-
-        .step-icon {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .step-number {
-            display: inline-block;
-            background: #e4f6fc;
-            color: #087e9e;
-            padding: 5px 13px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .wide-image {
-            text-align: center;
-            margin-top: 35px;
-        }
-
-        .wide-image img {
-            max-width: 90%;
-            max-height: 350px;
-            object-fit: contain;
-            background: white;
-            padding: 15px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.12);
-        }
-
-        /* SCIENCE CARDS */
-        .science-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .science-card {
-            border-top: 4px solid #21a5c2;
-        }
-
-        .science-card .step-icon {
-            text-align: center;
-        }
-
-        /* TABLES */
-        .table-wrapper {
-            overflow-x: auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
-            margin-top: 25px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #123b5d;
-            color: white;
-            padding: 17px;
-            text-align: left;
-            font-size: 15px;
-        }
-
-        td {
-            padding: 16px;
-            border-bottom: 1px solid #e3edf5;
-            font-size: 14px;
-            color: #526b80;
-        }
-
-        td:first-child {
-            color: #176b87;
-            font-weight: 600;
-        }
-
-        tr:nth-child(even) {
-            background: #edf7fc;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* SAFETY */
-        .safety-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .safety-item {
-            background: white;
-            padding: 20px;
-            border-radius: 13px;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.07);
-            display: flex;
-            align-items: flex-start;
-            gap: 13px;
-            color: #526b80;
-            font-size: 14px;
-        }
-
-        .safety-item span {
-            font-size: 25px;
-        }
-
-        /* FACTS */
-        .facts-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .fact-item {
-            background: white;
-            padding: 22px;
-            border-radius: 13px;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.07);
-            display: flex;
-            gap: 13px;
-            align-items: flex-start;
-        }
-
-        .fact-item span {
-            font-size: 27px;
-        }
-
-        .fact-item p {
-            color: #526b80;
-            font-size: 14px;
-        }
-
-        /* CONCLUSION */
-        .conclusion-box {
-            background: linear-gradient(135deg, #ffffff, #e2f5fc);
-            border-left: 6px solid #21a5c2;
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 7px 22px rgba(18, 59, 93, 0.09);
-            text-align: center;
-        }
-
-        .conclusion-box p {
-            color: #526b80;
-            font-size: 15px;
-        }
-
-        .back-button {
-            display: inline-block;
-            margin-top: 22px;
-            background: #176b87;
-            color: white;
-            text-decoration: none;
-            padding: 11px 22px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .back-button:hover {
-            background: #123b5d;
-            transform: translateY(-2px);
-        }
-
-        /* FOOTER */
-        footer {
-            background: #123b5d;
-            color: white;
-            text-align: center;
-            padding: 35px 15px;
-            margin-top: 30px;
-        }
-
-        footer h3 {
-            font-size: 19px;
-            margin-bottom: 8px;
-        }
-
-        footer p {
-            color: #c8e5f5;
-            font-size: 13px;
-        }
-
-        .footer-line {
-            width: 60px;
-            height: 3px;
-            background: #55d6e8;
-            margin: 15px auto;
-            border-radius: 10px;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 34px;
-            }
-
-            .intro-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-grid,
-            .science-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            section {
-                padding: 45px 18px;
-            }
-
-            .section-heading h2 {
-                font-size: 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 45px 15px 55px;
-            }
-
-            header h1 {
-                font-size: 27px;
-            }
-
-            header p {
-                font-size: 14px;
-            }
-
-            nav {
-                gap: 4px;
-                padding: 10px 5px;
-            }
-
-            nav a {
-                font-size: 12px;
-                padding: 7px 9px;
-            }
-
-            .steps-grid,
-            .science-grid,
-            .safety-grid,
-            .facts-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card {
-                padding: 22px;
-            }
-
-            .conclusion-box {
-                padding: 25px 18px;
-            }
-
-            th, td {
-                padding: 11px;
-                font-size: 12px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microwave Oven | The Science Behind Everyday Things</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#fffaf1;--surface:#fff;--text:#35445b;--muted:#718096;--primary:#6388d8;--soft:#edf3ff;--accent:#8bcac6;--shadow:0 10px 30px rgba(72,91,130,.09)}
+body.dark{--bg:#171d2b;--surface:#222b3d;--text:#edf1fa;--muted:#b0bdd0;--primary:#9bb6ff;--soft:#2b3851;--accent:#8bd8cf;--shadow:0 10px 30px rgba(0,0,0,.2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;transition:.3s}
+nav{position:sticky;top:0;z-index:1000;background:var(--surface);padding:13px 6%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;box-shadow:0 4px 20px rgba(60,80,120,.07)}
+.logo{font:900 20px Nunito;color:var(--text)}.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.nav-links a,.theme-btn{font:600 13px 'DM Sans';color:var(--text);padding:8px 12px;border-radius:20px;text-decoration:none;transition:.2s}
+.nav-links a:hover,.nav-links .active{background:var(--soft);color:var(--primary)}
+.nav-links .quiz-link{background:#fff0c7}
+.theme-btn{border:0;background:var(--soft);cursor:pointer;font-size:17px}
+.hero{padding:65px 8%;text-align:center;background:linear-gradient(120deg,#e7efff,#e4f7f2,#fff1dc);color:#35445b}
+body.dark .hero{background:linear-gradient(120deg,#283653,#263e42,#443b30);color:#edf1fa}
+.hero-icon{font-size:65px;margin-bottom:8px}
+.hero h1{font:900 clamp(30px,4.5vw,48px)/1.2 Nunito;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:16px}
+.hero-line{width:75px;height:5px;background:#8bcac6;border-radius:10px;margin:22px auto 0}
+.section{max-width:1150px;margin:auto;padding:60px 25px}
+.section-heading{text-align:center;margin-bottom:32px}
+.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--primary)}
+.section-heading h2{font:900 clamp(24px,3vw,34px) Nunito;margin:7px 0;color:var(--text)}
+.section-heading p{color:var(--muted);font-size:14px}
+.section-line{width:55px;height:5px;background:var(--accent);border-radius:10px;margin:13px auto 0}
+.card{background:var(--surface);border-radius:22px;padding:26px;box-shadow:var(--shadow);border:1px solid rgba(130,160,210,.12);transition:.25s}
+.card:hover{transform:translateY(-5px)}
+.card h3{font:800 19px Nunito;color:var(--text);margin-bottom:10px}
+.card p{font-size:14px;color:var(--muted)}
+.highlight{color:var(--primary);font-weight:800}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.intro-image img{width:100%;max-height:350px;object-fit:contain;background:var(--surface);padding:14px;border-radius:22px;box-shadow:var(--shadow)}
+.intro-text p{margin-bottom:13px}
+.steps-grid,.science-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step-card,.science-card{border-top:5px solid var(--accent);text-align:center}
+.step-icon{font-size:40px;margin-bottom:9px}
+.step-number{display:inline-block;background:var(--soft);color:var(--primary);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:900;margin-bottom:12px}
+.wide-image{text-align:center;margin-top:30px}
+.wide-image img{max-width:90%;max-height:350px;object-fit:contain;background:var(--surface);padding:15px;border-radius:22px;box-shadow:var(--shadow)}
+.table-wrapper{overflow-x:auto;background:var(--surface);border-radius:18px;box-shadow:var(--shadow);margin-top:25px}
+table{width:100%;border-collapse:collapse}
+th{background:#718fd0;color:white;padding:16px;text-align:left;font-size:14px}
+td{padding:15px;border-bottom:1px solid rgba(130,150,180,.18);font-size:14px;color:var(--muted)}
+td:first-child{color:var(--primary);font-weight:800}
+tr:nth-child(even){background:var(--soft)}
+.safety-grid,.facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.safety-item,.fact-item{background:var(--surface);padding:20px;border-radius:18px;box-shadow:var(--shadow);display:flex;align-items:flex-start;gap:13px}
+.safety-item span,.fact-item span{font-size:27px}
+.safety-item p,.fact-item p{font-size:14px;color:var(--muted)}
+.conclusion-box{background:linear-gradient(120deg,var(--surface),var(--soft));border-left:6px solid var(--accent);border-radius:22px;padding:32px;box-shadow:var(--shadow);text-align:center}
+.conclusion-box p{color:var(--muted);font-size:15px}
+.btn{display:inline-block;margin-top:20px;background:#718fd0;color:white;text-decoration:none;padding:11px 22px;border-radius:25px;font-weight:800;transition:.2s}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+footer{background:#283c5b;color:white;text-align:center;padding:32px 15px;margin-top:25px}
+footer h3{font:900 20px Nunito;margin-bottom:8px}
+footer p{color:#d4e0f1;font-size:13px}
+.footer-line{width:55px;height:4px;background:#8bcac6;margin:14px auto;border-radius:10px}
+.top-btn{position:fixed;bottom:22px;right:22px;border:0;background:var(--primary);color:white;width:45px;height:45px;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:var(--shadow);display:none}
+@media(max-width:800px){.intro-grid{grid-template-columns:1fr}.steps-grid,.science-grid{grid-template-columns:1fr 1fr}.section{padding:45px 18px}}
+@media(max-width:560px){nav{justify-content:center}.logo{width:100%;text-align:center}.nav-links{justify-content:center}.nav-links a{font-size:11px;padding:7px 9px}.steps-grid,.science-grid,.safety-grid,.facts-grid{grid-template-columns:1fr}.hero{padding:48px 15px}.card{padding:22px}.section-heading h2{font-size:25px}.conclusion-box{padding:24px 18px}th,td{padding:11px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 
 <body>
-
-    <!-- HEADER -->
-    <header>
-        <div class="icon">🍲</div>
-        <h1>THE SCIENCE BEHIND MICROWAVE OVENS</h1>
-        <p>Discover the science that heats our food in minutes!</p>
-        <div class="hero-line"></div>
-    </header>
-
-    <!-- NAVIGATION -->
-    <nav>
+<nav>
+    <div class="logo">🔬 SCIENCE<span>WORLD</span></div>
+    <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="gps.html">GPS</a>
         <a href="wifi.html">Wi-Fi</a>
         <a href="fridge.html">Refrigerator</a>
         <a href="microwave.html" class="active">Microwave</a>
         <a href="washing-machine.html">Washing Machine</a>
-        <a href="quiz.html">Science Quiz</a>
+        <a href="quiz.html" class="quiz-link">🧠 Quiz</a>
         <a href="amazing-facts.html">Amazing Facts</a>
-    </nav>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+</nav>
 
-    <!-- 1. INTRODUCTION -->
-    <section>
-        <div class="section-heading">
-            <h2>1. What Is a Microwave Oven?</h2>
-            <p>Understanding the appliance that makes cooking faster</p>
-            <div class="section-line"></div>
+<header class="hero">
+    <div class="hero-icon">🍲</div>
+    <h1>THE SCIENCE BEHIND MICROWAVE OVENS</h1>
+    <p>Discover the science that heats our food in minutes!</p>
+    <div class="hero-line"></div>
+</header>
+
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">01 · INTRODUCTION</div>
+        <h2>What Is a Microwave Oven?</h2>
+        <p>Understanding the appliance that makes cooking faster</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="intro-grid">
+        <div class="intro-image">
+            <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microwave_Oven.jpg" alt="Microwave oven">
         </div>
-
-        <div class="intro-grid">
-            <div class="intro-image">
-                <img
-                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microwave_Oven.jpg"
-                    alt="Microwave oven"
-                >
-            </div>
-
-            <div class="card intro-text">
-                <h3>Cooking with Electromagnetic Waves</h3>
-
-                <p>
-                    A <span class="highlight">microwave oven</span> is an
-                    electrical appliance that uses electromagnetic waves
-                    called microwaves to heat and cook food.
-                </p>
-
-                <p>
-                    It is commonly used to reheat meals, warm drinks
-                    and cook food quickly.
-                </p>
-
-                <p>
-                    Microwave ovens make everyday cooking faster
-                    and more convenient by transferring energy
-                    directly into food.
-                </p>
-            </div>
+        <div class="card intro-text">
+            <h3>Cooking with Electromagnetic Waves</h3>
+            <p>A <span class="highlight">microwave oven</span> is an electrical appliance that uses electromagnetic waves called microwaves to heat and cook food.</p>
+            <p>It is commonly used to reheat meals, warm drinks and cook food quickly.</p>
+            <p>Microwave ovens make everyday cooking faster and more convenient by transferring energy directly into food.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 2. HOW IT WORKS -->
-    <section>
-        <div class="section-heading">
-            <h2>2. How Does a Microwave Oven Work?</h2>
-            <p>Five main steps explain how food gets heated</p>
-            <div class="section-line"></div>
-        </div>
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">02 · THE PROCESS</div>
+        <h2>How Does a Microwave Oven Work?</h2>
+        <p>Five main steps explain how food gets heated</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="steps-grid">
+        <article class="card step-card"><div class="step-icon">⚡</div><span class="step-number">STEP 01</span><h3>Electricity Enters</h3><p>The oven uses electrical energy from a power supply to operate its components.</p></article>
+        <article class="card step-card"><div class="step-icon">📡</div><span class="step-number">STEP 02</span><h3>Microwaves Are Produced</h3><p>A component called a magnetron converts electrical energy into microwave energy.</p></article>
+        <article class="card step-card"><div class="step-icon">🔄</div><span class="step-number">STEP 03</span><h3>Waves Travel Inside</h3><p>The metal interior reflects microwaves around the cooking chamber.</p></article>
+        <article class="card step-card"><div class="step-icon">🍲</div><span class="step-number">STEP 04</span><h3>Food Absorbs Energy</h3><p>Water and other components in food absorb microwave energy.</p></article>
+        <article class="card step-card"><div class="step-icon">🔥</div><span class="step-number">STEP 05</span><h3>Heat Is Produced</h3><p>The absorbed energy heats the food. Heat also spreads from warmer regions to cooler regions.</p></article>
+    </div>
+    <div class="wide-image">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microwave_oven.svg" alt="Microwave oven illustration">
+    </div>
+</section>
 
-        <div class="steps-grid">
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">03 · SCIENCE EXPLAINED</div>
+        <h2>The Science Behind Microwave Ovens</h2>
+        <p>Three important scientific concepts explain microwave cooking</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="science-grid">
+        <article class="card science-card"><div class="step-icon">〰️</div><h3>A. What Are Microwaves?</h3><p>Microwaves are a type of electromagnetic wave, like radio waves and visible light. However, microwaves have a different frequency and wavelength from visible light.</p></article>
+        <article class="card science-card"><div class="step-icon">⚙️</div><h3>B. What Is a Magnetron?</h3><p>A magnetron is a device inside a microwave oven that converts electrical energy into microwave energy.</p></article>
+        <article class="card science-card"><div class="step-icon">💧</div><h3>C. How Does Food Get Heated?</h3><p>The changing electric field of microwaves makes certain molecules in food respond to the field. This helps convert microwave energy into heat. Heat then spreads through the food.</p></article>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>Part</th><th>Function</th></tr>
+            <tr><td>Magnetron</td><td>Produces microwaves.</td></tr>
+            <tr><td>Metal Cavity</td><td>Reflects microwaves within the oven.</td></tr>
+            <tr><td>Turntable</td><td>Rotates food to help it heat more evenly.</td></tr>
+            <tr><td>Control Panel</td><td>Allows the user to set cooking time and power.</td></tr>
+            <tr><td>Door and Safety Interlocks</td><td>Help keep the oven safely enclosed during operation.</td></tr>
+        </table>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">⚡</div>
-                <span class="step-number">STEP 01</span>
-                <h3>Electricity Enters</h3>
-                <p>
-                    The oven uses electrical energy from a power supply
-                    to operate its components.
-                </p>
-            </div>
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">04 · COMPARISON</div>
+        <h2>Microwave Oven vs Conventional Oven</h2>
+        <p>Two different methods of heating and cooking food</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>Microwave Oven</th><th>Conventional Oven</th></tr>
+            <tr><td>Uses electromagnetic microwaves to heat food.</td><td>Usually uses heating elements to heat the air and oven surfaces.</td></tr>
+            <tr><td>Often reheats food quickly.</td><td>Often takes longer to preheat and cook food.</td></tr>
+            <tr><td>Does not usually make food crispy or brown in the same way.</td><td>Can brown and crisp food more effectively.</td></tr>
+        </table>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">📡</div>
-                <span class="step-number">STEP 02</span>
-                <h3>Microwaves Are Produced</h3>
-                <p>
-                    A component called a magnetron converts
-                    electrical energy into microwave energy.
-                </p>
-            </div>
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">05 · STAY SAFE</div>
+        <h2>Important Safety Rules</h2>
+        <p>Follow these precautions when using a microwave oven</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="safety-grid">
+        <div class="safety-item"><span>🍽️</span><p>Use containers labelled as microwave-safe.</p></div>
+        <div class="safety-item"><span>🚫</span><p>Do not put metal utensils or aluminium foil inside unless the manufacturer's instructions specifically permit it.</p></div>
+        <div class="safety-item"><span>🔥</span><p>Be careful when removing hot food and liquids.</p></div>
+        <div class="safety-item"><span>🥄</span><p>Stir food when appropriate because some areas may heat more than others.</p></div>
+        <div class="safety-item"><span>⚠️</span><p>Never use an oven with a damaged door or faulty door latch.</p></div>
+        <div class="safety-item"><span>📖</span><p>Always follow the manufacturer's instructions for safe use.</p></div>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">🔄</div>
-                <span class="step-number">STEP 03</span>
-                <h3>Waves Travel Inside</h3>
-                <p>
-                    The metal interior reflects microwaves around
-                    the cooking chamber.
-                </p>
-            </div>
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">06 · INTERESTING FACTS</div>
+        <h2>Did You Know?</h2>
+        <p>Interesting facts about microwave ovens</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="facts-grid">
+        <div class="fact-item"><span>💡</span><p>Microwaves are a form of <span class="highlight">non-ionizing electromagnetic radiation</span>.</p></div>
+        <div class="fact-item"><span>🔬</span><p>Microwave cooking does not make food radioactive.</p></div>
+        <div class="fact-item"><span>🌡️</span><p>Microwaves do not cook thick food completely from the inside out. Heat also travels from warmer areas to cooler areas.</p></div>
+        <div class="fact-item"><span>💧</span><p>Foods with more water often heat relatively quickly in a microwave oven.</p></div>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">🍲</div>
-                <span class="step-number">STEP 04</span>
-                <h3>Food Absorbs Energy</h3>
-                <p>
-                    Water and other components in food absorb
-                    microwave energy.
-                </p>
-            </div>
+<section class="section">
+    <div class="section-heading">
+        <div class="eyebrow">WRAPPING IT UP</div>
+        <h2>Conclusion</h2>
+        <div class="section-line"></div>
+    </div>
+    <div class="conclusion-box">
+        <p>A microwave oven is an excellent example of science in everyday life. It uses electrical energy, electromagnetic waves and heat transfer to make cooking and reheating food easier.<br><br><strong class="highlight">Science makes everyday cooking quicker! ⚡</strong></p>
+        <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">🔥</div>
-                <span class="step-number">STEP 05</span>
-                <h3>Heat Is Produced</h3>
-                <p>
-                    The absorbed energy heats the food.
-                    Heat also spreads from warmer regions to cooler regions.
-                </p>
-            </div>
+<footer>
+    <h3>The Science Behind Everyday Things</h3>
+    <p>Discover • Understand • Explore</p>
+    <div class="footer-line"></div>
+    <p>© 2026 | All Rights Reserved</p>
+</footer>
 
-        </div>
-
-        <div class="wide-image">
-            <img
-                src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microwave_oven.svg"
-                alt="Microwave oven illustration"
-            >
-        </div>
-    </section>
-
-    <!-- 3. SCIENCE BEHIND IT -->
-    <section>
-        <div class="section-heading">
-            <h2>3. The Science Behind Microwave Ovens</h2>
-            <p>Three important scientific concepts explain microwave cooking</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="science-grid">
-
-            <div class="card science-card">
-                <div class="step-icon">〰️</div>
-                <h3>A. What Are Microwaves?</h3>
-                <p>
-                    Microwaves are a type of electromagnetic wave,
-                    like radio waves and visible light. However,
-                    microwaves have a different frequency and
-                    wavelength from visible light.
-                </p>
-            </div>
-
-            <div class="card science-card">
-                <div class="step-icon">⚙️</div>
-                <h3>B. What Is a Magnetron?</h3>
-                <p>
-                    A magnetron is a device inside a microwave oven
-                    that converts electrical energy into microwave energy.
-                </p>
-            </div>
-
-            <div class="card science-card">
-                <div class="step-icon">💧</div>
-                <h3>C. How Does Food Get Heated?</h3>
-                <p>
-                    The changing electric field of microwaves makes
-                    certain molecules in food respond to the field.
-                    This helps convert microwave energy into heat.
-                    Heat then spreads through the food.
-                </p>
-            </div>
-
-        </div>
-
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th>Part</th>
-                    <th>Function</th>
-                </tr>
-
-                <tr>
-                    <td>Magnetron</td>
-                    <td>Produces microwaves.</td>
-                </tr>
-
-                <tr>
-                    <td>Metal Cavity</td>
-                    <td>Reflects microwaves within the oven.</td>
-                </tr>
-
-                <tr>
-                    <td>Turntable</td>
-                    <td>Rotates food to help it heat more evenly.</td>
-                </tr>
-
-                <tr>
-                    <td>Control Panel</td>
-                    <td>Allows the user to set cooking time and power.</td>
-                </tr>
-
-                <tr>
-                    <td>Door and Safety Interlocks</td>
-                    <td>Help keep the oven safely enclosed during operation.</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
-    <!-- 4. COMPARISON -->
-    <section>
-        <div class="section-heading">
-            <h2>4. Microwave Oven vs Conventional Oven</h2>
-            <p>Two different methods of heating and cooking food</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th>Microwave Oven</th>
-                    <th>Conventional Oven</th>
-                </tr>
-
-                <tr>
-                    <td>Uses electromagnetic microwaves to heat food.</td>
-                    <td>Usually uses heating elements to heat the air and oven surfaces.</td>
-                </tr>
-
-                <tr>
-                    <td>Often reheats food quickly.</td>
-                    <td>Often takes longer to preheat and cook food.</td>
-                </tr>
-
-                <tr>
-                    <td>Does not usually make food crispy or brown in the same way.</td>
-                    <td>Can brown and crisp food more effectively.</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
-    <!-- 5. SAFETY RULES -->
-    <section>
-        <div class="section-heading">
-            <h2>5. Important Safety Rules</h2>
-            <p>Follow these precautions when using a microwave oven</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="safety-grid">
-
-            <div class="safety-item">
-                <span>🍽️</span>
-                <p>Use containers labelled as microwave-safe.</p>
-            </div>
-
-            <div class="safety-item">
-                <span>🚫</span>
-                <p>
-                    Do not put metal utensils or aluminium foil inside
-                    unless the manufacturer's instructions specifically permit it.
-                </p>
-            </div>
-
-            <div class="safety-item">
-                <span>🔥</span>
-                <p>Be careful when removing hot food and liquids.</p>
-            </div>
-
-            <div class="safety-item">
-                <span>🥄</span>
-                <p>
-                    Stir food when appropriate because some areas
-                    may heat more than others.
-                </p>
-            </div>
-
-            <div class="safety-item">
-                <span>⚠️</span>
-                <p>
-                    Never use an oven with a damaged door
-                    or faulty door latch.
-                </p>
-            </div>
-
-            <div class="safety-item">
-                <span>📖</span>
-                <p>Always follow the manufacturer's instructions for safe use.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- 6. DID YOU KNOW -->
-    <section>
-        <div class="section-heading">
-            <h2>6. Did You Know?</h2>
-            <p>Interesting facts about microwave ovens</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="facts-grid">
-
-            <div class="fact-item">
-                <span>💡</span>
-                <p>
-                    Microwaves are a form of
-                    <span class="highlight">non-ionizing electromagnetic radiation</span>.
-                </p>
-            </div>
-
-            <div class="fact-item">
-                <span>🔬</span>
-                <p>
-                    Microwave cooking does not make food radioactive.
-                </p>
-            </div>
-
-            <div class="fact-item">
-                <span>🌡️</span>
-                <p>
-                    Microwaves do not cook thick food completely
-                    from the inside out. Heat also travels from
-                    warmer areas to cooler areas.
-                </p>
-            </div>
-
-            <div class="fact-item">
-                <span>💧</span>
-                <p>
-                    Foods with more water often heat relatively
-                    quickly in a microwave oven.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CONCLUSION -->
-    <section>
-        <div class="section-heading">
-            <h2>Conclusion</h2>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="conclusion-box">
-            <p>
-                A microwave oven is an excellent example of science
-                in everyday life. It uses electrical energy,
-                electromagnetic waves and heat transfer to make
-                cooking and reheating food easier.
-                <br><br>
-                <strong class="highlight">
-                    Science makes everyday cooking quicker! ⚡
-                </strong>
-            </p>
-
-            <a href="index.html" class="back-button">← Back to Home</a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <h3>The Science Behind Everyday Things</h3>
-        <p>Discover • Understand • Explore</p>
-        <div class="footer-line"></div>
-        <p>© 2026 | All Rights Reserved</p>
-    </footer>
-
+<button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+<script>
+const toggle=document.getElementById('themeToggle');
+if(localStorage.getItem('science-theme')==='dark')document.body.classList.add('dark');
+function updateThemeIcon(){toggle.textContent=document.body.classList.contains('dark')?'☀️':'🌙'}
+updateThemeIcon();
+toggle.addEventListener('click',()=>{
+    document.body.classList.toggle('dark');
+    localStorage.setItem('science-theme',document.body.classList.contains('dark')?'dark':'light');
+    updateThemeIcon();
+});
+const topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{topBtn.style.display=window.scrollY>350?'block':'none'});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>

@@ -3,11 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Washing Machine - The Science Behind Everyday Things</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Washing Machine | The Science Behind Everyday Things</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg: #fffaf5;
+            --surface: #ffffff;
+            --surface-soft: #f5efff;
+            --text: #343047;
+            --muted: #77738b;
+            --primary: #7965bd;
+            --primary-dark: #5c499d;
+            --accent: #f3a9bb;
+            --border: #eee7f5;
+            --shadow: 0 8px 28px rgba(76, 58, 112, 0.09);
+            --hero: linear-gradient(135deg, #e8ddff, #fce5ec, #fff0dc);
+        }
+
+        body.dark-theme {
+            --bg: #191725;
+            --surface: #242133;
+            --surface-soft: #302a43;
+            --text: #f1edf9;
+            --muted: #b7afca;
+            --primary: #b9a6f5;
+            --primary-dark: #d0c2ff;
+            --accent: #edabc4;
+            --border: #3c354f;
+            --shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+            --hero: linear-gradient(135deg, #332c4c, #453044, #393044);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,139 +45,199 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f3f8ff;
-            color: #263b50;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* SCROLL PROGRESS */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0;
+            background: var(--primary);
+            z-index: 1000;
         }
 
         /* HEADER */
         header {
-            background: linear-gradient(135deg, #123b5d, #087e9e);
-            color: white;
+            background: var(--hero);
             text-align: center;
-            padding: 65px 20px 75px;
+            padding: 75px 20px 85px;
+            position: relative;
+            overflow: hidden;
         }
 
-        header .icon {
-            font-size: 55px;
-            margin-bottom: 10px;
+        .hero-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
         }
 
         header h1 {
-            font-size: 43px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 5vw, 48px);
+            color: var(--text);
+            line-height: 1.2;
+            max-width: 850px;
+            margin: auto;
         }
 
         header p {
+            color: var(--muted);
+            margin-top: 16px;
             font-size: 17px;
-            color: #d8efff;
-            margin-top: 12px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.55);
+            color: #65518e;
+            padding: 7px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
         .hero-line {
-            width: 100px;
-            height: 4px;
-            background: #55d6e8;
+            width: 75px;
+            height: 5px;
             border-radius: 10px;
+            background: var(--accent);
             margin: 25px auto 0;
         }
 
         /* NAVIGATION */
         nav {
-            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            padding: 12px 18px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
-            padding: 16px 12px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.10);
+            gap: 5px;
         }
 
         nav a {
+            color: var(--muted);
             text-decoration: none;
-            color: #176b87;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 9px 14px;
-            border-radius: 8px;
-            transition: 0.3s;
+            padding: 9px 13px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.25s;
         }
 
         nav a:hover,
         nav a.active {
-            background: #176b87;
-            color: white;
+            background: var(--surface-soft);
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--border);
+            background: var(--surface-soft);
+            color: var(--text);
+            padding: 9px 13px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
         }
 
         /* SECTIONS */
         section {
-            max-width: 1150px;
+            max-width: 1160px;
             margin: auto;
             padding: 65px 25px;
         }
 
         .section-heading {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 38px;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: var(--primary);
+            background: var(--surface-soft);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
         .section-heading h2 {
-            color: #123b5d;
-            font-size: 30px;
-            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(25px, 4vw, 34px);
+            color: var(--text);
         }
 
         .section-heading p {
-            color: #668096;
+            color: var(--muted);
             font-size: 14px;
-            margin-top: 8px;
+            margin-top: 9px;
         }
 
         .section-line {
-            width: 65px;
+            width: 60px;
             height: 4px;
-            background: #21a5c2;
+            background: var(--accent);
             border-radius: 10px;
-            margin: 13px auto 0;
+            margin: 15px auto 0;
         }
 
         /* CARDS */
         .card {
-            background: white;
-            border-radius: 17px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
             padding: 28px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
-            transition: 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(18, 59, 93, 0.14);
+            box-shadow: 0 13px 32px rgba(76, 58, 112, 0.13);
         }
 
         .card h3 {
-            color: #176b87;
+            color: var(--primary);
             font-size: 19px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .card p {
+            color: var(--muted);
             font-size: 14px;
-            color: #526b80;
         }
 
         .highlight {
-            color: #087e9e;
-            font-weight: 700;
+            color: var(--primary);
+            font-weight: 800;
         }
 
         /* INTRODUCTION */
@@ -161,19 +250,23 @@
 
         .intro-image img {
             width: 100%;
-            max-height: 350px;
+            max-height: 360px;
             object-fit: cover;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.15);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
         }
 
         .intro-text p {
-            margin-bottom: 15px;
+            color: var(--muted);
             font-size: 15px;
-            color: #526b80;
+            margin-bottom: 15px;
         }
 
-        /* WASHING STEPS */
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* STEPS */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -182,23 +275,23 @@
 
         .step-card {
             text-align: center;
-            border-top: 4px solid #21a5c2;
+            border-top: 4px solid var(--accent);
         }
 
         .step-icon {
             font-size: 42px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .step-number {
             display: inline-block;
-            background: #e4f6fc;
-            color: #087e9e;
+            background: var(--surface-soft);
+            color: var(--primary);
             padding: 5px 13px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 13px;
         }
 
         .diagram {
@@ -211,53 +304,70 @@
             max-height: 350px;
             object-fit: contain;
             background: white;
-            padding: 15px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.12);
+            padding: 16px;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
         }
 
         /* TABLES */
         .table-wrapper {
             overflow-x: auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 500px;
         }
 
         th {
-            background: #123b5d;
-            color: white;
+            background: var(--surface-soft);
+            color: var(--primary);
             padding: 17px;
             text-align: left;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         td {
             padding: 16px;
-            border-bottom: 1px solid #e3edf5;
+            border-bottom: 1px solid var(--border);
             font-size: 14px;
-            color: #526b80;
+            color: var(--muted);
         }
 
         td:first-child {
-            color: #176b87;
-            font-weight: 600;
-        }
-
-        tr:nth-child(even) {
-            background: #edf7fc;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         tr:last-child td {
             border-bottom: none;
         }
 
+        tr:nth-child(even) {
+            background: rgba(128, 105, 190, 0.045);
+        }
+
         /* MAIN PARTS */
+        .parts-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .parts-image img {
+            max-width: 90%;
+            max-height: 350px;
+            object-fit: contain;
+            background: white;
+            padding: 14px;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
         .parts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -270,22 +380,7 @@
 
         .part-icon {
             font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .parts-image {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .parts-image img {
-            max-width: 90%;
-            max-height: 350px;
-            object-fit: contain;
-            background: white;
-            padding: 12px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.12);
+            margin-bottom: 12px;
         }
 
         /* TYPES */
@@ -297,12 +392,12 @@
 
         .type-card {
             text-align: center;
-            border-bottom: 4px solid #21a5c2;
+            border-bottom: 4px solid var(--accent);
         }
 
         .type-icon {
             font-size: 43px;
-            margin-bottom: 12px;
+            margin-bottom: 13px;
         }
 
         /* FACTS */
@@ -313,86 +408,129 @@
         }
 
         .fact-item {
-            background: white;
-            padding: 20px;
-            border-radius: 13px;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.07);
-            color: #526b80;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            color: var(--muted);
             font-size: 14px;
             display: flex;
-            gap: 12px;
+            gap: 14px;
             align-items: flex-start;
+            transition: transform 0.3s;
+        }
+
+        .fact-item:hover {
+            transform: translateY(-4px);
         }
 
         .fact-item span {
-            font-size: 25px;
+            font-size: 26px;
         }
 
         /* CONCLUSION */
         .conclusion-box {
-            background: linear-gradient(135deg, #ffffff, #e2f5fc);
-            border-left: 6px solid #21a5c2;
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 7px 22px rgba(18, 59, 93, 0.09);
+            background: var(--hero);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
             text-align: center;
         }
 
         .conclusion-box p {
-            color: #526b80;
+            color: var(--muted);
             font-size: 15px;
         }
 
         .back-button {
             display: inline-block;
-            margin-top: 22px;
-            background: #176b87;
+            margin-top: 24px;
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 11px 22px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
             transition: 0.3s;
         }
 
         .back-button:hover {
-            background: #123b5d;
-            transform: translateY(-2px);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
         }
 
         /* FOOTER */
         footer {
-            background: #123b5d;
+            background: #302945;
             color: white;
             text-align: center;
-            padding: 35px 15px;
+            padding: 40px 15px;
             margin-top: 30px;
         }
 
         footer h3 {
-            font-size: 19px;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
             margin-bottom: 8px;
         }
 
         footer p {
-            color: #c8e5f5;
+            color: #d2c8e8;
             font-size: 13px;
         }
 
         .footer-line {
-            width: 60px;
+            width: 55px;
             height: 3px;
-            background: #55d6e8;
-            margin: 15px auto;
+            background: #e9aec8;
+            margin: 17px auto;
             border-radius: 10px;
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 34px;
-            }
+        /* BACK TO TOP */
+        #backToTop {
+            position: fixed;
+            bottom: 25px;
+            right: 22px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 99;
+            transition: 0.3s;
+        }
 
+        #backToTop:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
             .intro-grid {
                 grid-template-columns: 1fr;
             }
@@ -400,39 +538,34 @@
             .steps-grid,
             .parts-grid,
             .types-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             section {
-                padding: 45px 18px;
+                padding: 50px 20px;
             }
 
-            .section-heading h2 {
-                font-size: 25px;
+            nav {
+                gap: 3px;
+            }
+
+            nav a {
+                font-size: 12px;
+                padding: 8px 10px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 520px) {
             header {
-                padding: 45px 15px 55px;
-            }
-
-            header h1 {
-                font-size: 27px;
+                padding: 55px 17px 65px;
             }
 
             header p {
                 font-size: 14px;
             }
 
-            nav {
-                gap: 4px;
-                padding: 10px 5px;
-            }
-
-            nav a {
-                font-size: 12px;
-                padding: 7px 9px;
+            .hero-icon {
+                font-size: 52px;
             }
 
             .steps-grid,
@@ -442,17 +575,43 @@
                 grid-template-columns: 1fr;
             }
 
+            section {
+                padding: 42px 17px;
+            }
+
             .card {
-                padding: 22px;
+                padding: 23px;
             }
 
             .conclusion-box {
-                padding: 25px 18px;
+                padding: 28px 19px;
             }
 
-            th, td {
-                padding: 11px;
-                font-size: 12px;
+            nav {
+                padding: 9px 5px;
+            }
+
+            nav a {
+                font-size: 11px;
+                padding: 7px 9px;
+            }
+
+            .theme-toggle {
+                font-size: 11px;
+                padding: 7px 10px;
+            }
+
+            .diagram img,
+            .parts-image img {
+                max-width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -460,10 +619,13 @@
 
 <body>
 
+    <div class="progress-bar" id="progressBar"></div>
+
     <!-- HEADER -->
     <header>
-        <div class="icon">🧺</div>
-        <h1>THE SCIENCE BEHIND WASHING MACHINES</h1>
+        <div class="hero-icon">🧺</div>
+        <div class="hero-tag">SCIENCE IN EVERYDAY LIFE</div>
+        <h1>The Science Behind Washing Machines</h1>
         <p>Discover the science that makes washing clothes easier!</p>
         <div class="hero-line"></div>
     </header>
@@ -478,18 +640,19 @@
         <a href="washing-machine.html" class="active">Washing Machine</a>
         <a href="quiz.html">Science Quiz</a>
         <a href="amazing-facts.html">Amazing Facts</a>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
     </nav>
 
     <!-- 1. INTRODUCTION -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
-            <h2>1. What Is a Washing Machine?</h2>
+            <span class="section-label">01 · INTRODUCTION</span>
+            <h2>What Is a Washing Machine?</h2>
             <p>An everyday appliance powered by science and technology</p>
             <div class="section-line"></div>
         </div>
 
         <div class="intro-grid">
-
             <div class="intro-image">
                 <img
                     src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Washing-machine.jpg"
@@ -516,14 +679,14 @@
                     chemical action to remove dirt from clothes.
                 </p>
             </div>
-
         </div>
     </section>
 
     <!-- 2. HOW IT WORKS -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
-            <h2>2. How Does a Washing Machine Work?</h2>
+            <span class="section-label">02 · WORKING</span>
+            <h2>How Does a Washing Machine Work?</h2>
             <p>Five main stages help clean your clothes</p>
             <div class="section-line"></div>
         </div>
@@ -591,9 +754,10 @@
     </section>
 
     <!-- 3. SCIENCE BEHIND IT -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
-            <h2>3. The Science Behind Washing Machines</h2>
+            <span class="section-label">03 · SCIENCE</span>
+            <h2>The Science Behind Washing Machines</h2>
             <p>Different scientific principles work together to clean clothes</p>
             <div class="section-line"></div>
         </div>
@@ -649,9 +813,10 @@
     </section>
 
     <!-- 4. MAIN PARTS -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
-            <h2>4. Main Parts of a Washing Machine</h2>
+            <span class="section-label">04 · COMPONENTS</span>
+            <h2>Main Parts of a Washing Machine</h2>
             <p>Important components that make the machine work</p>
             <div class="section-line"></div>
         </div>
@@ -705,9 +870,10 @@
     </section>
 
     <!-- 5. TYPES -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
-            <h2>5. Types of Washing Machines</h2>
+            <span class="section-label">05 · TYPES</span>
+            <h2>Types of Washing Machines</h2>
             <p>Different designs are used for washing clothes</p>
             <div class="section-line"></div>
         </div>
@@ -745,9 +911,10 @@
     </section>
 
     <!-- 6. DID YOU KNOW -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
-            <h2>6. Did You Know?</h2>
+            <span class="section-label">06 · FUN FACTS</span>
+            <h2>Did You Know?</h2>
             <p>Some interesting facts about washing machines</p>
             <div class="section-line"></div>
         </div>
@@ -790,8 +957,9 @@
     </section>
 
     <!-- CONCLUSION -->
-    <section>
+    <section class="reveal">
         <div class="section-heading">
+            <span class="section-label">07 · SUMMARY</span>
             <h2>Conclusion</h2>
             <div class="section-line"></div>
         </div>
@@ -819,6 +987,70 @@
         <div class="footer-line"></div>
         <p>© 2026 | All Rights Reserved</p>
     </footer>
+
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
+    <script>
+        // DARK / LIGHT MODE
+        function toggleTheme() {
+            document.body.classList.toggle("dark-theme");
+
+            const isDark = document.body.classList.contains("dark-theme");
+
+            document.getElementById("themeToggle").textContent =
+                isDark ? "☀️ Light" : "🌙 Dark";
+        }
+
+        // SCROLL PROGRESS + BACK TO TOP
+        window.addEventListener("scroll", function () {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight =
+                document.documentElement.scrollHeight -
+                document.documentElement.clientHeight;
+
+            const progress = scrollHeight > 0
+                ? (scrollTop / scrollHeight) * 100
+                : 0;
+
+            document.getElementById("progressBar").style.width =
+                progress + "%";
+
+            document.getElementById("backToTop").style.display =
+                scrollTop > 350 ? "block" : "none";
+        });
+
+        // BACK TO TOP
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        // SCROLL REVEAL ANIMATIONS
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12
+            });
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
+            });
+        } else {
+            revealElements.forEach(function (element) {
+                element.classList.add("visible");
+            });
+        }
+    </script>
 
 </body>
 </html>

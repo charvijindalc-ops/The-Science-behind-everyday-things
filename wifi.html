@@ -1,815 +1,445 @@
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wi-Fi - The Science Behind Everyday Things</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f3f8ff;
-            color: #263b50;
-            line-height: 1.7;
-        }
-
-        /* HEADER */
-        header {
-            background: linear-gradient(135deg, #123b5d, #087e9e);
-            color: white;
-            text-align: center;
-            padding: 65px 20px 75px;
-        }
-
-        header .icon {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-
-        header h1 {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        header p {
-            font-size: 17px;
-            color: #d8efff;
-            margin-top: 12px;
-        }
-
-        .hero-line {
-            width: 100px;
-            height: 4px;
-            background: #55d6e8;
-            border-radius: 10px;
-            margin: 25px auto 0;
-        }
-
-        /* NAVIGATION */
-        nav {
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 16px 12px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.10);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #176b87;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 9px 14px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        nav a:hover,
-        nav a.active {
-            background: #176b87;
-            color: white;
-        }
-
-        /* GENERAL SECTIONS */
-        section {
-            max-width: 1150px;
-            margin: auto;
-            padding: 65px 25px;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .section-heading h2 {
-            color: #123b5d;
-            font-size: 30px;
-            font-weight: 700;
-        }
-
-        .section-heading p {
-            color: #668096;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-
-        .section-line {
-            width: 65px;
-            height: 4px;
-            background: #21a5c2;
-            border-radius: 10px;
-            margin: 13px auto 0;
-        }
-
-        /* CARDS */
-        .card {
-            background: white;
-            border-radius: 17px;
-            padding: 28px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
-            transition: 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(18, 59, 93, 0.14);
-        }
-
-        .card h3 {
-            color: #176b87;
-            font-size: 19px;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #526b80;
-        }
-
-        /* INTRODUCTION */
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-            align-items: center;
-        }
-
-        .intro-image img {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.15);
-        }
-
-        .intro-text {
-            padding: 30px;
-        }
-
-        .intro-text p {
-            margin-bottom: 15px;
-            font-size: 15px;
-            color: #526b80;
-        }
-
-        .highlight {
-            color: #087e9e;
-            font-weight: 700;
-        }
-
-        /* HOW WIFI WORKS */
-        .wide-image {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .wide-image img {
-            width: 80%;
-            max-width: 650px;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.14);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .step-card {
-            text-align: center;
-            border-top: 4px solid #21a5c2;
-        }
-
-        .step-icon {
-            font-size: 43px;
-            margin-bottom: 12px;
-        }
-
-        .step-number {
-            display: inline-block;
-            background: #e4f6fc;
-            color: #087e9e;
-            padding: 5px 13px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        /* DATA TRAVEL */
-        .data-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            background: white;
-            padding: 35px 20px;
-            border-radius: 18px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
-        }
-
-        .flow-item {
-            text-align: center;
-            min-width: 115px;
-        }
-
-        .flow-item .emoji {
-            font-size: 43px;
-        }
-
-        .flow-item h3 {
-            color: #176b87;
-            font-size: 16px;
-            margin-top: 8px;
-        }
-
-        .flow-arrow {
-            font-size: 30px;
-            font-weight: 700;
-            color: #21a5c2;
-        }
-
-        .radio-label {
-            color: #087e9e;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* RADIO WAVES */
-        .science-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .science-grid img {
-            width: 100%;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.13);
-        }
-
-        .science-text p {
-            margin-bottom: 15px;
-            color: #526b80;
-            font-size: 14px;
-        }
-
-        /* COMMUNICATION TABLE */
-        .table-wrapper {
-            overflow-x: auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 6px 22px rgba(18, 59, 93, 0.08);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #123b5d;
-            color: white;
-            padding: 17px;
-            text-align: left;
-            font-size: 15px;
-        }
-
-        td {
-            padding: 17px;
-            border-bottom: 1px solid #e3edf5;
-            font-size: 14px;
-            color: #526b80;
-        }
-
-        td:first-child {
-            text-align: center;
-            color: #087e9e;
-            font-weight: 700;
-            width: 100px;
-        }
-
-        tr:nth-child(even) {
-            background: #edf7fc;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* WEAK WIFI */
-        .weak-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .weak-card {
-            text-align: center;
-        }
-
-        .weak-card .step-icon {
-            font-size: 38px;
-        }
-
-        /* EVERYDAY USES */
-        .uses-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .use-item {
-            background: white;
-            padding: 20px;
-            border-radius: 13px;
-            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.07);
-            font-size: 14px;
-            font-weight: 600;
-            color: #176b87;
-            transition: 0.3s;
-        }
-
-        .use-item:hover {
-            transform: translateY(-4px);
-            background: #e7f7fc;
-        }
-
-        .use-item span {
-            font-size: 25px;
-            margin-right: 10px;
-        }
-
-        /* DID YOU KNOW */
-        .fact-box {
-            background: linear-gradient(135deg, #ffffff, #e2f5fc);
-            border-left: 6px solid #21a5c2;
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 7px 22px rgba(18, 59, 93, 0.09);
-            text-align: center;
-        }
-
-        .fact-box .bulb {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .fact-box p {
-            color: #526b80;
-            font-size: 15px;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #123b5d;
-            color: white;
-            text-align: center;
-            padding: 35px 15px;
-            margin-top: 30px;
-        }
-
-        footer h3 {
-            font-size: 19px;
-            margin-bottom: 8px;
-        }
-
-        footer p {
-            color: #c8e5f5;
-            font-size: 13px;
-        }
-
-        footer .footer-line {
-            width: 60px;
-            height: 3px;
-            background: #55d6e8;
-            margin: 15px auto;
-            border-radius: 10px;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 35px;
-            }
-
-            .intro-grid,
-            .science-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-grid,
-            .weak-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .uses-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            section {
-                padding: 45px 18px;
-            }
-
-            .section-heading h2 {
-                font-size: 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 45px 15px 55px;
-            }
-
-            header h1 {
-                font-size: 29px;
-            }
-
-            header p {
-                font-size: 14px;
-            }
-
-            nav {
-                gap: 4px;
-                padding: 10px 5px;
-            }
-
-            nav a {
-                font-size: 12px;
-                padding: 7px 9px;
-            }
-
-            .steps-grid,
-            .weak-grid,
-            .uses-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .data-flow {
-                gap: 12px;
-            }
-
-            .flow-item {
-                min-width: 90px;
-            }
-
-            .flow-arrow {
-                font-size: 22px;
-            }
-
-            .wide-image img {
-                width: 100%;
-            }
-
-            .card {
-                padding: 22px;
-            }
-
-            .fact-box {
-                padding: 25px 18px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wi-Fi Technology | The Science Behind Everyday Things</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #fffaf2;
+    --surface: #ffffff;
+    --surface-soft: #f0f5ff;
+    --text: #29334a;
+    --muted: #69758b;
+    --primary: #6378d8;
+    --primary-dark: #485db9;
+    --mint: #c9eee1;
+    --border: #e8eaf2;
+    --shadow: 0 12px 35px rgba(57,70,115,.09);
+    --hero: linear-gradient(135deg,#dce5ff,#f9dfdc 55%,#fff0c8);
+}
+body.dark-theme {
+    --bg: #171b2b;
+    --surface: #22283b;
+    --surface-soft: #292f46;
+    --text: #f2f3fb;
+    --muted: #b3bad0;
+    --primary: #aab7ff;
+    --primary-dark: #8999f2;
+    --mint: #315448;
+    --border: #39415a;
+    --shadow: 0 12px 35px rgba(0,0,0,.2);
+    --hero: linear-gradient(135deg,#293454,#493747 55%,#4b432f);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+    font-family: 'DM Sans',sans-serif; background: var(--bg); color: var(--text);
+    line-height: 1.7; transition: background .3s,color .3s;
+}
+a { text-decoration: none; color: inherit; }
+button { font: inherit; }
+.progress-bar {
+    position: fixed; top: 0; left: 0; height: 4px; width: 0;
+    background: linear-gradient(90deg,#8b9cff,#f4a7a0,#f6d77c); z-index: 2000;
+}
+nav {
+    position: sticky; top: 0; z-index: 1000; background: var(--surface);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 14px; padding: 14px 6%;
+    border-bottom: 1px solid var(--border); box-shadow: 0 5px 20px rgba(40,50,90,.05);
+}
+.logo { font-family: Nunito,sans-serif; font-weight: 900; font-size: 20px; color: var(--text); }
+.logo span { color: var(--primary); }
+.nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+.nav-links a,.theme-toggle {
+    border: 0; background: transparent; color: var(--text); padding: 8px 11px;
+    border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; transition: .25s;
+}
+.nav-links a:hover,.theme-toggle:hover { background: var(--surface-soft); color: var(--primary); }
+.nav-links a.active { background: var(--primary); color: white; }
+.nav-links a.quiz-link { background: #fff0c8; color: #795b17; }
+body.dark-theme .nav-links a.quiz-link { background: #51462b; color: #ffe5a0; }
+.hero {
+    background: var(--hero); padding: 70px 8% 75px; text-align: center;
+    position: relative; overflow: hidden;
+}
+.hero-icon {
+    width: 100px; height: 100px; margin: 0 auto 18px; border-radius: 30px;
+    display: grid; place-items: center; font-size: 53px;
+    background: rgba(255,255,255,.55); animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 50% { transform: translateY(-10px) rotate(3deg); } }
+.hero h1 {
+    font-family: Nunito,sans-serif; font-size: clamp(34px,5vw,57px);
+    line-height: 1.15; font-weight: 900; color: #303b62;
+}
+body.dark-theme .hero h1 { color: #f4f2ff; }
+.hero p { font-size: 15px; color: #505d79; margin: 13px auto 0; max-width: 680px; }
+body.dark-theme .hero p { color: #e0e3f2; }
+.hero-line { width: 75px; height: 5px; background: #8b9cff; border-radius: 10px; margin: 22px auto 0; }
+section { max-width: 1150px; margin: auto; padding: 65px 25px; }
+.section-heading { text-align: center; margin-bottom: 32px; }
+.section-tag {
+    display: inline-block; background: var(--mint); color: #356c5b;
+    padding: 6px 14px; border-radius: 25px; font-size: 11px;
+    font-weight: 800; letter-spacing: 1px; margin-bottom: 9px;
+}
+body.dark-theme .section-tag { color: #c5f1df; }
+.section-heading h2 {
+    font-family: Nunito,sans-serif; color: var(--text);
+    font-size: clamp(25px,3vw,34px); font-weight: 900;
+}
+.section-heading p { color: var(--muted); font-size: 14px; margin-top: 7px; }
+.section-line { width: 55px; height: 4px; background: var(--primary); border-radius: 10px; margin: 13px auto 0; }
+.card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
+    padding: 27px; box-shadow: var(--shadow); transition: .3s;
+}
+.card:hover { transform: translateY(-5px); }
+.card h3 { color: var(--primary); font-family: Nunito,sans-serif; font-size: 19px; margin-bottom: 11px; }
+.card p { color: var(--muted); font-size: 14px; }
+.intro-grid,.science-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;
+}
+.intro-image img {
+    width: 100%; max-height: 350px; object-fit: contain; background: var(--surface);
+    padding: 12px; border-radius: 22px; box-shadow: var(--shadow);
+}
+.intro-text { padding: 30px; }
+.intro-text p,.science-text p { margin-bottom: 14px; font-size: 14px; color: var(--muted); }
+.highlight { color: var(--primary); font-weight: 800; }
+.wide-image { text-align: center; margin-bottom: 30px; }
+.wide-image img {
+    width: 80%; max-width: 650px; max-height: 350px; object-fit: contain;
+    background: var(--surface); padding: 12px; border-radius: 22px; box-shadow: var(--shadow);
+}
+.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.step-card { text-align: center; border-top: 4px solid var(--primary); }
+.step-icon {
+    width: 70px; height: 70px; border-radius: 22px; margin: 0 auto 12px;
+    background: var(--surface-soft); display: grid; place-items: center; font-size: 39px;
+}
+.step-number {
+    display: inline-block; background: var(--mint); color: #356c5b;
+    padding: 5px 13px; border-radius: 20px; font-size: 11px;
+    font-weight: 900; margin-bottom: 11px;
+}
+body.dark-theme .step-number { color: #c5f1df; }
+.data-flow {
+    display: flex; align-items: center; justify-content: center; gap: 17px;
+    flex-wrap: wrap; background: var(--surface); padding: 32px 20px;
+    border-radius: 22px; box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.flow-item { text-align: center; min-width: 115px; }
+.flow-item .emoji { font-size: 43px; }
+.flow-item h3 { color: var(--primary); font-family: Nunito,sans-serif; font-size: 16px; margin-top: 7px; }
+.flow-arrow { font-size: 28px; font-weight: 900; color: var(--primary); }
+.radio-label { color: var(--primary); font-size: 13px; font-weight: 800; }
+.science-grid img {
+    width: 100%; max-height: 360px; object-fit: contain; background: var(--surface);
+    padding: 12px; border-radius: 22px; box-shadow: var(--shadow);
+}
+.table-wrapper { overflow-x: auto; background: var(--surface); border-radius: 18px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; }
+th { background: var(--primary); color: white; padding: 17px; text-align: left; font-size: 14px; }
+td { padding: 17px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+td:first-child { text-align: center; color: var(--primary); font-weight: 900; width: 90px; }
+tr:nth-child(even) { background: var(--surface-soft); }
+tr:last-child td { border-bottom: none; }
+.weak-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.weak-card { text-align: center; }
+.uses-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; }
+.use-item {
+    background: var(--surface); border: 1px solid var(--border); padding: 20px;
+    border-radius: 18px; box-shadow: var(--shadow); font-size: 14px;
+    font-weight: 700; color: var(--text); transition: .3s;
+}
+.use-item:hover { transform: translateY(-5px); background: var(--surface-soft); }
+.use-item span { font-size: 27px; margin-right: 9px; }
+.fact-box {
+    background: linear-gradient(135deg,#dce5ff,#f9dfdc); border-radius: 22px;
+    padding: 35px; box-shadow: var(--shadow); text-align: center;
+    border: 1px solid var(--border);
+}
+body.dark-theme .fact-box { background: linear-gradient(135deg,#343e62,#493747); }
+.fact-box .bulb { font-size: 43px; margin-bottom: 10px; }
+.fact-box p { color: var(--text); font-size: 15px; max-width: 800px; margin: auto; }
+footer { background: #303957; color: white; text-align: center; padding: 34px 15px; }
+footer h3 { font-family: Nunito,sans-serif; font-size: 20px; margin-bottom: 7px; }
+footer p { color: #d3d8e9; font-size: 13px; }
+footer .footer-line { width: 60px; height: 4px; background: #aab7ff; margin: 15px auto; border-radius: 10px; }
+.back-top {
+    position: fixed; right: 22px; bottom: 22px; z-index: 900; width: 45px; height: 45px;
+    border: 0; border-radius: 15px; background: var(--primary); color: white;
+    font-size: 21px; cursor: pointer; box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transition: .25s;
+}
+.back-top.show { opacity: 1; pointer-events: auto; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s,transform .6s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media(max-width:768px) {
+    .intro-grid,.science-grid { grid-template-columns: 1fr; }
+    .steps-grid,.weak-grid,.uses-grid { grid-template-columns: repeat(2,1fr); }
+    section { padding: 48px 20px; }
+}
+@media(max-width:650px) {
+    nav { justify-content: center; padding: 12px 4%; }
+    .logo { width: 100%; text-align: center; }
+    .nav-links { justify-content: center; }
+    .nav-links a,.theme-toggle { font-size: 11px; padding: 7px 8px; }
+    .hero { padding: 48px 18px 55px; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 14px; }
+    .steps-grid,.weak-grid,.uses-grid { grid-template-columns: 1fr; }
+    .data-flow { gap: 12px; }
+    .flow-item { min-width: 90px; }
+    .flow-arrow { font-size: 22px; }
+    .wide-image img { width: 100%; }
+    .card { padding: 22px; }
+    .fact-box { padding: 25px 18px; }
+}
+@media(prefers-reduced-motion:reduce) {
+    *,*::before,*::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
+</style>
 </head>
 
 <body>
+<div class="progress-bar" id="progressBar"></div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="icon">📶</div>
-        <h1>HOW DOES WI-FI WORK?</h1>
-        <p>Discover how the internet reaches your device without wires!</p>
-        <div class="hero-line"></div>
-    </header>
-
-    <!-- NAVIGATION -->
-    <nav>
+<nav>
+    <div class="logo">🔬 SCIENCE<span>WORLD</span></div>
+    <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="gps.html">GPS</a>
         <a href="wifi.html" class="active">Wi-Fi</a>
         <a href="fridge.html">Fridge</a>
         <a href="microwave.html">Microwave</a>
         <a href="washing-machine.html">Washing Machine</a>
-        <a href="quiz.html">Science Quiz</a>
+        <a href="quiz.html" class="quiz-link">🧠 Science Quiz</a>
         <a href="amazing-facts.html">Amazing Facts</a>
-    </nav>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+</nav>
 
-    <!-- INTRODUCTION -->
-    <section>
-        <div class="section-heading">
-            <h2>What is Wi-Fi?</h2>
-            <p>Understanding the technology behind wireless connectivity</p>
-            <div class="section-line"></div>
+<header class="hero">
+    <div class="hero-icon">📶</div>
+    <h1>HOW DOES WI-FI WORK?</h1>
+    <p>Discover how the internet reaches your device without wires!</p>
+    <div class="hero-line"></div>
+</header>
+
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">GET CONNECTED</div>
+        <h2>What is Wi-Fi?</h2>
+        <p>Understanding the technology behind wireless connectivity</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="intro-grid">
+        <div class="intro-image"><img src="wifi router.jpg" alt="Wi-Fi router"></div>
+        <div class="card intro-text">
+            <h3>Connecting Without Wires</h3>
+            <p><span class="highlight">Wi-Fi</span> is a technology that allows electronic devices to communicate wirelessly using radio waves.</p>
+            <p>It allows devices such as smartphones, laptops, tablets and smart TVs to connect to a network without using a physical cable.</p>
+            <p>A typical Wi-Fi network uses a <span class="highlight">wireless router or access point</span> to communicate with connected devices.</p>
         </div>
+    </div>
+</section>
 
-        <div class="intro-grid">
-            <div class="intro-image">
-                <img src="wifi router.jpg">
-            </div>
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">THE WORKING PRINCIPLE</div>
+        <h2>How Does Wi-Fi Work?</h2>
+        <p>Three important stages make wireless communication possible</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="wide-image"><img src="wifi signals.jpg" alt="Wi-Fi wireless signals"></div>
+    <div class="steps-grid">
+        <article class="card step-card">
+            <div class="step-icon">🌐</div>
+            <span class="step-number">STEP 01</span>
+            <h3>Internet</h3>
+            <p>The internet connection reaches your home through a wired or wireless connection provided by your Internet Service Provider.</p>
+        </article>
+        <article class="card step-card">
+            <div class="step-icon">📡</div>
+            <span class="step-number">STEP 02</span>
+            <h3>Router</h3>
+            <p>The router communicates with nearby devices using wireless radio signals.</p>
+        </article>
+        <article class="card step-card">
+            <div class="step-icon">📱</div>
+            <span class="step-number">STEP 03</span>
+            <h3>Your Device</h3>
+            <p>Your phone or computer receives the wireless signals and sends data back to the router.</p>
+        </article>
+    </div>
+</section>
 
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">FOLLOW THE DATA</div>
+        <h2>How Does Data Travel Through Wi-Fi?</h2>
+        <p>Follow the path of information from the internet to your device</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="data-flow">
+        <div class="flow-item"><div class="emoji">🌐</div><h3>Internet</h3></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item"><div class="emoji">📡</div><h3>Router</h3></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item"><div class="emoji">〰️</div><div class="radio-label">Radio Waves</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item"><div class="emoji">📱</div><h3>Your Device</h3></div>
+    </div>
+</section>
 
-            <div class="card intro-text">
-                <h3>Connecting Without Wires</h3>
-
-                <p>
-                    <span class="highlight">Wi-Fi</span> is a technology that allows
-                    electronic devices to communicate wirelessly using radio waves.
-                </p>
-
-                <p>
-                    It allows devices such as smartphones, laptops, tablets and
-                    smart TVs to connect to a network without using a physical cable.
-                </p>
-
-                <p>
-                    A typical Wi-Fi network uses a
-                    <span class="highlight">wireless router or access point</span>
-                    to communicate with connected devices.
-                </p>
-            </div>
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">THE SCIENCE BEHIND WI-FI</div>
+        <h2>The Science: Radio Waves</h2>
+        <p>The invisible signals that make wireless communication possible</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="science-grid">
+        <div><img src="devices.jpg" alt="Devices using wireless communication"></div>
+        <div class="card science-text">
+            <h3>How Do Radio Waves Help?</h3>
+            <p>Wi-Fi uses <span class="highlight">radio waves</span> to transmit information through the air.</p>
+            <p>Radio waves are a type of <span class="highlight">electromagnetic radiation</span>. They can travel through space without needing a physical wire.</p>
+            <p>The router and your device contain antennas that send and receive these wireless signals.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- HOW WIFI WORKS -->
-    <section>
-        <div class="section-heading">
-            <h2>How Does Wi-Fi Work?</h2>
-            <p>Three important stages make wireless communication possible</p>
-            <div class="section-line"></div>
-        </div>
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">STEP-BY-STEP EXPLANATION</div>
+        <h2>Wi-Fi Communication in Simple Steps</h2>
+        <p>What happens when you open a website or watch a video?</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>Step</th><th>What Happens?</th></tr></thead>
+            <tbody>
+                <tr><td>01</td><td>Your device requests information from the network.</td></tr>
+                <tr><td>02</td><td>The request is sent to the Wi-Fi router using radio waves.</td></tr>
+                <tr><td>03</td><td>The router communicates with the internet.</td></tr>
+                <tr><td>04</td><td>The requested information is sent back to your device.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
-        <div class="wide-image">
-            <img src="wifi signals.jpg">
-        </div>
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">SIGNAL STRENGTH</div>
+        <h2>Why Does Wi-Fi Become Weak?</h2>
+        <p>Some factors can affect the strength and speed of wireless signals</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="weak-grid">
+        <article class="card weak-card">
+            <div class="step-icon">📏</div>
+            <h3>Distance</h3>
+            <p>Wi-Fi signals can become weaker as the distance from the router increases.</p>
+        </article>
+        <article class="card weak-card">
+            <div class="step-icon">🧱</div>
+            <h3>Walls &amp; Objects</h3>
+            <p>Walls and other physical objects can block or weaken wireless signals.</p>
+        </article>
+        <article class="card weak-card">
+            <div class="step-icon">📡</div>
+            <h3>Interference</h3>
+            <p>Other wireless devices and networks can interfere with Wi-Fi performance.</p>
+        </article>
+    </div>
+</section>
 
-        <div class="steps-grid">
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">WI-FI IN OUR DAILY LIVES</div>
+        <h2>Where Do We Use Wi-Fi?</h2>
+        <p>Wi-Fi has become an important part of our everyday lives</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="uses-grid">
+        <div class="use-item"><span>📱</span>Connecting smartphones</div>
+        <div class="use-item"><span>💻</span>Connecting laptops and computers</div>
+        <div class="use-item"><span>📺</span>Smart TVs and streaming</div>
+        <div class="use-item"><span>🎮</span>Online gaming</div>
+        <div class="use-item"><span>🏠</span>Smart home devices</div>
+        <div class="use-item"><span>🖨️</span>Wireless printing</div>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">🌐</div>
-                <span class="step-number">STEP 01</span>
-                <h3>Internet</h3>
-                <p>
-                    The internet connection reaches your home through a wired
-                    or wireless connection provided by your Internet Service Provider.
-                </p>
-            </div>
+<section class="reveal">
+    <div class="section-heading">
+        <div class="section-tag">INTERESTING SCIENCE FACT</div>
+        <h2>Did You Know?</h2>
+        <p>An interesting fact about wireless connectivity</p>
+        <div class="section-line"></div>
+    </div>
+    <div class="fact-box">
+        <div class="bulb">💡</div>
+        <p>Wi-Fi does not mean that your device is directly connected to the internet through the air.<br><br>Instead, Wi-Fi provides a wireless connection between your device and a local network. The router can then connect that network to the internet.</p>
+    </div>
+</section>
 
-            <div class="card step-card">
-                <div class="step-icon">📡</div>
-                <span class="step-number">STEP 02</span>
-                <h3>Router</h3>
-                <p>
-                    The router communicates with nearby devices using
-                    wireless radio signals.
-                </p>
-            </div>
+<footer>
+    <h3>The Science Behind Everyday Things</h3>
+    <p>Discover • Understand • Explore</p>
+    <div class="footer-line"></div>
+    <p>© 2026 | All Rights Reserved</p>
+</footer>
 
-            <div class="card step-card">
-                <div class="step-icon">📱</div>
-                <span class="step-number">STEP 03</span>
-                <h3>Your Device</h3>
-                <p>
-                    Your phone or computer receives the wireless signals
-                    and sends data back to the router.
-                </p>
-            </div>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
-        </div>
-    </section>
+<script>
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('scienceTheme');
 
-    <!-- HOW DATA TRAVELS -->
-    <section>
-        <div class="section-heading">
-            <h2>How Does Data Travel Through Wi-Fi?</h2>
-            <p>Follow the path of information from the internet to your device</p>
-            <div class="section-line"></div>
-        </div>
+if (savedTheme === 'dark') document.body.classList.add('dark-theme');
+themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
 
-        <div class="data-flow">
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    const isDark = document.body.classList.contains('dark-theme');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('scienceTheme', isDark ? 'dark' : 'light');
+});
 
-            <div class="flow-item">
-                <div class="emoji">🌐</div>
-                <h3>Internet</h3>
-            </div>
+const progressBar = document.getElementById('progressBar');
+const backTop = document.getElementById('backTop');
 
-            <div class="flow-arrow">→</div>
+window.addEventListener('scroll', () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollable > 0 ? window.scrollY / scrollable * 100 : 0) + '%';
+    backTop.classList.toggle('show', window.scrollY > 350);
+});
 
-            <div class="flow-item">
-                <div class="emoji">📡</div>
-                <h3>Router</h3>
-            </div>
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-            <div class="flow-arrow">→</div>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12 });
 
-            <div class="flow-item">
-                <div class="emoji">〰️</div>
-                <div class="radio-label">Radio Waves</div>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-item">
-                <div class="emoji">📱</div>
-                <h3>Your Device</h3>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- RADIO WAVES -->
-    <section>
-        <div class="section-heading">
-            <h2>The Science: Radio Waves</h2>
-            <p>The invisible signals that make wireless communication possible</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="science-grid">
-
-            <div>
-                <img src="devices.jpg">
-            </div>
-
-            <div class="card science-text">
-                <h3>How Do Radio Waves Help?</h3>
-
-                <p>
-                    Wi-Fi uses <span class="highlight">radio waves</span>
-                    to transmit information through the air.
-                </p>
-
-                <p>
-                    Radio waves are a type of
-                    <span class="highlight">electromagnetic radiation</span>.
-                    They can travel through space without needing a physical wire.
-                </p>
-
-                <p>
-                    The router and your device contain antennas that send
-                    and receive these wireless signals.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- COMMUNICATION PROCESS -->
-    <section>
-        <div class="section-heading">
-            <h2>Wi-Fi Communication in Simple Steps</h2>
-            <p>What happens when you open a website or watch a video?</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th>Step</th>
-                    <th>What Happens?</th>
-                </tr>
-
-                <tr>
-                    <td>01</td>
-                    <td>Your device requests information from the network.</td>
-                </tr>
-
-                <tr>
-                    <td>02</td>
-                    <td>The request is sent to the Wi-Fi router using radio waves.</td>
-                </tr>
-
-                <tr>
-                    <td>03</td>
-                    <td>The router communicates with the internet.</td>
-                </tr>
-
-                <tr>
-                    <td>04</td>
-                    <td>The requested information is sent back to your device.</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
-    <!-- WHY WIFI GETS WEAK -->
-    <section>
-        <div class="section-heading">
-            <h2>Why Does Wi-Fi Become Weak?</h2>
-            <p>Some factors can affect the strength and speed of wireless signals</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="weak-grid">
-
-            <div class="card weak-card">
-                <div class="step-icon">📏</div>
-                <h3>Distance</h3>
-                <p>
-                    Wi-Fi signals can become weaker as the distance
-                    from the router increases.
-                </p>
-            </div>
-
-            <div class="card weak-card">
-                <div class="step-icon">🧱</div>
-                <h3>Walls & Objects</h3>
-                <p>
-                    Walls and other physical objects can block or
-                    weaken wireless signals.
-                </p>
-            </div>
-
-            <div class="card weak-card">
-                <div class="step-icon">📡</div>
-                <h3>Interference</h3>
-                <p>
-                    Other wireless devices and networks can interfere
-                    with Wi-Fi performance.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- EVERYDAY USES -->
-    <section>
-        <div class="section-heading">
-            <h2>Where Do We Use Wi-Fi?</h2>
-            <p>Wi-Fi has become an important part of our everyday lives</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="uses-grid">
-
-            <div class="use-item"><span>📱</span> Connecting smartphones</div>
-
-            <div class="use-item"><span>💻</span> Connecting laptops and computers</div>
-
-            <div class="use-item"><span>📺</span> Smart TVs and streaming</div>
-
-            <div class="use-item"><span>🎮</span> Online gaming</div>
-
-            <div class="use-item"><span>🏠</span> Smart home devices</div>
-
-            <div class="use-item"><span>🖨️</span> Wireless printing</div>
-
-        </div>
-    </section>
-
-    <!-- DID YOU KNOW -->
-    <section>
-        <div class="section-heading">
-            <h2>Did You Know?</h2>
-            <p>An interesting fact about wireless connectivity</p>
-            <div class="section-line"></div>
-        </div>
-
-        <div class="fact-box">
-            <div class="bulb">💡</div>
-
-            <p>
-                Wi-Fi does not mean that your device is directly connected
-                to the internet through the air.
-                <br><br>
-                Instead, Wi-Fi provides a wireless connection between your
-                device and a local network. The router can then connect
-                that network to the internet.
-            </p>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <h3>The Science Behind Everyday Things</h3>
-        <p>Discover • Understand • Explore</p>
-        <div class="footer-line"></div>
-        <p>© 2026 | All Rights Reserved</p>
-    </footer>
-
+document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+</script>
 </body>
 </html>

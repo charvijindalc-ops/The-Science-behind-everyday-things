@@ -1,1381 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Refrigerator | The Science Behind Everyday Things</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-
-        /* ===== GENERAL STYLING ===== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            background: #f4f9ff;
-            color: #263b50;
-            line-height: 1.7;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        /* ===== NAVIGATION BAR ===== */
-
-        nav {
-            background: rgba(255,255,255,0.97);
-            padding: 15px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 3px 15px rgba(18,59,93,0.10);
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            color: #123b5d;
-        }
-
-        .logo span {
-            color: #21a8c4;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .nav-links a {
-            color: #263b50;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 9px 13px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            background: #e5f5fc;
-            color: #087e9b;
-        }
-
-        .nav-links .active {
-            background: #176b87;
-            color: white;
-        }
-
-        .nav-links .active:hover {
-            background: #123b5d;
-            color: white;
-        }
-
-        .nav-links .quiz-link {
-            background: #e5f5fc;
-            color: #176b87;
-        }
-
-        /* ===== HERO SECTION ===== */
-
-        .hero {
-            min-height: 430px;
-            padding: 75px 8%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            background:
-                radial-gradient(circle at 85% 30%, rgba(65,203,226,0.22), transparent 30%),
-                linear-gradient(135deg, #102f50, #176b87, #119bb5);
-            color: white;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 680px;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            padding: 8px 17px;
-            border: 1px solid rgba(255,255,255,0.35);
-            background: rgba(255,255,255,0.10);
-            border-radius: 30px;
-            font-size: 13px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-size: clamp(38px, 5vw, 58px);
-            line-height: 1.2;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #65e0ed;
-        }
-
-        .hero p {
-            font-size: 15px;
-            color: #e1f5ff;
-            max-width: 570px;
-            margin-bottom: 28px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .primary-btn {
-            display: inline-block;
-            background: white;
-            color: #123b5d;
-            padding: 13px 24px;
-            border-radius: 9px;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .primary-btn:hover {
-            background: #65e0ed;
-            transform: translateY(-4px);
-        }
-
-        .secondary-btn {
-            display: inline-block;
-            border: 1px solid white;
-            color: white;
-            padding: 13px 24px;
-            border-radius: 9px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .secondary-btn:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-4px);
-        }
-
-        .hero-visual {
-            width: 290px;
-            height: 290px;
-            min-width: 230px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.09);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 125px;
-            box-shadow: 0 0 70px rgba(73,218,240,0.18);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-14px);
-            }
-        }
-
-        /* ===== COMMON SECTION STYLING ===== */
-
-        .section {
-            padding: 70px 8%;
-            text-align: center;
-        }
-
-        .section-tag {
-            color: #119bb5;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: 33px;
-            color: #123b5d;
-            margin: 10px 0 15px;
-            font-weight: 800;
-        }
-
-        .section-description {
-            max-width: 760px;
-            margin: 0 auto;
-            color: #61778c;
-            font-size: 15px;
-        }
-
-        /* ===== INTRODUCTION ===== */
-
-        .intro-content {
-            max-width: 1050px;
-            margin: 35px auto 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .intro-image {
-            width: 100%;
-            max-height: 350px;
-            object-fit: contain;
-            background: white;
-            padding: 15px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.09);
-        }
-
-        .info-box {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-            border-left: 6px solid #21b6c7;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.08);
-            text-align: left;
-        }
-
-        .info-box p {
-            color: #536b80;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-
-        .info-box strong {
-            color: #123b5d;
-        }
-
-        /* ===== SCIENCE PRINCIPLE ===== */
-
-        .science-section {
-            background: #eaf4fc;
-        }
-
-        .science-box {
-            max-width: 1000px;
-            margin: 35px auto 0;
-            padding: 35px;
-            background: white;
-            border-radius: 18px;
-            border-left: 6px solid #21b6c7;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.08);
-            text-align: left;
-        }
-
-        .science-box p {
-            color: #536b80;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
-
-        .science-box strong {
-            color: #123b5d;
-        }
-
-        /* ===== REFRIGERATION CYCLE ===== */
-
-        .cycle-section {
-            background: white;
-        }
-
-        .cycle-image {
-            max-width: 750px;
-            width: 100%;
-            max-height: 430px;
-            object-fit: contain;
-            margin: 35px auto 15px;
-            padding: 15px;
-            background: #f4f9ff;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.08);
-        }
-
-        .image-caption {
-            font-size: 13px;
-            color: #718397;
-            margin-top: 10px;
-        }
-
-        /* ===== FOUR MAIN COMPONENTS ===== */
-
-        .components-section {
-            background: #eaf4fc;
-        }
-
-        .components-grid {
-            max-width: 1100px;
-            margin: 40px auto 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-        }
-
-        .component-card {
-            background: white;
-            padding: 30px;
-            border-radius: 17px;
-            border: 1px solid #e1edf6;
-            box-shadow: 0 5px 20px rgba(18,59,93,0.06);
-            text-align: left;
-            transition: 0.3s;
-        }
-
-        .component-card:hover {
-            transform: translateY(-7px);
-            border-color: #55b9d8;
-            box-shadow: 0 12px 28px rgba(18,59,93,0.12);
-        }
-
-        .component-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #e3f7ff, #cceef8);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            margin-bottom: 18px;
-        }
-
-        .component-card h3 {
-            color: #123b5d;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .component-card p {
-            color: #718397;
-            font-size: 14px;
-        }
-
-        /* ===== HEAT MOVEMENT ===== */
-
-        .heat-section {
-            background: white;
-        }
-
-        .heat-grid {
-            max-width: 1050px;
-            margin: 40px auto 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .heat-card {
-            background: #f4f9ff;
-            border: 1px solid #dcecf6;
-            border-radius: 17px;
-            padding: 28px 18px;
-            transition: 0.3s;
-        }
-
-        .heat-card:hover {
-            transform: translateY(-6px);
-            background: #e5f5fc;
-        }
-
-        .heat-icon {
-            font-size: 43px;
-            margin-bottom: 12px;
-        }
-
-        .heat-card h3 {
-            color: #123b5d;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .heat-card p {
-            color: #718397;
-            font-size: 13px;
-        }
-
-        .heat-arrow {
-            color: #21a8c4;
-            font-size: 25px;
-            font-weight: 800;
-            margin: 12px 0;
-        }
-
-        /* ===== WHY THE BACK IS WARM ===== */
-
-        .warm-section {
-            background: #eaf4fc;
-        }
-
-        .warm-box {
-            max-width: 1000px;
-            margin: 35px auto 0;
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            border-left: 6px solid #f0a44b;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.08);
-            text-align: left;
-        }
-
-        .warm-box p {
-            color: #536b80;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
-
-        .warm-box strong {
-            color: #123b5d;
-        }
-
-        /* ===== COMPLETE PROCESS TABLE ===== */
-
-        .process-table-wrapper {
-            max-width: 950px;
-            margin: 35px auto 0;
-            overflow-x: auto;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.08);
-        }
-
-        .process-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            text-align: left;
-        }
-
-        .process-table th {
-            background: #123b5d;
-            color: white;
-            padding: 18px;
-            font-size: 15px;
-        }
-
-        .process-table td {
-            padding: 18px;
-            border-bottom: 1px solid #e5edf5;
-            font-size: 14px;
-            color: #536b80;
-        }
-
-        .process-table tr:nth-child(even) {
-            background: #f0f7fc;
-        }
-
-        .process-table tr:hover {
-            background: #e5f5fc;
-        }
-
-        .process-table td:first-child {
-            color: #176b87;
-            font-weight: 700;
-            text-align: center;
-            width: 100px;
-        }
-
-        /* ===== PHYSICS IMAGE ===== */
-
-        .physics-section {
-            background: white;
-        }
-
-        .physics-image {
-            max-width: 700px;
-            width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            margin: 35px auto 15px;
-            padding: 15px;
-            background: #f4f9ff;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(18,59,93,0.08);
-        }
-
-        /* ===== DID YOU KNOW ===== */
-
-        .facts-section {
-            background: #eaf4fc;
-        }
-
-        .fact-box {
-            max-width: 1000px;
-            margin: 35px auto 0;
-            padding: 42px 30px;
-            background: linear-gradient(135deg, #123b5d, #176b87);
-            color: white;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(18,59,93,0.15);
-        }
-
-        .fact-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
-
-        .fact-box h3 {
-            color: #76e6f0;
-            font-size: 23px;
-            margin-bottom: 15px;
-        }
-
-        .fact-box p {
-            color: #e3f5ff;
-            font-size: 15px;
-            max-width: 760px;
-            margin: auto;
-        }
-
-        /* ===== CLOSING SECTION ===== */
-
-        .closing-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: white;
-        }
-
-        .closing-section h2 {
-            color: #123b5d;
-            font-size: 29px;
-            margin-bottom: 12px;
-        }
-
-        .closing-section p {
-            color: #61778c;
-            margin-bottom: 24px;
-        }
-
-        .closing-btn {
-            display: inline-block;
-            background: #176b87;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 9px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .closing-btn:hover {
-            background: #123b5d;
-            transform: translateY(-4px);
-        }
-
-        .home-btn {
-            background: #e5f5fc;
-            color: #176b87;
-        }
-
-        .home-btn:hover {
-            background: #cceef8;
-            color: #123b5d;
-        }
-
-        /* ===== FOOTER ===== */
-
-        footer {
-            background: #102f50;
-            color: white;
-            padding: 35px 8%;
-            text-align: center;
-        }
-
-        footer h3 {
-            font-size: 21px;
-            margin-bottom: 8px;
-        }
-
-        footer h3 span {
-            color: #65dce9;
-        }
-
-        footer p {
-            color: #c7e0f1;
-            font-size: 13px;
-            margin: 5px 0;
-        }
-
-        .footer-line {
-            height: 1px;
-            background: rgba(255,255,255,0.18);
-            margin: 22px auto;
-            max-width: 850px;
-        }
-
-        .copyright {
-            font-size: 12px;
-            color: #a9c9df;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-
-        @media (max-width: 900px) {
-
-            .hero {
-                padding: 65px 6%;
-            }
-
-            .hero-visual {
-                width: 230px;
-                height: 230px;
-                font-size: 100px;
-            }
-
-            .heat-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 650px) {
-
-            nav {
-                justify-content: center;
-                padding: 15px 4%;
-            }
-
-            .logo {
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links {
-                justify-content: center;
-            }
-
-            .nav-links a {
-                font-size: 12px;
-                padding: 7px 9px;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 60px 7%;
-            }
-
-            .hero-content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero h1 {
-                font-size: 37px;
-            }
-
-            .hero p {
-                font-size: 14px;
-            }
-
-            .hero-visual {
-                width: 205px;
-                height: 205px;
-                min-width: 205px;
-                font-size: 90px;
-            }
-
-            .section {
-                padding: 55px 6%;
-            }
-
-            .section-title {
-                font-size: 27px;
-            }
-
-            .intro-content {
-                grid-template-columns: 1fr;
-            }
-
-            .components-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .heat-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .science-box,
-            .warm-box {
-                padding: 25px;
-            }
-
-            .fact-box {
-                padding: 32px 22px;
-            }
-
-            .closing-section h2 {
-                font-size: 25px;
-            }
-
-        }
-
-        /* ===== REDUCED MOTION ===== */
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                scroll-behavior: auto !important;
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refrigerator | The Science Behind Everyday Things</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg:#fffaf1; --surface:#ffffff; --text:#35445b;
+    --muted:#718096; --primary:#6388d8; --accent:#8bcac6;
+    --soft:#edf3ff; --yellow:#fff0c7; --pink:#ffe8e6;
+    --shadow:0 10px 30px rgba(72,91,130,.09);
+}
+body.dark {
+    --bg:#171d2b; --surface:#222b3d; --text:#edf1fa;
+    --muted:#b0bdd0; --primary:#9bb6ff; --accent:#8bd8cf;
+    --soft:#2b3851; --yellow:#443d30; --pink:#443536;
+    --shadow:0 10px 30px rgba(0,0,0,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;transition:.3s}
+a{text-decoration:none}
+nav{position:sticky;top:0;z-index:1000;background:var(--surface);padding:13px 6%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;box-shadow:0 4px 20px rgba(60,80,120,.07)}
+.logo{font-family:Nunito,sans-serif;font-size:20px;font-weight:900;color:var(--text)}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.nav-links a,.theme-btn{font:600 13px 'DM Sans';color:var(--text);padding:8px 12px;border-radius:20px;transition:.2s}
+.nav-links a:hover,.nav-links .active{background:var(--soft);color:var(--primary)}
+.nav-links .quiz-link{background:var(--yellow)}
+.theme-btn{border:0;background:var(--soft);cursor:pointer;font-size:17px}
+.hero{padding:75px 8%;display:flex;align-items:center;justify-content:space-between;gap:35px;background:linear-gradient(120deg,#e7efff,#e4f7f2,#fff1dc);color:#34445e;overflow:hidden}
+body.dark .hero{background:linear-gradient(120deg,#283653,#263e42,#443b30);color:#edf1fa}
+.hero-content{max-width:690px}
+.tag{display:inline-block;background:rgba(255,255,255,.7);padding:7px 15px;border-radius:30px;color:#5677bd;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:18px}
+.hero h1{font:900 clamp(36px,5vw,58px)/1.15 Nunito,sans-serif;margin-bottom:18px}
+.hero h1 span{color:#6388d8}
+body.dark .hero h1 span{color:#a9c1ff}
+.hero p{max-width:580px;color:var(--muted);font-size:16px;margin-bottom:25px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 21px;border-radius:30px;font-weight:800;background:#6388d8;color:white;transition:.2s}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.btn.alt{background:white;color:#526fba}
+.hero-visual{width:245px;height:245px;min-width:210px;border-radius:42% 58% 55% 45%;background:rgba(255,255,255,.65);display:grid;place-items:center;font-size:110px;animation:float 4s ease-in-out infinite;box-shadow:var(--shadow)}
+@keyframes float{50%{transform:translateY(-12px) rotate(3deg)}}
+.section{padding:65px 8%;text-align:center}
+.section.alt-bg{background:var(--soft)}
+.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--primary)}
+.section h2{font:900 clamp(25px,3vw,35px) Nunito,sans-serif;margin:8px 0 12px;color:var(--text)}
+.desc{max-width:760px;margin:auto;color:var(--muted);font-size:15px}
+.intro{max-width:1050px;margin:32px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;text-align:left}
+.intro img,.content-image{width:100%;max-height:360px;object-fit:contain;background:var(--surface);padding:16px;border-radius:24px;box-shadow:var(--shadow)}
+.info,.science-box,.warm-box{background:var(--surface);padding:30px;border-radius:22px;box-shadow:var(--shadow);text-align:left}
+.info{border-left:6px solid var(--accent)}
+.info p,.science-box p,.warm-box p{font-size:14px;color:var(--muted);margin-bottom:13px}
+strong{color:var(--text)}
+.cards{max-width:1100px;margin:35px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:left}
+.card{background:var(--surface);padding:27px;border-radius:22px;box-shadow:var(--shadow);border:1px solid rgba(130,160,210,.12);transition:.25s}
+.card:hover{transform:translateY(-6px)}
+.card-icon{width:62px;height:62px;border-radius:19px;background:var(--soft);display:grid;place-items:center;font-size:32px;margin-bottom:14px}
+.card h3{font:800 19px Nunito,sans-serif;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted)}
+.heat-grid{max-width:1050px;margin:35px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.heat-card{background:var(--surface);padding:25px 18px;border-radius:22px;box-shadow:var(--shadow)}
+.heat-icon{font-size:40px}
+.heat-card h3{font:800 18px Nunito;margin:8px 0}
+.heat-card p{font-size:13px;color:var(--muted)}
+.heat-arrow{font-size:25px;color:var(--primary);margin:10px}
+.table-wrap{max-width:950px;margin:32px auto 0;overflow-x:auto;border-radius:18px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--surface);text-align:left}
+th{background:#718fd0;color:white;padding:16px;font-size:14px}
+td{padding:15px;border-bottom:1px solid rgba(130,150,180,.18);font-size:14px;color:var(--muted)}
+tr:nth-child(even){background:var(--soft)}
+td:first-child{font-weight:800;color:var(--primary);text-align:center}
+.fact-box{max-width:950px;margin:30px auto 0;padding:35px;background:linear-gradient(120deg,#718fd0,#79bdb8);color:white;border-radius:25px;box-shadow:var(--shadow)}
+.fact-box .fact-icon{font-size:45px}
+.fact-box h3{font:900 23px Nunito;margin:8px 0}
+.fact-box p{max-width:750px;margin:auto;font-size:14px;color:white}
+.closing{padding:55px 20px;text-align:center;background:var(--surface)}
+.closing h2{font:900 28px Nunito;margin-bottom:10px}
+.closing p{color:var(--muted);margin-bottom:22px}
+footer{background:#283c5b;color:white;text-align:center;padding:32px 15px}
+footer h3{font:900 20px Nunito}
+footer span{color:#a9dcd7}
+footer p{font-size:13px;color:#d4e0f1;margin-top:6px}
+.top-btn{position:fixed;bottom:22px;right:22px;border:0;background:var(--primary);color:white;width:45px;height:45px;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:var(--shadow);display:none}
+.reveal{animation:appear .7s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){.hero{flex-direction:column;text-align:center}.hero-content{display:flex;align-items:center;flex-direction:column}.hero-visual{width:200px;height:200px;font-size:85px}.heat-grid{grid-template-columns:1fr}.intro{grid-template-columns:1fr}}
+@media(max-width:600px){nav{justify-content:center}.logo{width:100%;text-align:center}.nav-links{justify-content:center}.nav-links a{font-size:11px;padding:7px 9px}.section{padding:48px 6%}.cards{grid-template-columns:1fr}.hero{padding:55px 7%}.hero h1{font-size:37px}.info,.science-box,.warm-box{padding:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 
-
 <body>
+<nav>
+    <div class="logo">🔬 SCIENCE<span>WORLD</span></div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="gps.html">GPS</a>
+        <a href="wifi.html">Wi-Fi</a>
+        <a href="fridge.html" class="active">Fridge</a>
+        <a href="microwave.html">Microwave</a>
+        <a href="washing-machine.html">Washing Machine</a>
+        <a href="quiz.html" class="quiz-link">🧠 Quiz</a>
+        <a href="amazing-facts.html">Amazing Facts</a>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+</nav>
 
-    <!-- ===== NAVIGATION BAR ===== -->
-
-    <nav>
-
-        <div class="logo">
-            🔬 SCIENCE<span>WORLD</span>
+<header class="hero">
+    <div class="hero-content">
+        <div class="tag">❄️ EXPLORE THE SCIENCE OF COOLING</div>
+        <h1>HOW DOES A <span>REFRIGERATOR</span> WORK?</h1>
+        <p>Ever wondered how a refrigerator keeps your food fresh and drinks cold? Discover the fascinating science of heat transfer, refrigerants and the refrigeration cycle.</p>
+        <div class="hero-buttons">
+            <a href="#introduction" class="btn">Discover More →</a>
+            <a href="#cycle" class="btn alt">Explore The Cycle</a>
         </div>
+    </div>
+    <div class="hero-visual">❄️</div>
+</header>
 
-        <div class="nav-links">
-
-            <a href="index.html">Home</a>
-            <a href="gps.html">GPS</a>
-            <a href="wifi.html">Wi-Fi</a>
-            <a href="fridge.html" class="active">Fridge</a>
-            <a href="microwave.html">Microwave</a>
-            <a href="washing-machine.html">Washing Machine</a>
-            <a href="quiz.html" class="quiz-link">🧠 Science Quiz</a>
-            <a href="amazing-facts.html">Amazing Facts</a>
-
+<section class="section" id="introduction">
+    <div class="eyebrow">UNDERSTANDING REFRIGERATION</div>
+    <h2>What Is a Refrigerator?</h2>
+    <p class="desc">A refrigerator is one of the most useful appliances in our everyday lives.</p>
+    <div class="intro">
+        <img src="fridge1.jpg" alt="Refrigerator">
+        <div class="info">
+            <p>A <strong>refrigerator</strong> is an appliance that keeps food and drinks at a low temperature.</p>
+            <p>But a refrigerator does not simply "produce cold".</p>
+            <p>Instead, it uses a refrigeration system to <strong>remove heat from inside the refrigerator</strong> and release that heat into the surroundings.</p>
+            <p>This process continuously keeps the inside of the refrigerator cool and helps preserve food.</p>
         </div>
-
-    </nav>
-
-
-    <!-- ===== HERO SECTION ===== -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="hero-tag">
-                ❄️ EXPLORE THE SCIENCE OF COOLING
-            </div>
-
-            <h1>
-                HOW DOES A
-                <span>REFRIGERATOR</span>
-                WORK?
-            </h1>
-
-            <p>
-                Ever wondered how a refrigerator keeps your food
-                fresh and drinks cold? Discover the fascinating
-                science of heat transfer, refrigerants and
-                the refrigeration cycle.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#introduction" class="primary-btn">
-                    Discover More →
-                </a>
-
-                <a href="#cycle" class="secondary-btn">
-                    Explore The Cycle
-
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="hero-visual">
-            ❄️
-        </div>
-
-    </section>
-
-
-    <!-- ===== INTRODUCTION ===== -->
-
-    <section class="section" id="introduction">
-
-        <div class="section-tag">
-            UNDERSTANDING REFRIGERATION
-        </div>
-
-        <h2 class="section-title">
-            What Is a Refrigerator?
-        </h2>
-
-        <p class="section-description">
-            A refrigerator is one of the most useful appliances
-            in our everyday lives.
-        </p>
-
-        <div class="intro-content">
-
-            <img
-                src="fridge1.jpg"
-                alt="Refrigerator"
-                class="intro-image"
-            >
-
-            <div class="info-box">
-
-                <p>
-                    A <strong>refrigerator</strong> is an appliance
-                    that keeps food and drinks at a low temperature.
-                </p>
-
-                <p>
-                    But a refrigerator does not simply
-                    "produce cold".
-                </p>
-
-                <p>
-                    Instead, it uses a refrigeration system to
-                    <strong>remove heat from inside the refrigerator</strong>
-                    and release that heat into the surroundings.
-                </p>
-
-                <p>
-                    This process continuously keeps the inside
-                    of the refrigerator cool and helps preserve food.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== SCIENCE BEHIND REFRIGERATION ===== -->
-
-    <section class="section science-section">
-
-        <div class="section-tag">
-            THE SCIENTIFIC PRINCIPLE
-        </div>
-
-        <h2 class="section-title">
-            🧊 The Science Behind Refrigeration
-        </h2>
-
-        <p class="section-description">
-            Refrigerators use a special process to transfer
-            heat from a colder area to a warmer area.
-        </p>
-
-        <div class="science-box">
-
-            <p>
-                A common refrigerator uses a
-                <strong>vapor-compression refrigeration cycle</strong>.
-            </p>
-
-            <p>
-                A special fluid called a <strong>refrigerant</strong>
-                moves through the system. It changes between
-                liquid and gas as it circulates through different
-                components.
-            </p>
-
-            <p>
-                The refrigeration system mainly contains four
-                important parts:
-            </p>
-
-            <p>
-                <strong>1. Compressor</strong><br>
-                <strong>2. Condenser</strong><br>
-                <strong>3. Expansion Device</strong><br>
-                <strong>4. Evaporator</strong>
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== REFRIGERATION CYCLE ===== -->
-
-    <section class="section cycle-section" id="cycle">
-
-        <div class="section-tag">
-            UNDERSTANDING THE PROCESS
-        </div>
-
-        <h2 class="section-title">
-            🔄 How the Refrigeration Cycle Works
-        </h2>
-
-        <p class="section-description">
-            The refrigerant continuously circulates through
-            different components to remove heat from inside
-            the refrigerator.
-        </p>
-
-        <img
-            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Refrigerator%20Cycle.svg"
-            alt="Refrigerator refrigeration cycle diagram"
-            class="cycle-image"
-        >
-
-        <p class="image-caption">
-            Diagram of a basic refrigerator refrigeration cycle.
-        </p>
-
-    </section>
-
-
-    <!-- ===== FOUR MAIN COMPONENTS ===== -->
-
-    <section class="section components-section">
-
-        <div class="section-tag">
-            KNOW THE COMPONENTS
-        </div>
-
-        <h2 class="section-title">
-            ⚙️ Four Main Parts of a Refrigerator
-        </h2>
-
-        <p class="section-description">
-            Each component performs a specific function
-            in the refrigeration cycle.
-        </p>
-
-        <div class="components-grid">
-
-
-            <div class="component-card">
-
-                <div class="component-icon">
-                    ⚙️
-                </div>
-
-                <h3>1. Compressor</h3>
-
-                <p>
-                    The compressor compresses the refrigerant
-                    gas and increases its pressure and temperature.
-                    It also circulates the refrigerant through
-                    the system.
-                </p>
-
-            </div>
-
-
-            <div class="component-card">
-
-                <div class="component-icon">
-                    🌡️
-                </div>
-
-                <h3>2. Condenser</h3>
-
-                <p>
-                    The refrigerant releases heat to the
-                    surroundings and changes from a gas
-                    into a liquid.
-                </p>
-
-            </div>
-
-
-            <div class="component-card">
-
-                <div class="component-icon">
-                    🔽
-                </div>
-
-                <h3>3. Expansion Device</h3>
-
-                <p>
-                    The refrigerant experiences a drop in
-                    pressure as it passes through the expansion
-                    device. This makes its temperature decrease.
-                </p>
-
-            </div>
-
-
-            <div class="component-card">
-
-                <div class="component-icon">
-                    ❄️
-                </div>
-
-                <h3>4. Evaporator</h3>
-
-                <p>
-                    The cold refrigerant absorbs heat from
-                    inside the refrigerator and evaporates
-                    into a gas.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== HEAT MOVEMENT ===== -->
-
-    <section class="section heat-section">
-
-        <div class="section-tag">
-            FOLLOW THE HEAT
-        </div>
-
-        <h2 class="section-title">
-            🌡️ Where Does the Heat Go?
-        </h2>
-
-        <p class="section-description">
-            A refrigerator works by continuously transferring
-            heat from inside the refrigerator to the room.
-        </p>
-
-        <div class="heat-grid">
-
-
-            <div class="heat-card">
-
-                <div class="heat-icon">
-                    🥶
-                </div>
-
-                <h3>Inside the Fridge</h3>
-
-                <p>
-                    Heat is absorbed from the food and
-                    air inside the refrigerator.
-                </p>
-
-                <div class="heat-arrow">↓</div>
-
-                <strong>Heat is collected</strong>
-
-            </div>
-
-
-            <div class="heat-card">
-
-                <div class="heat-icon">
-                    ⚙️
-                </div>
-
-                <h3>Refrigeration System</h3>
-
-                <p>
-                    The refrigerant carries heat through
-                    the refrigeration cycle.
-                </p>
-
-                <div class="heat-arrow">↓</div>
-
-                <strong>Heat is transported</strong>
-
-            </div>
-
-
-            <div class="heat-card">
-
-                <div class="heat-icon">
-                    🏠
-                </div>
-
-                <h3>Surrounding Room</h3>
-
-                <p>
-                    Heat is released into the surrounding
-                    air through the condenser.
-                </p>
-
-                <div class="heat-arrow">↓</div>
-
-                <strong>Heat is released</strong>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== WHY THE BACK IS WARM ===== -->
-
-    <section class="section warm-section">
-
-        <div class="section-tag">
-            AN EVERYDAY SCIENCE QUESTION
-        </div>
-
-        <h2 class="section-title">
-            🔥 Why Is the Back of a Fridge Warm?
-        </h2>
-
-        <p class="section-description">
-            Have you ever touched the back or sides
-            of a refrigerator and noticed that they feel warm?
-        </p>
-
-        <div class="warm-box">
-
-            <p>
-                This happens because the refrigerator must
-                release the heat that it removed from inside.
-            </p>
-
-            <p>
-                The <strong>condenser</strong> transfers this
-                heat to the surrounding air.
-            </p>
-
-            <p>
-                During this process, the refrigerant gives
-                away heat and changes from a gas into a liquid.
-            </p>
-
-            <p>
-                <strong>
-                    So, a warm back or side is actually part
-                    of the normal refrigeration process!
-                </strong>
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== COMPLETE PROCESS ===== -->
-
-    <section class="section">
-
-        <div class="section-tag">
-            STEP-BY-STEP EXPLANATION
-        </div>
-
-        <h2 class="section-title">
-            🔬 The Complete Refrigeration Process
-        </h2>
-
-        <p class="section-description">
-            Let's understand the complete cycle in five simple steps.
-        </p>
-
-        <div class="process-table-wrapper">
-
-            <table class="process-table">
-
-                <tr>
-                    <th>Step</th>
-                    <th>What Happens?</th>
-                </tr>
-
-                <tr>
-                    <td>01</td>
-                    <td>
-                        The compressor compresses the refrigerant gas.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>02</td>
-                    <td>
-                        The refrigerant releases heat through the condenser.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>03</td>
-                    <td>
-                        The refrigerant passes through an expansion
-                        device and its pressure drops.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>04</td>
-                    <td>
-                        The cold refrigerant absorbs heat inside
-                        the refrigerator.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>05</td>
-                    <td>
-                        The refrigerant returns to the compressor
-                        and the cycle starts again.
-                    </td>
-                </tr>
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== PHYSICS OF COOLING ===== -->
-
-    <section class="section physics-section">
-
-        <div class="section-tag">
-            THE PHYSICS OF COOLING
-        </div>
-
-        <h2 class="section-title">
-            💡 Understanding the Cooling Principle
-        </h2>
-
-        <p class="section-description">
-            Refrigeration is based on the transfer of heat
-            and changes in the pressure and state of the refrigerant.
-        </p>
-
-        <img
-            src="images.png"
-            alt="Refrigeration cycle and cooling principle"
-            class="physics-image"
-        >
-
-        <p class="image-caption">
-            Refrigeration principle illustrated by NIST.
-        </p>
-
-    </section>
-
-
-    <!-- ===== DID YOU KNOW ===== -->
-
-    <section class="section facts-section">
-
-        <div class="section-tag">
-            INTERESTING SCIENCE FACT
-        </div>
-
-        <h2 class="section-title">
-            💡 Did You Know?
-        </h2>
-
-        <p class="section-description">
-            Here is something interesting about refrigerators!
-        </p>
-
-        <div class="fact-box">
-
-            <div class="fact-icon">
-                ❄️
-            </div>
-
-            <h3>A Refrigerator Is a Heat-Moving Machine!</h3>
-
-            <p>
-                A refrigerator does not create cold.
-                It takes heat from a colder space inside
-                the refrigerator and transfers that heat
-                to the warmer surroundings.
-
-                <br><br>
-
-                This continuous process keeps the inside
-                of the refrigerator cool and helps preserve food.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== CLOSING SECTION ===== -->
-
-    <section class="closing-section">
-
-        <h2>
-            Now You Know How Refrigerators Work!
-        </h2>
-
-        <p>
-            Every time you open your refrigerator,
-            an amazing scientific process is taking place.
-        </p>
-
-        <a href="microwave.html" class="closing-btn">
-            Explore Microwave Technology →
-        </a>
-
-        <br><br>
-
-        <a href="index.html" class="closing-btn home-btn">
-            ← Back to Home
-        </a>
-
-    </section>
-
-
-    <!-- ===== FOOTER ===== -->
-
-    <footer>
-
-        <h3>
-            🔬 THE SCIENCE BEHIND
-            <span>EVERYDAY THINGS</span>
-        </h3>
-
-        <p>
-            Discover • Understand • Explore
-        </p>
-
-        <div class="footer-line"></div>
-
-        <p>
-            An Educational Science Project
-        </p>
-
-        <p class="copyright">
-            © 2026 The Science Behind Everyday Things.
-            All Rights Reserved.
-        </p>
-
-    </footer>
-
-
+    </div>
+</section>
+
+<section class="section alt-bg">
+    <div class="eyebrow">THE SCIENTIFIC PRINCIPLE</div>
+    <h2>🧊 The Science Behind Refrigeration</h2>
+    <p class="desc">Refrigerators use a special process to transfer heat from a colder area to a warmer area.</p>
+    <div class="science-box" style="max-width:1000px;margin:30px auto 0">
+        <p>A common refrigerator uses a <strong>vapor-compression refrigeration cycle</strong>.</p>
+        <p>A special fluid called a <strong>refrigerant</strong> moves through the system. It changes between liquid and gas as it circulates through different components.</p>
+        <p>The refrigeration system mainly contains four important parts:</p>
+        <p><strong>1. Compressor</strong><br><strong>2. Condenser</strong><br><strong>3. Expansion Device</strong><br><strong>4. Evaporator</strong></p>
+    </div>
+</section>
+
+<section class="section" id="cycle">
+    <div class="eyebrow">UNDERSTANDING THE PROCESS</div>
+    <h2>🔄 How the Refrigeration Cycle Works</h2>
+    <p class="desc">The refrigerant continuously circulates through different components to remove heat from inside the refrigerator.</p>
+    <img class="content-image" style="max-width:750px;margin:30px auto 10px" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Refrigerator%20Cycle.svg" alt="Refrigerator refrigeration cycle diagram">
+    <p class="desc">Diagram of a basic refrigerator refrigeration cycle.</p>
+</section>
+
+<section class="section alt-bg">
+    <div class="eyebrow">KNOW THE COMPONENTS</div>
+    <h2>⚙️ Four Main Parts of a Refrigerator</h2>
+    <p class="desc">Each component performs a specific function in the refrigeration cycle.</p>
+    <div class="cards">
+        <article class="card"><div class="card-icon">⚙️</div><h3>1. Compressor</h3><p>The compressor compresses the refrigerant gas and increases its pressure and temperature. It also circulates the refrigerant through the system.</p></article>
+        <article class="card"><div class="card-icon">🌡️</div><h3>2. Condenser</h3><p>The refrigerant releases heat to the surroundings and changes from a gas into a liquid.</p></article>
+        <article class="card"><div class="card-icon">🔽</div><h3>3. Expansion Device</h3><p>The refrigerant experiences a drop in pressure as it passes through the expansion device. This makes its temperature decrease.</p></article>
+        <article class="card"><div class="card-icon">❄️</div><h3>4. Evaporator</h3><p>The cold refrigerant absorbs heat from inside the refrigerator and evaporates into a gas.</p></article>
+    </div>
+</section>
+
+<section class="section">
+    <div class="eyebrow">FOLLOW THE HEAT</div>
+    <h2>🌡️ Where Does the Heat Go?</h2>
+    <p class="desc">A refrigerator works by continuously transferring heat from inside the refrigerator to the room.</p>
+    <div class="heat-grid">
+        <article class="heat-card"><div class="heat-icon">🥶</div><h3>Inside the Fridge</h3><p>Heat is absorbed from the food and air inside the refrigerator.</p><div class="heat-arrow">↓</div><strong>Heat is collected</strong></article>
+        <article class="heat-card"><div class="heat-icon">⚙️</div><h3>Refrigeration System</h3><p>The refrigerant carries heat through the refrigeration cycle.</p><div class="heat-arrow">↓</div><strong>Heat is transported</strong></article>
+        <article class="heat-card"><div class="heat-icon">🏠</div><h3>Surrounding Room</h3><p>Heat is released into the surrounding air through the condenser.</p><div class="heat-arrow">↓</div><strong>Heat is released</strong></article>
+    </div>
+</section>
+
+<section class="section alt-bg">
+    <div class="eyebrow">AN EVERYDAY SCIENCE QUESTION</div>
+    <h2>🔥 Why Is the Back of a Fridge Warm?</h2>
+    <p class="desc">Have you ever touched the back or sides of a refrigerator and noticed that they feel warm?</p>
+    <div class="warm-box" style="max-width:1000px;margin:30px auto 0">
+        <p>This happens because the refrigerator must release the heat that it removed from inside.</p>
+        <p>The <strong>condenser</strong> transfers this heat to the surrounding air.</p>
+        <p>During this process, the refrigerant gives away heat and changes from a gas into a liquid.</p>
+        <p><strong>So, a warm back or side is actually part of the normal refrigeration process!</strong></p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="eyebrow">STEP-BY-STEP EXPLANATION</div>
+    <h2>🔬 The Complete Refrigeration Process</h2>
+    <p class="desc">Let's understand the complete cycle in five simple steps.</p>
+    <div class="table-wrap">
+        <table>
+            <tr><th>Step</th><th>What Happens?</th></tr>
+            <tr><td>01</td><td>The compressor compresses the refrigerant gas.</td></tr>
+            <tr><td>02</td><td>The refrigerant releases heat through the condenser.</td></tr>
+            <tr><td>03</td><td>The refrigerant passes through an expansion device and its pressure drops.</td></tr>
+            <tr><td>04</td><td>The cold refrigerant absorbs heat inside the refrigerator.</td></tr>
+            <tr><td>05</td><td>The refrigerant returns to the compressor and the cycle starts again.</td></tr>
+        </table>
+    </div>
+</section>
+
+<section class="section">
+    <div class="eyebrow">THE PHYSICS OF COOLING</div>
+    <h2>💡 Understanding the Cooling Principle</h2>
+    <p class="desc">Refrigeration is based on the transfer of heat and changes in the pressure and state of the refrigerant.</p>
+    <img class="content-image" style="max-width:700px;margin:30px auto 10px" src="images.png" alt="Refrigeration cycle and cooling principle">
+    <p class="desc">Refrigeration principle illustrated by NIST.</p>
+</section>
+
+<section class="section alt-bg">
+    <div class="eyebrow">INTERESTING SCIENCE FACT</div>
+    <h2>💡 Did You Know?</h2>
+    <p class="desc">Here is something interesting about refrigerators!</p>
+    <div class="fact-box">
+        <div class="fact-icon">❄️</div>
+        <h3>A Refrigerator Is a Heat-Moving Machine!</h3>
+        <p>A refrigerator does not create cold. It takes heat from a colder space inside the refrigerator and transfers that heat to the warmer surroundings. This continuous process keeps the inside of the refrigerator cool and helps preserve food.</p>
+    </div>
+</section>
+
+<section class="closing">
+    <h2>Now You Know How Refrigerators Work!</h2>
+    <p>Every time you open your refrigerator, an amazing scientific process is taking place.</p>
+    <a href="microwave.html" class="btn">Explore Microwave Technology →</a>
+    <br><br><a href="index.html" class="btn alt">← Back to Home</a>
+</section>
+
+<footer>
+    <h3>🔬 THE SCIENCE BEHIND <span>EVERYDAY THINGS</span></h3>
+    <p>Discover • Understand • Explore</p>
+    <p>An Educational Science Project</p>
+    <p>© 2026 The Science Behind Everyday Things. All Rights Reserved.</p>
+</footer>
+
+<button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+<script>
+const toggle=document.getElementById('themeToggle');
+if(localStorage.getItem('science-theme')==='dark') document.body.classList.add('dark');
+function updateThemeIcon(){toggle.textContent=document.body.classList.contains('dark')?'☀️':'🌙'}
+updateThemeIcon();
+toggle.addEventListener('click',()=>{
+    document.body.classList.toggle('dark');
+    localStorage.setItem('science-theme',document.body.classList.contains('dark')?'dark':'light');
+    updateThemeIcon();
+});
+const topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{topBtn.style.display=window.scrollY>350?'block':'none'});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
-
 </html>
